@@ -1,12 +1,33 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Form = styled.form`
     width: 100%;
-    max-width: 31.6rem;
+    max-width: 70rem;
+    margin: 0 auto;
+
+    > div:first-child {
+        margin-top: 15.8rem;
+        margin-bottom: 7.3rem;
+    }
     
-    > h1 {
-        > svg {
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    > label {
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        font-family: "Roboto", "serif";
+        font-weight: 400;
+        font-size: 1.6rem;
     }
+
+    > div input{
+        margin-top: 2px;
+        margin-bottom: 3.2rem;
     }
+
+    > button:last-child {
+        display: flex;
+        justify-content: center;
+        margin: 3.2rem auto;
+
+
+    }
+
 `

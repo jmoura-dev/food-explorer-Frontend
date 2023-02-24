@@ -1,11 +1,11 @@
 import { Container } from "./styles";
-import logo from "../../assets/polygon.svg"
+import logo from "../../assets/polygonTitle.svg"
 
-export function Title({ title }) {
+export function Title() {
     return (
         <Container>
             <img src={logo} alt="imagem do logo" />
-            {title}
+            <h1>food explorer</h1>
         </Container>
     )
 }
