@@ -1,10 +1,14 @@
 import { Container } from "./styles";
 
+import { Title } from "../../components/Title";
+
 
 export function SignIn () {
     return (
         <Container>
-            <h1>Hello, world</h1>
+            <Title title="food explorer">
+                
+            </Title>
         </Container>
     )
 }
