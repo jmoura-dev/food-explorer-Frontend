@@ -6,7 +6,7 @@ export default {
         LIGHT_400: "#C4C4CC",
         LIGHT_500: "#7C7C8A",
         LIGHT_600: "#76797B",
-        LIGHT_700: "#4D685E",
+        LIGHT_700: "#4D585E",
 
         DARK_100: "#000405",
         DARK_200: "#00070A",

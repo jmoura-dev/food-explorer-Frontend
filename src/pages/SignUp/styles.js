@@ -4,6 +4,7 @@ export const Form = styled.form`
     width: 100%;
     max-width: 70rem;
     margin: 0 auto;
+    padding: 0 2.6rem;
 
     > div:first-child {
         margin-top: 15.8rem;
@@ -17,7 +18,7 @@ export const Form = styled.form`
         font-size: 1.6rem;
     }
 
-    > div input{
+    > div{
         margin-top: 2px;
         margin-bottom: 3.2rem;
     }

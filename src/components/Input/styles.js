@@ -3,9 +3,17 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: flex;
     align-items: center;
+    background-color: ${({ theme }) => theme.COLORS.DARK_900};
+    padding: 1.2rem 1.6rem;
+    border-radius: 0.8rem;
+    height: 4.8rem;
+
+    > svg {
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
+    }
     
     > input {
-        background-color: ${({ theme }) => theme.COLORS.DARK_900};
+        background: transparent;
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
         border: none;
@@ -16,14 +24,13 @@ export const Container = styled.div`
         height: 4.8rem;
         font-size: 1.6rem;
         font-weight: 400;
-        padding: 1.2rem 1.4rem;
-        border-radius: 0.8rem;
+        margin-left: 1.6rem;
+
 
         &::placeholder {
             color: ${({ theme }) => theme.COLORS.LIGHT_500};
             font-size: 1.6rem;
             font-weight: 400;
-
         }
     }
 `

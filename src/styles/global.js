@@ -13,7 +13,6 @@ export default createGlobalStyle`
 
     body {
         font-size: 1.6rem;
-        margin: 0 2.6rem;
         background-color: ${({ theme }) => theme.COLORS.DARK_400};
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
         overflow-y: auto;
