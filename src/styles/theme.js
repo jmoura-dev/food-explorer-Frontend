@@ -20,7 +20,6 @@ export default {
         DARK_1000: "#192227",
 
         GRADIENT_100: "rgba(0, 10, 15, 0.27)rgba(0, 10, 15, 1)",
-        GRADIENT_200: "rgba(9, 30, 38, 1)rgba(0, 19, 28, 1)",
 
         TOMATO_100: "#750310",
         TOMATO_200: "#92000E",
