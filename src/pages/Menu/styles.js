@@ -33,7 +33,10 @@ export const Container = styled.div`
     }
 
     > section {
-        margin-bottom: 4rem;
+        gap: 2rem;
+        margin: 2rem 2.8rem;
+        padding: 10px;
+        border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
 
         button {
             margin-top: 4rem;

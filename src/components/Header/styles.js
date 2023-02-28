@@ -6,9 +6,11 @@ export const Container = styled.header`
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 11.4rem;
+    height: 12.4rem;
     padding: 0 2.7rem;
     background-color: ${({ theme }) => theme.COLORS.DARK_700};
+    position: fixed;
+    z-index: 1;
     
     > button {
         background: none;

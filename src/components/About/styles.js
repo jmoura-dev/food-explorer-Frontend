@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: flex;
     align-items: center;
+    padding-left: 0.6rem;
+
+
     max-width: 112rem;
     width: 100%;
 
@@ -20,7 +23,6 @@ export const Container = styled.div`
         top: -1.5rem;
         left: -2.7rem;
         border: none;
-        padding-left: 1rem;
     }
 
     > div {
