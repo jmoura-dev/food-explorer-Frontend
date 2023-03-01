@@ -6,6 +6,8 @@ import { ButtonText } from "../../components/ButtonText";
 import { Button } from "../../components/Button";
 import imageDish from "../../assets/imageDish.svg";
 
+
+import { AiOutlineRest } from "react-icons/ai";
 import { FiArrowRight } from "react-icons/fi";
 
 export function Requests() {
@@ -25,7 +27,9 @@ export function Requests() {
                     Salada Radish
                     </h2>
 
-                    <ButtonText title="Excluir pedido"/>
+                    <ButtonText
+                    title="Excluir pedido"
+                    />
                 </div>
                 </Request>
                 

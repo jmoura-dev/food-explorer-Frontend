@@ -22,10 +22,6 @@ export const Container = styled.footer`
             width: 22px;
             height: 18px;
             color: ${({ theme }) => theme.COLORS.LIGHT_700};
-            
-            svg {
-
-            }
         }
 
         p {
