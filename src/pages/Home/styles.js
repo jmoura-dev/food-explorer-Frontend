@@ -15,34 +15,35 @@ export const Content = styled.main`
 
     > section {
         position: relative;
+        padding: 0 1rem;
         
-        div:first-child {
+        > div:first-child {
             white-space: nowrap;
             display: flex;
             align-items: center;
             width: 50rem;
             overflow-x: hidden;
+            flex-direction: row;
 
             scroll-behavior: smooth;
             scroll-snap-type: x mandatory;
             justify-content: space-between;
         }
-
     }
 `
 
 export const Scrolling = styled.button`
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        border: none;
-        background: none;
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        font-size: 3.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    font-size: 3.5rem;
 
-        ${({ direction }) => direction === 'prev' ? `
-            left: 0;
-        ` : `
-            right: 0;
-        `}
+    ${({ direction }) => direction === 'prev' ? `
+        left: 0;
+    ` : `
+        right: 0;
+    `}
 `

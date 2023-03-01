@@ -22,6 +22,10 @@ export function Menu () {
             />
 
             <Section>
+            <ButtonText title="Meus favoritos"/>
+            </Section>
+
+            <Section>
             <ButtonText title="Sair"/>
             </Section>
 
