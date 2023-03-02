@@ -5,6 +5,7 @@ export const Container = styled.section`
     font-family: "Poppins", "serif";
     font-weight: 500;
     font-size: 1.8rem;
+    max-width: 136.6rem;
 
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
         

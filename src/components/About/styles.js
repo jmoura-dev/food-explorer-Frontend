@@ -5,13 +5,12 @@ export const Container = styled.div`
     align-items: center;
     padding-left: 0.6rem;
 
-
     max-width: 112rem;
     width: 100%;
 
-    height: clamp(12rem, 12rem, 12rem + 5vh);
+    height: 12rem;
 
-    background: linear-gradient(#091E26 0%, #00131C 100%) ;
+    background: linear-gradient(#091E26 0%, #00131C 100%);
     
     margin: 4.4rem auto;
 
@@ -50,6 +49,47 @@ export const Container = styled.div`
 
 
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
+        }
+
+    }
+        @media(min-width: 650px) {
+            > div {
+            position: initial;
+            width: 100%;
+            align-items: center;
+        }
+
+        }
+
+        @media(min-width: 820px) {
+
+            height: 20rem;
+            display: flex;
+
+            > img {
+                position: relative;
+                top: -1.8rem;
+                left: -2.7rem;
+                border: none;
+
+                width: 30rem;
+                height: 30rem;
+                margin-right: 5rem;
+            }
+
+        > div {
+            position: initial;
+            width: 100%;
+
+            h1 {
+                font-weight: 500;
+                font-size: 4rem;
+            }
+
+            p {
+                font-family: "Roboto", "serif";
+                font-size: 1.6rem;
+            }
         }
     }
 `

@@ -87,6 +87,7 @@ export const WindowDesktop = styled.main`
     margin: 0 auto;
     justify-content: space-between;
     gap: 1rem;
+    max-width: 136.6rem;
 
 
         span {
@@ -116,7 +117,7 @@ export const WindowDesktop = styled.main`
         button {
             display: block;
             font-family: "Roboto", "serif";
-            font-weight: 500;
+            font-weight: 400;
             font-size: clamp(1.4rem, 1.6rem, 1.8rem);
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
 

@@ -9,7 +9,6 @@ export const Container = styled.footer`
     height: 7.7rem;
     border: none;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
-
     position: fixed;
     bottom: 0;
 
@@ -45,4 +44,24 @@ export const Container = styled.footer`
         justify-content: center;
         gap: 1.5rem;
     } 
+
+    @media(min-width: 820px) {
+
+     div {
+        img {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        p {
+            font-size: 2.4rem;
+        }
+    }
+
+    > span {
+        font-family: "Roboto";
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+    }
 `

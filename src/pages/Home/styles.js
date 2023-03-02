@@ -4,6 +4,69 @@ export const Container = styled.div`
     display: grid;
     grid-template-areas: "header" "main" "footer";
     grid-template-rows: 11.4rem auto 7.7rem;
+
+    @media(max-width: 399px) {
+        > main {
+            section {
+                    max-width: 35rem;
+                    width: 100%;
+            }
+        }
+    }
+    
+    @media(min-width: 400px) {
+        > main {
+            section {
+                    max-width: 40rem;
+                    width: 100%;
+            }
+        }
+    }
+
+    @media(min-width: 500px) {
+        > main {
+            section {
+                    max-width: 50rem;
+                    width: 100%;
+            }
+        }
+    }
+
+    @media(min-width: 820px) {
+        > main {
+            section {
+                    max-width: 68rem;
+                    width: 100%;
+            }
+        }
+    }
+
+    @media(min-width: 1000px) {
+        > main {
+            section {
+                    max-width: 78rem;
+                    width: 100%;
+            }
+        }
+    }
+
+    @media(min-width: 1100px) {
+        > main {
+            section {
+                    max-width: 88rem;
+                    width: 100%;
+                }
+        }
+    }
+
+    @media(min-width: 1366px) {
+        > main {
+            section {
+                    max-width: 120rem;
+                    width: 100%;
+                }
+        }
+    }
 `
 
 export const Content = styled.main`
@@ -14,20 +77,21 @@ export const Content = styled.main`
     margin: 0 auto;
 
     > section {
+        white-space: nowrap;
         position: relative;
-        padding: 0 1rem;
+        margin: 0 auto;
+        max-width: 120rem;
+
         
         > div:first-child {
             white-space: nowrap;
             display: flex;
             align-items: center;
-            width: 50rem;
             overflow-x: hidden;
             flex-direction: row;
 
             scroll-behavior: smooth;
             scroll-snap-type: x mandatory;
-            justify-content: space-between;
         }
     }
 `

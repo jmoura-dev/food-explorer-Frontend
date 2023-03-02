@@ -68,6 +68,13 @@ export function Home () {
                 <Dish/>
                 <Dish/>
                 <Dish/>
+                <Dish/>
+                <Dish/>
+                <Dish/>
+                <Dish/>
+                <Dish/>
+                <Dish/>
+
             </div>
 
             
