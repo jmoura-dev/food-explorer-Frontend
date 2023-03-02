@@ -18,6 +18,14 @@ export const Container = styled.div`
     margin-right: 1.6rem;
     margin-bottom: 2.4rem;
 
+    :hover {
+        transform: scale(1.1);
+        transition-duration: 0.4s;
+    }
+
+    transform: scale(1);
+    transition-duration: 0.4s;
+
     > button:first-child {
         border: none;
         background: none;
@@ -66,6 +74,10 @@ export const Container = styled.div`
     > button:last-child{
         height: 3.2rem;
         border-radius: 5px;
+    }
+
+    @media (min-width: 900px) {
+        min-width: 24rem;
     }
 `
 

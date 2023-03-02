@@ -30,6 +30,10 @@ export const Container = styled.div`
             display: none;
         }
     }
+
+    @media(min-width: 1000px) {
+        padding: 0 10.8rem;
+    }
 `
 
 export const Form = styled.form`
@@ -87,4 +91,7 @@ export const Form = styled.form`
         }
     }
 
+    @media (min-width: 1360px) {
+        padding: 0 10rem;
+    }
 `

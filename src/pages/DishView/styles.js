@@ -25,17 +25,20 @@ export const Content = styled.main`
         }
     }
 
-    > div:nth-child(2) {
+    > form {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        max-width: 40rem;
+        margin: 0 auto;
+        text-align: center;
 
-        img {
-            margin-top: 1.6rem;
-            margin-bottom: 1.6rem;
-            width: 26.4rem;
-            height: 26.4rem;
+        > img {
+            display: flex;
+            width: 20.4rem;
+            height: 20.4rem;
+            margin-right: 2rem;
         }
 
         h1 {
@@ -43,7 +46,6 @@ export const Content = styled.main`
             font-weight: 500;
             font-size: 2.7rem;
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
-            margin-bottom: 2.4rem;
         }
 
         p {
@@ -53,52 +55,110 @@ export const Content = styled.main`
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
             margin-bottom: 2.7rem;
         }
-    }
 
-    > div:nth-child(3) {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 2.3rem;
-    }
-
-    > footer {
-        margin-top: 4rem;
-        display: flex;
-        align-items: center;
-        gap: 1.9rem;
-
-        button:nth-child(1), button:nth-child(3) {
-            border: none;
-            background: none;
-
-            color: ${({ theme }) => theme.COLORS.LIGHT_100};
-            font-size: 2.3rem;
+        span {
+            max-width: 59rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
         }
 
-        > span {
-            position: relative;
-            font-family: "Roboto", "serif";
-            font-weight: bold;
-            font-size: 2.26rem;
-            color: ${({ theme }) => theme.COLORS.LIGHT_300};
-        }
+        footer {
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1.9rem;
+            justify-content: center;
 
-        button:last-child{
+            button:nth-child(1), button:nth-child(3) {
+                border: none;
+                background: none;
+
+                color: ${({ theme }) => theme.COLORS.LIGHT_100};
+                font-size: 2.3rem;
+            }
+
+            > span {
+                font-family: "Roboto", "serif";
+                font-weight: bold;
+                font-size: 2.26rem;
+                color: ${({ theme }) => theme.COLORS.LIGHT_300};
+            }
+
+            button:last-child{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 7px;
+                max-width: 18.8rem;
+
+                font-family: "Poppins", "serif";
+                font-weight: 500;
+                font-size: 1rem;
+
+                svg {
+                    font-size: 2rem;
+                }
+            }
+    }
+
+        @media(min-width: 820px) {
             display: flex;
             flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
+            max-width: 136.6rem;
+            justify-content: space-between;
+            margin: 4rem auto 0;
+            padding: 3.6rem 5rem 0;
 
-            font-family: "Poppins", "serif";
-            font-weight: 500;
-            font-size: 1rem;
+            img {
+                width: 34rem;
+                height: 34rem;
+            }
 
-            svg {
-                font-size: 2rem;
+            p {
+                text-align: left;
+            }
+
+            div {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+            }
+        }
+    
+
+    @media (min-width: 1000px) {
+        gap: 5rem;
+        
+        img {
+            width: 37rem;
+            height: 37rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+        }
+
+        p {
+            font-size: 2.4rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+
+            button:last-child{
+                max-width: 19.2rem;
+                font-size: 1.4rem;
+                padding: 0 1rem;
             }
         }
     }
+}
+
+    @media(min-width: 1200px) {
+            padding: 3.6rem 10rem 0;
+        } 
+
 `

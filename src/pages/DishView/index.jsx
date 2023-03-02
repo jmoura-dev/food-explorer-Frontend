@@ -26,9 +26,11 @@ export function DishView ({ data, ...rest }) {
             title="Voltar"
             />
 
-            <div>
+            <form>
+
                 <img src={imageDish} alt="Imagem da refeição" />
 
+            <div>
                 <h1>
                     Salada Ravanello
                 </h1>
@@ -36,29 +38,30 @@ export function DishView ({ data, ...rest }) {
                 <p>
                     Rababetes, folhas verdes e molho agridoce salpicados com gergelim.
                 </p>
+
+                <span>
+                <Ingredients title="Alface"/>
+                <Ingredients title="Alface"/>
+                <Ingredients title="Alface"/>     
+                </span>
+
+                
+                <footer>
+                    <button type="button">
+                        <FiMinus/>
+                    </button>
+                    <span>01</span>
+
+                    <button type="button">
+                        <FiPlus/>
+                    </button>
+
+                    <Button icon={AiOutlineShoppingCart} title="Incluir - R$ 25,00"/>
+                </footer>
+
             </div>
+            </form>
 
-            <div>
-                <Ingredients title="Alface"/>
-                <Ingredients title="Alface"/>
-                <Ingredients title="Alface"/>
-                <Ingredients title="Alface"/>
-                <Ingredients title="Alface"/>
-                <Ingredients title="Alface"/>
-            </div>
-
-            <footer>
-                <button>
-                    <FiMinus/>
-                </button>
-                <span>01</span>
-
-                <button>
-                    <FiPlus/>
-                </button>
-
-                <Button icon={AiOutlineShoppingCart} title="pedir - R$ 25,00"/>
-            </footer>
             </Content>
 
             <Footer/>
