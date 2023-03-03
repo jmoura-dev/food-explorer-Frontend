@@ -4,7 +4,6 @@ export const Container = styled.div`
     display: grid;
     grid-template-areas: "header" "content" "footer";
     grid-template-rows: 11.4rem auto 7.7rem;
-
 `
 
 export const Content = styled.main`
@@ -112,11 +111,38 @@ export const Content = styled.main`
 export const Request = styled.div`
     margin: 0 auto;
     padding-left: 1rem;
+    
+    > ul {
+        max-height: 55vh;
+        overflow: auto;
+        margin-bottom: 2rem;
+        padding-right: 1rem;
+
+        ::-webkit-scrollbar {
+            background-color: none;
+            width: 0.7rem;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
+            border-radius: 1rem;
+
+        }
+    }
 
     > h1 {
         font-family: "Poppins", "serift";
         font-weight: 500;
         font-size: 3.2rem;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_300};
+        margin-bottom: 1rem;
+    }
+
+    > span {
+        font-family: "Poppins", "serif";
+        font-weight: 500;
+        font-size: 2rem;
 
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
     }

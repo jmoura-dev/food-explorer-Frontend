@@ -87,10 +87,15 @@ export function Payment() {
                         price: "14,99"
                     }}/></li>                   
             
+            <li><DishFavorites data={{
+                        title: "Cuscuz",
+                        amount: "1",
+                        price: "14,99"
+                    }}/></li>  
 
                 </ul>
 
-                <span></span>
+                <span>Total: R$ 103,99</span>
             </Request>
             }
 
