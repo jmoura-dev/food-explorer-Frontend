@@ -15,19 +15,10 @@ export default createGlobalStyle`
         font-size: 1.6rem;
         background-color: ${({ theme }) => theme.COLORS.DARK_400};
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
-        overflow-y: auto;
+        overflow: hidden;
 
         -webkit-font-smoothing: antialiased;
 
-        ::-webkit-scrollbar {
-            background-color: none;
-            width: .8rem;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
-            border-radius: 1rem;
-        }
     }
 
     body, button {

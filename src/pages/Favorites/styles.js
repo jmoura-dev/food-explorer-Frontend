@@ -12,6 +12,24 @@ export const Container = styled.main`
         font-size: 3.2rem;
 
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+        ul {
+            overflow: auto;
+            max-height: 60vh;
+            margin-top: 1rem;
+            padding-right: 1rem;
+
+
+        ::-webkit-scrollbar {
+            background-color: none;
+            width: 0.7rem;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
+            border-radius: 1rem;
+        }
+        }
     }
 
     @media (min-width: 800px) {
@@ -20,7 +38,7 @@ export const Container = styled.main`
             margin: 5rem auto;
             padding: 0 3rem;
 
-            > div {
+            > ul {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;

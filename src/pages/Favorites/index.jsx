@@ -12,26 +12,27 @@ export function Favorites () {
 
             <Section title="Meus favoritos">
 
-                <div>
-                <DishFavorites data={{ 
+                <ul>
+                    <li><DishFavorites data={{ 
                     title: "Salada Ravanelo",
-                }}/>
-                <DishFavorites data={{
-                    title: "Macarronada"
-                }}/>
+                    }}/></li>
 
-                <DishFavorites data={{
-                    title: "Macarronada"
-                }}/>
-
-                <DishFavorites data={{
-                    title: "Macarronada"
-                }}/>
-
-                <DishFavorites data={{ 
-                    title: "Salada Ravanelo"
-                }}/>
-                </div>
+                    <li><DishFavorites data={{ 
+                    title: "Salada Ravanelo",
+                    }}/></li>                    
+                        
+                    <li><DishFavorites data={{ 
+                        title: "Salada Ravanelo",
+                    }}/></li>                    
+                    
+                    <li><DishFavorites data={{ 
+                        title: "Salada Ravanelo",
+                    }}/></li>                    
+                    
+                    <li><DishFavorites data={{ 
+                        title: "Salada Ravanelo",
+                    }}/></li>
+                </ul>
 
             </Section>
 
