@@ -49,7 +49,7 @@ export function Payment() {
 
         window.addEventListener("resize", handleWindowResize);
         return () => window.removeEventListener("resize", handleWindowResize);
-    }, [isScreenDesktop])
+    }, [isScreenDesktop]);
 
     return (
         <Container>
@@ -65,20 +65,28 @@ export function Payment() {
                 <ul>
                     <li><DishFavorites data={{
                         title: "Macarronada",
-                        price: "28.99"
+                        amount: "2",
+                        price: "28,99"
                     }}/></li>
 
                     <li><DishFavorites data={{
-                        title: "Peixada"
-                    }}/></li>                    
-                    
+                        title: "Peixada",
+                        amount: "3",
+                        price: "30,00"
+                    }}/></li>      
+
                     <li><DishFavorites data={{
-                        title: "Salada ravanello"
-                    }}/></li>                    
-                    
-                    <li><DishFavorites data={{
-                        title: "Cuscuz"
+                        title: "Salada Ravanello",
+                        amount: "2",
+                        price: "18,99"
                     }}/></li>
+
+                    <li><DishFavorites data={{
+                        title: "Cuscuz",
+                        amount: "1",
+                        price: "14,99"
+                    }}/></li>                   
+            
 
                 </ul>
 

@@ -22,12 +22,18 @@ export const Content = styled.main`
         font-size: 3.2rem;
 
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
+        padding: 0 3rem;
+
+        @media(max-width: 820px) {
+            padding: 0 3rem;
+        }
 
         .paymentFinalize {
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 4rem 3rem;
+            min-width: 30rem;
 
             border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
             border-bottom-left-radius: 0.8rem;
@@ -60,7 +66,7 @@ export const Content = styled.main`
             img {
                 border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
                 padding: 7rem;
-                width: clamp(30rem, 40rem, 43rem);
+                width: clamp(20rem, 40rem, 43rem);
                 border-bottom-left-radius: 8px;
                 border-bottom-right-radius: 8px;
             }
@@ -105,6 +111,7 @@ export const Content = styled.main`
 
 export const Request = styled.div`
     margin: 0 auto;
+    padding-left: 1rem;
 
     > h1 {
         font-family: "Poppins", "serift";
