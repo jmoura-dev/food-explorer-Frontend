@@ -16,12 +16,23 @@ export const Container = styled.div`
         }
     }
 
-    > div {
+    > main {
         display: flex;
         flex-direction: column;
-        text-align: left;
-        margin-bottom: 2rem;
+        align-items: left;
+    > div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
         gap: 0.6rem;
+
+        h1 {
+            font-family: "Poppins", "serif";
+            font-weight: 500;
+            font-size: 2.5rem;
+            letter-spacing: 0.5rem;
+            color: ${({ theme }) => theme.COLORS.LIGHT_300};
+        }
 
         h2 {
             font-family: "Poppins", "serif";
@@ -30,7 +41,18 @@ export const Container = styled.div`
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
         }
 
-        button {
+        span {
+            font-family: "Roboto", "serif";
+            font-weight: 400;
+            font-size: 1.3rem;
+
+            color: ${({ theme }) => theme.COLORS.LIGHT_400};
+        }
+    }
+}
+
+    button {
+            max-width: 10rem;
             gap: 0.5rem;
             display: flex;
             align-items: center;
@@ -45,6 +67,5 @@ export const Container = styled.div`
             svg {
                 font-size: 1.6rem;
             }
-        }
     }
 `

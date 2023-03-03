@@ -19,9 +19,8 @@ export function SignIn () {
 
         window.addEventListener("resize", handleWindowResize);
         return () => window.removeEventListener("resize", handleWindowResize);
-    }, [])
-    console.log(isScreenDesktop)
-    console.log(window.innerWidth)
+    }, []);
+
     return (
         <Container>
 

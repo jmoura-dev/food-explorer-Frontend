@@ -25,7 +25,7 @@ export const Container = styled.main`
                 flex-direction: row;
                 justify-content: space-between;
                 max-width: 136.6rem;
-                gap: 0.5rem;
+                gap: 1rem;
 
                 flex-wrap: wrap;
             }

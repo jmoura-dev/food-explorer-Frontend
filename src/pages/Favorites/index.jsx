@@ -11,16 +11,28 @@ export function Favorites () {
             <Header/>
 
             <Section title="Meus favoritos">
+
                 <div>
-                <DishFavorites/>
-                <DishFavorites/>
-                <DishFavorites/>
-                <DishFavorites/>
-                <DishFavorites/>
-                <DishFavorites/>
-                <DishFavorites/>
-                <DishFavorites/>
+                <DishFavorites data={{ 
+                    title: "Salada Ravanelo",
+                }}/>
+                <DishFavorites data={{
+                    title: "Macarronada"
+                }}/>
+
+                <DishFavorites data={{
+                    title: "Macarronada"
+                }}/>
+
+                <DishFavorites data={{
+                    title: "Macarronada"
+                }}/>
+
+                <DishFavorites data={{ 
+                    title: "Salada Ravanelo"
+                }}/>
                 </div>
+
             </Section>
 
             <Footer/>

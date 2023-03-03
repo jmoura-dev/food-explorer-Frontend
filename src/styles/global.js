@@ -38,6 +38,11 @@ export default createGlobalStyle`
         font-family: 'Roboto', sans-serif;
     }
 
+    ul, li {
+        list-style: none;
+        appearance: none;
+    }
+
     button, a {
         cursor: pointer;
         transition: filter 0.2s;

@@ -4,23 +4,42 @@ import { AiOutlineDelete } from "react-icons/ai";
 
 import imageDish from "../../assets/imageDish.svg";
 
-export function DishFavorites () {
+export function DishFavorites ({ data, ...rest }) {
     return (
-        <Container>
+        <Container {...rest}>
                 <span>
                 <img src={imageDish} alt="imagem da refeição" />
                 </span>
 
-                <div>
+                <main>
+                    <div>
+                        {
+                            data.amount &&
+                    <h1>
+                        {`${data.amount}x`}
+                    </h1>
+                        }
+
                     <h2>
-                    Salada Radish
+                    {data.title}
                     </h2>
 
+                        {
+                            data.price && 
+                    <span>
+                        {`R$: ${data.price}`}
+                    </span>
+                        }
+
+                    </div>
+
+                    <footer>
                     <ButtonText
                     icon={AiOutlineDelete}
                     title="Excluir prato"
                     />
-                </div>               
+                    </footer>
+                </main>               
         </Container>
     )
 }

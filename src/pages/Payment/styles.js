@@ -2,13 +2,21 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     display: grid;
-    grid-template-areas: "header" "section" "footer";
+    grid-template-areas: "header" "content" "footer";
     grid-template-rows: 11.4rem auto 7.7rem;
 
+`
+
+export const Content = styled.main`
+    width: 100%;
+    grid-area: content;
+    display: flex;
+    max-width: 136.6rem;
+    margin: 5.6rem auto 0;
+    gap: 2rem;
 
     > section {
-        margin: 5.6rem 3.5rem 0;
-
+        margin: 0 auto;
         font-family: "Poppins", "serif";
         font-weight: 500;
         font-size: 3.2rem;
@@ -43,18 +51,20 @@ export const Container = styled.div`
 
         main {
             margin: 4rem auto 0;
-            max-width: 40rem;
+            max-width: 52rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+
+            width: 100%;
+
             img {
                 border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
                 padding: 7rem;
-                width: 100%;
+                width: clamp(30rem, 40rem, 43rem);
                 border-bottom-left-radius: 8px;
                 border-bottom-right-radius: 8px;
             }
+            
             div {
                 display: flex;
                 width: 100%;
@@ -91,6 +101,18 @@ export const Container = styled.div`
                 }
             }}
 }
+`
+
+export const Request = styled.div`
+    margin: 0 auto;
+
+    > h1 {
+        font-family: "Poppins", "serift";
+        font-weight: 500;
+        font-size: 3.2rem;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    }
 `
 
 export const Form = styled.form`

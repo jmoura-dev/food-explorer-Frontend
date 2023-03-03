@@ -1,4 +1,4 @@
-import { Container, Form } from "./styles";
+import { Container, Content, Form, Request } from "./styles";
 
 import { AiOutlineCreditCard, AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillXDiamondFill } from "react-icons/bs";
@@ -8,10 +8,11 @@ import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { Section } from "../../components/Section";
 import { Input } from "../../components/Input";
+import { DishFavorites } from "../../components/DishFavorites";
 
 import imagePix from "../../assets/imagePix.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ButtonText } from "../../components/ButtonText";
 import { Button } from "../../components/Button";
 
@@ -19,6 +20,8 @@ export function Payment() {
     const [buttonPix, setButtonPix] = useState(true);
     const [buttonCard, setButtonCard] = useState(false);
     const [whenFinish, setWhenFinish] = useState(true);
+
+    const [isScreenDesktop, setIsScreeDesktop] = useState(false); 
 
     function handleButtonPix() {
         setButtonPix(true)
@@ -38,9 +41,51 @@ export function Payment() {
         setWhenFinish(true)
     }
 
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setIsScreeDesktop(window.innerWidth > 820);
+        }
+        handleWindowResize();
+
+        window.addEventListener("resize", handleWindowResize);
+        return () => window.removeEventListener("resize", handleWindowResize);
+    }, [isScreenDesktop])
+
     return (
         <Container>
             <Header/>
+
+        <Content>
+
+            {
+                isScreenDesktop &&
+            <Request>
+                <h1>Meus pedidos</h1>
+
+                <ul>
+                    <li><DishFavorites data={{
+                        title: "Macarronada",
+                        price: "28.99"
+                    }}/></li>
+
+                    <li><DishFavorites data={{
+                        title: "Peixada"
+                    }}/></li>                    
+                    
+                    <li><DishFavorites data={{
+                        title: "Salada ravanello"
+                    }}/></li>                    
+                    
+                    <li><DishFavorites data={{
+                        title: "Cuscuz"
+                    }}/></li>
+
+                </ul>
+
+                <span></span>
+            </Request>
+            }
+
             <Section title="Pagamento">
             <main>
                 <div>
@@ -122,6 +167,9 @@ export function Payment() {
 
             </main>
             </Section>
+
+            </Content>
+
             <Footer/>
         </Container>
     )
