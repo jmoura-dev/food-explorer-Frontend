@@ -1,9 +1,9 @@
 import { Form, Container } from "./styles";
+import { Link } from "react-router-dom";
 
 import { Title } from "../../components/Title";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { ButtonText } from "../../components/ButtonText";
 
 import { useState, useEffect } from "react";
 
@@ -46,7 +46,7 @@ export function SignIn () {
 
                 <Button title="Entrar"/>
 
-                <ButtonText title="Criar uma conta"/>
+                <Link to="/register">Criar uma conta</Link>
 
                 </Form>
 

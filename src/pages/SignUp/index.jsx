@@ -3,9 +3,9 @@ import { Form, Container } from "./styles";
 import { Title } from "../../components/Title";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { ButtonText } from "../../components/ButtonText";
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export function SignUp () {
     const [isScreenDesktop, setIsScreenDesktop] = useState(false);
@@ -54,7 +54,7 @@ export function SignUp () {
 
                 <Button title="Criar conta"/>
 
-                <ButtonText title="Já tenho uma conta"/>
+                <Link to="/">Já tenho uma conta</Link>
 
                 </Form>
 

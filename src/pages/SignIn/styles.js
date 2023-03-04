@@ -63,10 +63,19 @@ export const Form = styled.form`
         margin-bottom: 3.2rem;
     }
 
-    > button:last-child {
+    > a {
         display: flex;
         justify-content: center;
         margin: 3.2rem auto 5rem;
+        max-width: 13.5rem;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        border: none;
+        background-color: none;
+
+        font-family: "Poppins", "serif";
+        font-weight: 500;
+        font-size: 1.4rem;
     }
 
     @media (min-width:820px) {
