@@ -4,8 +4,8 @@ import { DishView } from "../pages/pagesUsers/DishView";
 import { Favorites } from "../pages/pagesUsers/Favorites";
 import { Home } from "../pages/pagesUsers/Home";
 import { Menu } from "../pages/pagesUsers/Menu";
-import { Payment } from "../pages/pagesUsers/Payment";
 import { Requests } from "../pages/pagesUsers/Requests";
+import { Payment } from "../pages/pagesUsers/Payment";
 
 export function AppUsersRoutes () {
   return (

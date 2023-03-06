@@ -26,7 +26,18 @@ export const Container = styled.div`
             color: ${({ theme }) => theme.COLORS.LIGHT_100}
         }
     }
+`
 
+export const Content = styled.main`
+    width: 100%;
+    max-width: 136.6rem;
+    display: flex;
+    flex-direction: column;
+
+    @media(min-width: 820px) {
+        margin: 0 auto;
+    }
+    
     > div {
         margin: 0 2.8rem;
         border-radius: 0.5rem;
@@ -46,4 +57,5 @@ export const Container = styled.div`
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
         }
     }
+
 `

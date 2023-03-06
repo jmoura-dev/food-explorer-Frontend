@@ -103,16 +103,17 @@ export const Scrolling = styled.button`
     transform: translateY(-50%);
     border: none;
     filter: opacity(0.7);
-    background: linear-gradient(#091E26 0%, #00121C 10%);
+    background: linear-gradient(#091E26 0%, #00131C 100%);
     height: 31rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 3.5rem;
     box-shadow: 0 0 3px 3px ${({ theme }) => theme.COLORS.DARK_800};
+    z-index: 0.5;
 
     ${({ direction }) => direction === 'prev' ? `
         left: 0;
     ` : `
-        right: 0px;
+        right: 0;
     `}
 
     :hover {

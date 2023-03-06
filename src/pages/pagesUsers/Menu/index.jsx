@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container, Content } from "./styles";
 import { FiX } from "react-icons/fi";
 import { FiSearch } from "react-icons/fi";
 
@@ -7,13 +7,27 @@ import { ButtonText } from "../../../components/ButtonText";
 import { Section } from "../../../components/Section";
 import { Footer } from "../../../components/Footer";
 
+import { useNavigate } from "react-router-dom";
+
 export function Menu () {
+    const navigate = useNavigate();
+
+    function handleClickFavorites () {
+        navigate("/favorites")
+    }
+
+    function handleClickBack () {
+        navigate("/")
+    }
+
     return (
         <Container>
             <header>
             <FiX/>
             <h2>Menu</h2>
             </header>
+
+            <Content>
 
             <Input 
             type="text"
@@ -22,12 +36,18 @@ export function Menu () {
             />
 
             <Section>
-            <ButtonText title="Meus favoritos"/>
+            <ButtonText 
+            onClick={handleClickFavorites}
+            title="Meus favoritos"/>
             </Section>
 
             <Section>
-            <ButtonText title="Sair"/>
+            <ButtonText 
+            onClick={handleClickBack}
+            title="Sair"/>
             </Section>
+
+            </Content>
 
             <Footer/>
 

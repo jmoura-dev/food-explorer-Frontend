@@ -2,7 +2,6 @@ import { Container, WindowMobile, WindowDesktop } from "./styles";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import { FiLogOut, FiSearch } from "react-icons/fi";
 import { ButtonText } from "../ButtonText";
-import { Button } from "../Button";
 import { Input } from "../Input";
 
 import { useEffect, useState } from "react";

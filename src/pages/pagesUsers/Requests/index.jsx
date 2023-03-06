@@ -5,21 +5,68 @@ import { Section } from "../../../components/Section";
 import { Button } from "../../../components/Button";
 import { DishFavorites } from "../../../components/DishFavorites";
 
-import { FiArrowRight } from "react-icons/fi";
+import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
+import { ButtonText } from "../../../components/ButtonText";
+
+import { useNavigate } from "react-router-dom";
 
 export function Requests() {
+    const navigate = useNavigate();
+
+    function handleClickBack () {
+        navigate(-1)
+    }
+
+    function handleClickProgress () {
+        navigate("/payment")
+    }
+
     return (
         <Container>
             <Header/>
             <Content>
                 
+            <ButtonText 
+            icon={FiArrowLeft}
+            title="Voltar"
+            onClick={handleClickBack}
+            />
+
             <Section title="Meu pedido">
-                <DishFavorites data={{
+                <ul>
+                    <li><DishFavorites data={{
                     title: "Macarronada"
-                }}/>
-                <DishFavorites data={{
+                    }}/></li>
+                    
+                    <li>
+                    <DishFavorites data={{
                     title: "Salada Ravanello"
-                }}/>
+                    }}/>
+                    </li>
+
+                    <li>
+                    <DishFavorites data={{
+                    title: "Salada Ravanello"
+                    }}/>
+                    </li>
+                    <li>
+                    <DishFavorites data={{
+                    title: "Salada Ravanello"
+                    }}/>
+                    </li>                    <li>
+                    <DishFavorites data={{
+                    title: "Salada Ravanello"
+                    }}/>
+                    </li>
+
+                    <li>
+                    <DishFavorites data={{
+                    title: "Salada Ravanello"
+                    }}/>
+                    </li>
+                </ul>
+
+
             </Section>
 
             <span>Total: R$ 103,88</span>
@@ -28,6 +75,7 @@ export function Requests() {
             <Button 
             icon={FiArrowRight}
             title="Avançar"
+            onClick={handleClickProgress}
             />
             </Content>
             <Footer/>

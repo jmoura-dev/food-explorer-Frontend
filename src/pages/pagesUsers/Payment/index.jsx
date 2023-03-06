@@ -16,12 +16,16 @@ import { useEffect, useState } from "react";
 import { ButtonText } from "../../../components/ButtonText";
 import { Button } from "../../../components/Button";
 
+import { useNavigate } from "react-router-dom";
+
 export function Payment() {
     const [buttonPix, setButtonPix] = useState(true);
     const [buttonCard, setButtonCard] = useState(false);
     const [whenFinish, setWhenFinish] = useState(true);
 
     const [isScreenDesktop, setIsScreeDesktop] = useState(false); 
+
+    const navigate = useNavigate();
 
     function handleButtonPix() {
         setButtonPix(true)
@@ -39,6 +43,7 @@ export function Payment() {
 
     function handleClickReturn() {
         setWhenFinish(true)
+        navigate("/")
     }
 
     useEffect(() => {
