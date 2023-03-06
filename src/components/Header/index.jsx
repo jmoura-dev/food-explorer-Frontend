@@ -1,5 +1,7 @@
 import { Container, WindowMobile, WindowDesktop } from "./styles";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
+import { FiX } from "react-icons/fi";
+
 import { FiLogOut, FiSearch } from "react-icons/fi";
 import { ButtonText } from "../ButtonText";
 import { Input } from "../Input";
@@ -7,11 +9,25 @@ import { Input } from "../Input";
 import { useEffect, useState } from "react";
 
 import logo from "../../assets/polygonTitle.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Header () {
-    const [isScreenMobile, setIsScreenMobile] = useState(false)
+    const [isScreenMobile, setIsScreenMobile] = useState(true);
+    const [openMenu, setOpenMenu] = useState(true);
+    const navigate = useNavigate();
     
+    function handleClickRequests () {
+        navigate("/requests")
+    };
+
+    function handleClickOpenMenu () {
+        setOpenMenu(false)
+    }
+
+    function handleClickCloseMenu () {
+        setOpenMenu(true)
+    }
+
     useEffect(() => {
         const handleWindowResize = () => {
             setIsScreenMobile(window.innerWidth < 820);
@@ -20,7 +36,7 @@ export function Header () {
             window.addEventListener("resize", handleWindowResize);
 
             return () => window.removeEventListener("resize", handleWindowResize);
-    }, [])
+    }, []);
 
     return (
         <Container>
@@ -28,9 +44,27 @@ export function Header () {
                 isScreenMobile ?
             (
             <WindowMobile>
-            <button>
-                <AiOutlineMenu/>
-            </button>
+                {
+                    openMenu ?
+                    (
+                <a onClick={handleClickOpenMenu}>
+                    <AiOutlineMenu/>
+                </a>
+                )
+                :
+                (
+            <nav>
+                <a onClick={handleClickCloseMenu}><FiX/></a>
+
+                <ul>
+                <li><a>Histórico de pedidos</a></li>
+                <li><a>Menu</a></li>
+                <li><a>Meus favoritos</a></li>
+                <li><a>Home</a></li>
+                </ul>
+            </nav>
+                )
+            }
 
             <header>
                 <img src={logo} alt="logo" />
@@ -38,7 +72,7 @@ export function Header () {
             </header>
 
             <div>
-                <button>
+                <button onClick={handleClickRequests}>
                     <AiOutlineShoppingCart/>
                 </button>
                 <span>0</span>

@@ -17,7 +17,7 @@ export const WindowMobile = styled.main`
     justify-content: space-between;
     width: 100%;
 
-    > button {
+    > a {
         background: none;
         border: none;
 
@@ -26,6 +26,25 @@ export const WindowMobile = styled.main`
             height: 2.5rem;
 
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        }
+    }
+
+    > nav {
+        display: flex;
+        gap: 0.5rem;
+        position: relative;
+        top: 40%;
+        padding-bottom: 3rem;
+        border-radius: 8px;
+        padding-right: 3rem;
+
+        background-color: ${({ theme }) => theme.COLORS.DARK_700};
+        
+        a {
+            max-height: 1rem;
+        }
+        svg {
+            font-size: 3rem;
         }
     }
 
