@@ -11,8 +11,16 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import imageDish from "../../../assets/imageDish.svg";
 import { Ingredients } from "../../../components/Ingredients";
 
+import { useNavigate } from "react-router-dom";
+
 
 export function DishView ({ data, ...rest }) {
+    const navigate = useNavigate();
+
+    function handleNavigate () {
+        navigate(-1)
+    };
+
     return (
         <Container 
         {...rest}
@@ -24,6 +32,7 @@ export function DishView ({ data, ...rest }) {
             <ButtonText 
             icon={FiChevronLeft}
             title="Voltar"
+            onClick={handleNavigate}
             />
 
             <form>

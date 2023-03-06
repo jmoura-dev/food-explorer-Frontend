@@ -8,6 +8,7 @@ import { Input } from "../Input";
 import { useEffect, useState } from "react";
 
 import logo from "../../assets/polygonTitle.svg";
+import { Link } from "react-router-dom";
 
 export function Header () {
     const [isScreenMobile, setIsScreenMobile] = useState(false)
@@ -34,7 +35,7 @@ export function Header () {
 
             <header>
                 <img src={logo} alt="logo" />
-                <ButtonText title="food explorer"/>
+                <Link to="/">food explorer</Link>
             </header>
 
             <div>
@@ -51,7 +52,7 @@ export function Header () {
                     
                         <span>
                             <img src={logo} alt="logo" />
-                            <ButtonText title="food explorer"/>
+                            <Link to="/">food explorer</Link>
                         </span>
 
                         <Input 
@@ -59,9 +60,14 @@ export function Header () {
                         placeholder="Busque por pratos ou ingredientes"
                         />               
                     
-                    <ButtonText title="Meus favoritos"/>
-                    <ButtonText title="Histórico de pedidos"/>
-                    <Button icon={AiOutlineShoppingCart} title="Pedidos (0)"/>
+                    <Link to="/favorites">Meus favoritos</Link>
+                    <Link to="#">Histórico de pedidos</Link>
+
+                    <Link to="/requests">
+                    <AiOutlineShoppingCart/>
+                        Pedidos (0)
+                    </Link>
+
                     <ButtonText icon={FiLogOut}/>
                     
                 </WindowDesktop>

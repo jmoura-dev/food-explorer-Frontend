@@ -18,6 +18,7 @@ export const Container = styled.main`
             max-height: 60vh;
             margin-top: 1rem;
             padding-right: 1rem;
+            margin-bottom: 1rem;
 
 
         ::-webkit-scrollbar {
@@ -29,6 +30,20 @@ export const Container = styled.main`
             background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
             border-radius: 1rem;
         }
+        }
+
+        > footer {
+            
+            button {
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                max-width: 40%;
+                gap: 0.5rem;
+                font-size: 1.6rem;
+            }
         }
     }
 

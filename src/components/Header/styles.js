@@ -40,7 +40,7 @@ export const WindowMobile = styled.main`
             height: 2.5rem;
         }
 
-        button {
+        a {
             font-family: "Roboto", "serif";
             font-weight: bold;
 
@@ -101,7 +101,7 @@ export const WindowDesktop = styled.main`
                 height: 3rem;
             }
 
-            button {
+            a {
                 width: clamp(2rem, 2rem ,);
                 font-family: "Roboto", "serif";
                 font-size: clamp(1.6rem, 2.4rem, 2.4rem);
@@ -114,7 +114,7 @@ export const WindowDesktop = styled.main`
         }
 
 
-        button {
+        button, a {
             display: block;
             font-family: "Roboto", "serif";
             font-weight: 400;
@@ -126,7 +126,7 @@ export const WindowDesktop = styled.main`
             }
         }
 
-        button:nth-child(5) {
+        a:nth-child(5) {
             width: clamp(15rem, 17rem, 18.7rem);
 
             font-family: "Poppins", "serif";
@@ -136,5 +136,11 @@ export const WindowDesktop = styled.main`
             align-items: center;
             justify-content: center;
             gap: 1rem;
+
+            background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+            height: 4.8rem;
+
+            border: none;
+            border-radius: 8px;
         }
 `

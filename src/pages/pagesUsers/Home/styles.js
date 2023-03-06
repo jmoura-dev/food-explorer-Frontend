@@ -75,6 +75,7 @@ export const Content = styled.main`
     width: 100%;
     padding: 0 1.6rem;
     margin: 0 auto;
+    overflow: auto;
 
     > section {
         white-space: nowrap;
@@ -98,16 +99,23 @@ export const Content = styled.main`
 
 export const Scrolling = styled.button`
     position: absolute;
-    top: 50%;
+    top: 53.5%;
     transform: translateY(-50%);
     border: none;
-    background: none;
+    filter: opacity(0.7);
+    background: linear-gradient(#091E26 0%, #00121C 10%);
+    height: 31rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 3.5rem;
+    box-shadow: 0 0 3px 3px ${({ theme }) => theme.COLORS.DARK_800};
 
     ${({ direction }) => direction === 'prev' ? `
         left: 0;
     ` : `
-        right: 0;
+        right: 0px;
     `}
+
+    :hover {
+        filter: opacity(0.9);
+    }
 `
