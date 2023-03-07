@@ -35,9 +35,9 @@ export const WindowMobile = styled.main`
         gap: 0.5rem;
         position: relative;
         top: 40%;
-        padding-bottom: 2rem;
         border-radius: 8px;
         padding-right: 2rem;
+        padding-bottom: 1rem;
 
         background-color: ${({ theme }) => theme.COLORS.DARK_700};
         animation: leftright 0.7s ease;
@@ -47,11 +47,25 @@ export const WindowMobile = styled.main`
         }
         svg {
             font-size: 3rem;
+            color: ${({ theme }) => theme.COLORS.LIGHT_300};
         }
 
-        ul li { 
-            margin-bottom: 0.3rem;
+        > ul li a{
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-family: "Roboto", "serif";
+            font-weight: 400;
+            font-size: 1.6rem;
+
+            margin-bottom: 1.6rem;
+
+            color: ${({ theme }) => theme.COLORS.LIGHT_300};
+            svg {
+                font-size: 1.7rem;
+            }
         }
+
     }
 
     > header {
@@ -91,6 +105,7 @@ export const WindowMobile = styled.main`
             border: none;
             border-radius: 99px;
             padding: 0 5px;
+            height: 22px;
 
             font-family: "Poppins", "serif";
             font-weight: 500;
@@ -101,6 +116,14 @@ export const WindowMobile = styled.main`
             position: relative;
             top: -1.8rem;
             left: -1rem;
+        }
+
+        @media(max-width: 480px) {
+            display: flex;
+
+            span {
+                top: -1rem;
+            }
         }
     }
 

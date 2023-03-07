@@ -1,8 +1,8 @@
 import { Container, WindowMobile, WindowDesktop } from "./styles";
-import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineShoppingCart, AiOutlineBank, AiOutlineDatabase } from "react-icons/ai";
 import { FiX } from "react-icons/fi";
 
-import { FiLogOut, FiSearch } from "react-icons/fi";
+import { FiLogOut, FiSearch, FiHeart, FiClipboard } from "react-icons/fi";
 import { ButtonText } from "../ButtonText";
 import { Input } from "../Input";
 
@@ -55,23 +55,23 @@ export function Header () {
                 :
                 (
             <nav>
-                <a onClick={handleClickCloseMenu}><FiX/></a>
+                <Link onClick={handleClickCloseMenu}><FiX/></Link>
 
                 <ul>
                 <li>
-                    <a>Histórico de pedidos</a>
+                    <Link to="#"><AiOutlineDatabase/>Histórico</Link>
                 </li>
                 
                 <li>
-                    <a>Menu</a>
+                    <Link to="/menu"><FiClipboard/>Menu</Link>
                 </li>
 
                 <li>
-                    <a>Meus favoritos</a>
+                    <Link to="/favorites"><FiHeart/>Favoritos</Link>
                 </li>
 
                 <li>
-                    <a>Home</a>
+                    <Link to="/"><AiOutlineBank/>Home</Link>
                 </li>
                 </ul>
             </nav>
