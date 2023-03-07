@@ -14,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 export function Header () {
     const [isScreenMobile, setIsScreenMobile] = useState(true);
     const [openMenu, setOpenMenu] = useState(true);
+
     const navigate = useNavigate();
     
     function handleClickRequests () {
@@ -21,7 +22,7 @@ export function Header () {
     };
 
     function handleClickOpenMenu () {
-        setOpenMenu(false)
+        setOpenMenu(false);
     }
 
     function handleClickCloseMenu () {
@@ -57,10 +58,21 @@ export function Header () {
                 <a onClick={handleClickCloseMenu}><FiX/></a>
 
                 <ul>
-                <li><a>Histórico de pedidos</a></li>
-                <li><a>Menu</a></li>
-                <li><a>Meus favoritos</a></li>
-                <li><a>Home</a></li>
+                <li>
+                    <a>Histórico de pedidos</a>
+                </li>
+                
+                <li>
+                    <a>Menu</a>
+                </li>
+
+                <li>
+                    <a>Meus favoritos</a>
+                </li>
+
+                <li>
+                    <a>Home</a>
+                </li>
                 </ul>
             </nav>
                 )

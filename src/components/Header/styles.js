@@ -20,6 +20,7 @@ export const WindowMobile = styled.main`
     > a {
         background: none;
         border: none;
+        animation: rightleft 0.7s ease;
 
         svg {
             width: 2.5rem;
@@ -34,17 +35,22 @@ export const WindowMobile = styled.main`
         gap: 0.5rem;
         position: relative;
         top: 40%;
-        padding-bottom: 3rem;
+        padding-bottom: 2rem;
         border-radius: 8px;
-        padding-right: 3rem;
+        padding-right: 2rem;
 
         background-color: ${({ theme }) => theme.COLORS.DARK_700};
-        
+        animation: leftright 0.7s ease;
+
         a {
             max-height: 1rem;
         }
         svg {
             font-size: 3rem;
+        }
+
+        ul li { 
+            margin-bottom: 0.3rem;
         }
     }
 
@@ -96,6 +102,30 @@ export const WindowMobile = styled.main`
             top: -1.8rem;
             left: -1rem;
         }
+    }
+
+    @keyframes leftright {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+    @keyframes rightleft {
+        0% {
+                opacity: 0;
+                transform: translateX(50%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
     }
 `
 
