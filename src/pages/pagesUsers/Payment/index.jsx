@@ -4,11 +4,11 @@ import { AiOutlineCreditCard, AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillXDiamondFill } from "react-icons/bs";
 
 
-import { Header } from "../../../components/Header";
+import { HeaderUsers } from "../../../components/HeaderUsers";
 import { Footer } from "../../../components/Footer";
 import { Section } from "../../../components/Section";
 import { Input } from "../../../components/Input";
-import { DishFavorites } from "../../../components/DishFavorites";
+import { DishFavoritesUsers } from "../../../components/DishFavoritesUsers";
 
 import imagePix from "../../../assets/imagePix.svg";
 
@@ -58,7 +58,7 @@ export function Payment() {
 
     return (
         <Container>
-            <Header/>
+            <HeaderUsers/>
 
         <Content>
 
@@ -68,31 +68,31 @@ export function Payment() {
                 <h1>Meus pedidos</h1>
 
                 <ul>
-                    <li><DishFavorites data={{
+                    <li><DishFavoritesUsers data={{
                         title: "Macarronada",
                         amount: "2",
                         price: "28,99"
                     }}/></li>
 
-                    <li><DishFavorites data={{
+                    <li><DishFavoritesUsers data={{
                         title: "Peixada",
                         amount: "3",
                         price: "30,00"
                     }}/></li>      
 
-                    <li><DishFavorites data={{
+                    <li><DishFavoritesUsers data={{
                         title: "Salada Ravanello",
                         amount: "2",
                         price: "18,99"
                     }}/></li>
 
-                    <li><DishFavorites data={{
+                    <li><DishFavoritesUsers data={{
                         title: "Cuscuz",
                         amount: "1",
                         price: "14,99"
                     }}/></li>                   
             
-            <li><DishFavorites data={{
+            <li><DishFavoritesUsers data={{
                         title: "Cuscuz",
                         amount: "1",
                         price: "14,99"

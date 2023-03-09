@@ -2,10 +2,10 @@ import { Container, Content, Scrolling } from "./styles";
 import { useRef } from "react";
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
-import { Header } from "../../../components/Header";
+import { HeaderUsers } from "../../../components/HeaderUsers";
 import { About } from "../../../components/About";
 import { Section } from "../../../components/Section";
-import { Dish } from "../../../components/Dish";
+import { DishUsers } from "../../../components/DishUsers";
 import { Footer } from "../../../components/Footer";
 
 export function Home () {
@@ -58,22 +58,22 @@ export function Home () {
     return (
         <Container>
 
-            <Header/>
+            <HeaderUsers/>
 
             <Content>
             <About/>
 
             <Section title="Refeições">
             <div ref={scrollMealList}>
-                <Dish/>
-                <Dish/>
-                <Dish/>
-                <Dish/>
-                <Dish/>
-                <Dish/>
-                <Dish/>
-                <Dish/>
-                <Dish/>
+                <DishUsers/>
+                <DishUsers/>
+                <DishUsers/>
+                <DishUsers/>
+                <DishUsers/>
+                <DishUsers/>
+                <DishUsers/>
+                <DishUsers/>
+                <DishUsers/>
 
             </div>
 
@@ -93,9 +93,9 @@ export function Home () {
 
             <Section title="Bebidas">
             <div ref={scrollDrinkList}>
-                <Dish/>
-                <Dish/>
-                <Dish/>
+                <DishUsers/>
+                <DishUsers/>
+                <DishUsers/>
             </div>
 
             <Scrolling 
@@ -116,9 +116,9 @@ export function Home () {
 
             <Section title="Sobremesas">
             <div ref={scrollDessertList}>
-                <Dish/>
-                <Dish/>
-                <Dish/>
+                <DishUsers/>
+                <DishUsers/>
+                <DishUsers/>
             </div>
 
             <Scrolling 

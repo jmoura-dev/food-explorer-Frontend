@@ -1,10 +1,10 @@
 import { Container } from "./styles";
 import { FiChevronLeft } from "react-icons/fi";
 
-import { Header } from "../../../components/Header";
+import { HeaderUsers } from "../../../components/HeaderUsers";
 import { Footer } from "../../../components/Footer";
 import { Section } from "../../../components/Section";
-import { DishFavorites } from "../../../components/DishFavorites";
+import { DishFavoritesUsers } from "../../../components/DishFavoritesUsers";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/Button";
@@ -18,28 +18,28 @@ export function Favorites () {
 
     return (
         <Container>
-            <Header/>
+            <HeaderUsers/>
 
             <Section title="Meus favoritos">
 
                 <ul>
-                    <li><DishFavorites data={{ 
+                    <li><DishFavoritesUsers data={{ 
                     title: "Salada Ravanelo",
                     }}/></li>
 
-                    <li><DishFavorites data={{ 
+                    <li><DishFavoritesUsers data={{ 
                     title: "Salada Ravanelo",
                     }}/></li>                    
                         
-                    <li><DishFavorites data={{ 
+                    <li><DishFavoritesUsers data={{ 
                         title: "Salada Ravanelo",
                     }}/></li>                    
                     
-                    <li><DishFavorites data={{ 
+                    <li><DishFavoritesUsers data={{ 
                         title: "Salada Ravanelo",
                     }}/></li>                    
                     
-                    <li><DishFavorites data={{ 
+                    <li><DishFavoritesUsers data={{ 
                         title: "Salada Ravanelo",
                     }}/></li>
                 </ul>

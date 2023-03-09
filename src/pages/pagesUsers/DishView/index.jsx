@@ -1,5 +1,5 @@
 import { Container, Content } from "./styles";
-import { Header } from "../../../components/Header";
+import { HeaderUsers } from "../../../components/HeaderUsers";
 import { Footer } from "../../../components/Footer";
 import { ButtonText } from "../../../components/ButtonText";
 import { Button } from "../../../components/Button";
@@ -25,7 +25,7 @@ export function DishView ({ data, ...rest }) {
         <Container 
         {...rest}
         >
-            <Header/>
+            <HeaderUsers/>
 
             <Content>
 

@@ -103,7 +103,7 @@ export const Scrolling = styled.button`
     transform: translateY(-50%);
     border: none;
     filter: opacity(0.7);
-    background: linear-gradient(#091E26 0%, #00131C 100%);
+    background-color: ${({ theme }) => theme.COLORS.DARK_400};
     height: 31rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 3.5rem;
