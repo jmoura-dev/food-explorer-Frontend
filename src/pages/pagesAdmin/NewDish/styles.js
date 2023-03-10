@@ -10,6 +10,32 @@ export const Container = styled.div`
 export const Form = styled.form`
   grid-area: form;
   padding: 1.1rem 3.2rem;
+  width: 100%;
+  max-width: 136.6rem;
+  margin: 0 auto;
+
+  > button:first-child {
+    font-family: "Poppins", "serif";
+    font-weight: 500;
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    display: flex;
+    align-items: center;
+
+    svg {
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+      font-size: 2.3rem;
+    }
+  }
+
+  > h1 {
+    font-family: "Poppins", "serif";
+    font-weight: 500;
+    font-size: 3.2rem;
+
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+    margin: 2.2rem 0 1.2rem;
+  }
 
   label {
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
@@ -17,6 +43,9 @@ export const Form = styled.form`
     font-weight: 400;
     font-size: 1.6rem;
     display: block;
+
+    margin-top: 2.4rem;
+    margin-bottom: 1rem;
   }
 
   input[type="number"]::-webkit-inner-spin-button {
@@ -27,28 +56,26 @@ export const Form = styled.form`
     appearance: textfield;
   }
 
-  input {
+  > input, textarea {
     background-color: ${({ theme }) => theme.COLORS.DARK_800};
     color: ${({ theme }) => theme.COLORS.LIGHT_200};
 
+    font-family: "Roboto", "serif";
+    font-weight: 400;
+    font-size: 1.6rem;
+
     border: none;
     width: 100%;
     padding: 1.2rem 3.2rem;
     outline: none;
 
     border-radius: 8px;
-    height: 4.8rem;
+    appearance: none;
+    resize: none;
   }
 
-  textarea {
-    background-color: ${({ theme }) => theme.COLORS.DARK_800};
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
-    border-radius: 8px;
-    width: 100%;
-    padding: 1.2rem 3.2rem;
-    outline: none;
-
-    border: none;
+  input {
+    height: 4.8rem;
   }
 
   .buttonSelect {
@@ -73,8 +100,29 @@ export const Form = styled.form`
   }
   }
 
+  .ingredients {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: none;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: ${({ theme }) => theme.COLORS.DARK_800};
+
+    border-radius: 8px;
+
+    min-height: 4.8rem;
+    padding: 0.8rem;
+  }
 
 
+  > button:last-child {
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
+    margin: 2.4rem auto;
+
+    max-width: 136.6rem;
+    width: 100%;
+  }
 `
 
 export const UploadImage = styled.div`
@@ -89,7 +137,6 @@ export const UploadImage = styled.div`
     font-family: "Roboto", "serif";
     font-weight: 400;
     font-size: 1.6rem;
-    margin-bottom: 1.6rem;
   }
 
   > label:last-child {
@@ -104,6 +151,7 @@ export const UploadImage = styled.div`
     font-weight: 500;
     font-size: 1.4rem;
     border-radius: 8px;
+    margin: 0;
 
     svg {
       font-size: 2.4rem;

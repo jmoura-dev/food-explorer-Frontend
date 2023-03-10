@@ -7,6 +7,7 @@ import { Menu } from "../pages/pagesAdmin/Menu";
 import { Requests } from "../pages/pagesAdmin/Requests";
 import { Payment } from "../pages/pagesAdmin/Payment";
 import { NewDish } from "../pages/pagesAdmin/NewDish";
+import { EditDish } from "../pages/pagesAdmin/EditDish";
 
 export function AppAdminRoutes () {
   return (
@@ -19,6 +20,7 @@ export function AppAdminRoutes () {
       <Route path="/payment" element={ <Payment/> }/>
       <Route path="/requests" element={ <Requests/> }/>
       <Route path="/newdish" element={ <NewDish/> }/>
+      <Route path="/editdish" element={ <EditDish/> }/>
 
     </Routes>
   )

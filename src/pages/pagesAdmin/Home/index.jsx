@@ -7,13 +7,15 @@ import { About } from "../../../components/About";
 import { Section } from "../../../components/Section";
 import { DishAdmin } from "../../../components/DishAdmin";
 import { Footer } from "../../../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 export function Home () {
         const scrollMealList = useRef(null);
         const scrollDrinkList = useRef(null);
         const scrollDessertList = useRef(null);
-      
-    
+
+        const navigate = useNavigate();
+        
         const handlePrevMealList = () => {
             scrollMealList.current.scrollBy({
             left: -120,

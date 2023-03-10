@@ -4,17 +4,28 @@ import { HeaderAdmin } from "../../../components/HeaderAdmin";
 import { Footer } from "../../../components/Footer";
 import { ButtonText } from "../../../components/ButtonText";
 import { Button } from "../../../components/Button";
+import { DishItem } from "../../../components/DishItem";
 
 import { FiChevronLeft, FiUpload } from 'react-icons/fi';
-import { Input } from "../../../components/Input";
+import { useNavigate } from "react-router-dom";
 
 export function NewDish () {
+  const navigate = useNavigate();
+
+  function handleClickBack () {
+    navigate(-1)
+  }
+
   return (
     <Container>
       <HeaderAdmin/>
 
       <Form>
-        <ButtonText icon={FiChevronLeft} title="Voltar"/>
+        <ButtonText 
+        icon={FiChevronLeft} 
+        title="Voltar"
+        onClick={handleClickBack}
+        />
 
         <h1>Novo prato</h1>
 
@@ -28,15 +39,16 @@ export function NewDish () {
         </UploadImage>
 
         <label htmlFor="name">Nome</label>
-        <input 
+        <input
+        autoComplete="off"
         type="text"
         id="name"
-        placeholder="Ex: Salada Ceasar"
+        placeholder="Ex: Salada Caesar"
         />
 
-        <label htmlFor="name">Categoria</label>
+        <label htmlFor="category">Categoria</label>
         <div className="buttonSelect">
-        <select id="name">
+        <select id="category">
         <option value="Refeição">Refeição</option>
         <option value="Bebidas">Bebidas</option>
         <option value="Sobremesas">Sobremesas</option>
@@ -44,13 +56,17 @@ export function NewDish () {
         </div>
 
         <label htmlFor="ingredients">Ingredientes</label>
-        <input type="text" id="ingredients"/>
+        <div className="ingredients" id="ingredients">
+        <DishItem value="Pão Naan"/>
+        <DishItem placeholder="Adicionar" isNew/>
+        
+        </div>
         
         <label htmlFor="price">Preço</label>
         <input type="number" placeholder="R$ 00,00"/>
 
         <label htmlFor="textarea">Descrição</label>
-        <textarea id="textarea" cols="30" rows="10" 
+        <textarea id="textarea" cols="30" rows="7"
         placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"/>
       
 

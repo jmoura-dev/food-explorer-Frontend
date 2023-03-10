@@ -11,9 +11,13 @@ export function DishAdmin ({ data, ...rest }) {
         navigate("/dishview/3")
     }
 
+    function handleClickEditDish () {
+        navigate("/editdish")
+    }
+
     return (
         <Container {...rest}>
-            <button>
+            <button onClick={handleClickEditDish}>
                 <BsPencil/>
             </button>
             

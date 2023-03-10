@@ -157,6 +157,14 @@ export const Form = styled.form`
     border-bottom-left-radius: 0.8rem;
     border-bottom-right-radius: 0.8rem;
 
+    input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+
     > label {
         font-family: "Roboto", "serif";
         font-weight: 400;
