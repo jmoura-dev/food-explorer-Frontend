@@ -9,7 +9,7 @@ import { Input } from "../Input";
 import { useEffect, useState } from "react";
 
 import logo from "../../assets/polygonTitle.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function HeaderAdmin () {
     const [isScreenMobile, setIsScreenMobile] = useState(window.innerWidth < 820);
@@ -21,6 +21,7 @@ export function HeaderAdmin () {
 
     function handleClickCloseMenu () {
         setOpenMenu(true)
+        document.querySelector('nav').classList.add('exit');
     }
 
     useEffect(() => {

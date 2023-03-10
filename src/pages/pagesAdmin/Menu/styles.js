@@ -48,6 +48,10 @@ export const Content = styled.main`
         margin: 2rem 2.8rem;
         padding: 10px;
         border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
+        
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
 
         button {
             margin-top: 2rem;
@@ -55,6 +59,7 @@ export const Content = styled.main`
             font-weight: 300;
             font-size: 2.4rem;
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
         }
     }
 

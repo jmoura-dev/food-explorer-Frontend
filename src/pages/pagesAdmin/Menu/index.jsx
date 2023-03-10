@@ -40,6 +40,9 @@ export function Menu () {
             onClick={handleClickNewDish}
             title="Novo prato"/>
 
+            </Section>
+
+            <Section>
             <ButtonText 
             onClick={handleClickBack}
             title="Sair"/>

@@ -64,7 +64,6 @@ export const WindowMobile = styled.main`
                 font-size: 1.7rem;
             }
         }
-
     }
 
     > header {
@@ -113,12 +112,13 @@ export const WindowMobile = styled.main`
                 opacity: 1;
                 transform: translateX(0);
             }
-        }
+    }
 
     @keyframes rightleft {
         0% {
                 opacity: 0;
                 transform: translateX(50%);
+                animation-delay: 2s;
             }
 
             100% {
@@ -126,6 +126,7 @@ export const WindowMobile = styled.main`
                 transform: translateX(0);
             }
     }
+
 `
 
 export const WindowDesktop = styled.main`
