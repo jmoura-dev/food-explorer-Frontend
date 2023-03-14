@@ -84,7 +84,7 @@ export const Content = styled.main`
         max-width: 120rem;
 
         
-        > div:first-child {
+        > div {
             white-space: nowrap;
             display: flex;
             align-items: center;

@@ -28,7 +28,9 @@ export function NewDish () {
         />
 
         <h1>Novo prato</h1>
-
+        <h2>Adicionar prato</h2>
+      <main>
+      <div className="inputWrapperOne">
         <UploadImage>
         <label>Imagem do prato</label>
         <input type="file" id="imageDish"/>
@@ -38,6 +40,7 @@ export function NewDish () {
           </label>
         </UploadImage>
 
+        <div>
         <label htmlFor="name">Nome</label>
         <input
         autoComplete="off"
@@ -45,7 +48,9 @@ export function NewDish () {
         id="name"
         placeholder="Ex: Salada Caesar"
         />
+        </div>
 
+        <div>
         <label htmlFor="category">Categoria</label>
         <div className="buttonSelect">
         <select id="category">
@@ -54,23 +59,36 @@ export function NewDish () {
         <option value="Sobremesas">Sobremesas</option>
         </select>
         </div>
+        </div>
 
+      </div>
+
+      <div className="inputWrapperTwo">
+
+      <div>
         <label htmlFor="ingredients">Ingredientes</label>
         <div className="ingredients" id="ingredients">
         <DishItem value="Pão Naan"/>
         <DishItem placeholder="Adicionar" isNew/>
-        
         </div>
+      </div>
         
+      <div>
         <label htmlFor="price">Preço</label>
         <input type="number" placeholder="R$ 00,00"/>
 
+      </div>
+
+      </div>
+
         <label htmlFor="textarea">Descrição</label>
         <textarea id="textarea" cols="30" rows="7"
-        placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"/>
+        placeholder="Fale brevemente sobre o prato, seus ingredientes e composição."/>
       
 
       <Button title="Salvar prato"/>
+
+      </main>
       </Form>
 
       <Footer/>

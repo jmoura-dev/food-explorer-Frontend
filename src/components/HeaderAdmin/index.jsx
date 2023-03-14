@@ -104,7 +104,7 @@ export function HeaderAdmin () {
                         />               
                     
                     <Link to="/favorites">Meus favoritos</Link>
-                    <Link to="#">Novo prato</Link>
+                    <Link to="/newdish">Novo prato</Link>
 
                     <Link to="/requests">
                     <AiOutlineSchedule/>

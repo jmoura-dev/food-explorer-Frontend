@@ -13,8 +13,6 @@ export function Home () {
         const scrollMealList = useRef(null);
         const scrollDrinkList = useRef(null);
         const scrollDessertList = useRef(null);
-
-        const navigate = useNavigate();
         
         const handlePrevMealList = () => {
             scrollMealList.current.scrollBy({

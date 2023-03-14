@@ -6,18 +6,25 @@ export const Container = styled.div`
   justify-content: center;
   border-radius: 8px;
   max-height: 3.2rem;
-  gap: 0.8rem;
+  gap: 0.5rem;
 
   background-color: ${({ theme, isNew }) => isNew ? 'transparent' : theme.COLORS.LIGHT_600};
 
   border: ${({ theme, isNew }) => isNew ? `1px dashed ${theme.COLORS.LIGHT_500}` : 'none'};
 
   > button {
-    padding-right: 1.4rem;
+    padding-right: 1rem;
     border: none;
     background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     color: ${({ theme, isNew }) => isNew ? theme.COLORS.LIGHT_500 : theme.COLORS.LIGHT_100};
+
+    svg {
+      font-size: 1.5rem; 
+    }
   }
 
   > input {
