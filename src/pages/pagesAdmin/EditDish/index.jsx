@@ -29,23 +29,28 @@ export function EditDish () {
 
         <h1>Editar prato</h1>
 
+      <main>
+      <div className="inputWrapperOne">
         <UploadImage>
         <label>Imagem do prato</label>
         <input type="file" id="imageDish"/>
         <label htmlFor="imageDish">
           <FiUpload/>
-          Selecione imagem para alterá-la
+          Selecione imagem
           </label>
         </UploadImage>
 
+        <div>
         <label htmlFor="name">Nome</label>
         <input
         autoComplete="off"
         type="text"
         id="name"
-        placeholder="Salada Ceasar"
+        placeholder="Salada Caesar"
         />
+        </div>
 
+        <div>
         <label htmlFor="category">Categoria</label>
         <div className="buttonSelect">
         <select id="category">
@@ -54,28 +59,39 @@ export function EditDish () {
         <option value="Sobremesas">Sobremesas</option>
         </select>
         </div>
+        </div>
 
+      </div>
+
+      <div className="inputWrapperTwo">
+
+      <div>
         <label htmlFor="ingredients">Ingredientes</label>
         <div className="ingredients" id="ingredients">
         <DishItem value="Pão Naan"/>
         <DishItem placeholder="Adicionar" isNew/>
-        
         </div>
+      </div>
         
+      <div>
         <label htmlFor="price">Preço</label>
-        <input type="number" placeholder="R$ 40,00"/>
+        <input type="number" placeholder="R$ 00,00"/>
+
+      </div>
+
+      </div>
 
         <label htmlFor="textarea">Descrição</label>
         <textarea id="textarea" cols="30" rows="7"
-        placeholder="A Salada Caesar é uma opção refrescante para o verão."/>
+        placeholder="Fale brevemente sobre o prato, seus ingredientes e composição."/>
       
 
       <footer>
-      <Button title="Excluir prato"/>
-
-      <Button title="Salvar alterações"/>
-
+        <Button title="Excluir prato"/>
+        <Button title="Salvar prato"/>
       </footer>
+
+      </main>
       </Form>
 
       <Footer/>

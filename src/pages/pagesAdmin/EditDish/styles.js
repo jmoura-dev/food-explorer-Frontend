@@ -37,6 +37,17 @@ export const Form = styled.form`
     margin: 2.2rem 0 1.2rem;
   }
 
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  main {
+    position: relative;
+
   label {
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
     font-family: "Roboto", "serif";
@@ -48,15 +59,7 @@ export const Form = styled.form`
     margin-bottom: 1rem;
   }
 
-  input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-  }
-  input[type="number"] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-  }
-
-  > input, textarea {
+  input, textarea {
     background-color: ${({ theme }) => theme.COLORS.DARK_800};
     color: ${({ theme }) => theme.COLORS.LIGHT_200};
 
@@ -97,6 +100,15 @@ export const Form = styled.form`
 
     border: none;
     outline: none;
+    cursor: pointer;
+
+  }
+  @media(min-width: 820px) {
+    background-color: ${({ theme }) => theme.COLORS.DARK_800};
+
+    > select {
+      background-color: ${({ theme }) => theme.COLORS.DARK_800};
+    }
   }
   }
 
@@ -113,31 +125,106 @@ export const Form = styled.form`
 
     min-height: 4.8rem;
     padding: 0.8rem;
+
+    div {
+      input {
+        background: none;
+        outline: none; 
+        border: none;
+        padding: 0 0 0 1rem;
+        width: clamp(10rem, 12rem, 15rem);
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    
+        font-family: "Roboto", "serif";
+        font-weight: 400;
+        font-size: 1.6rem;
+      }
+    }
   }
 
-
   > footer {
+    margin: 2.4rem auto;
     display: flex;
-    align-items: center;
+    justify-content: end;
     gap: 3.2rem;
-
+    
     > button:first-child {
       background-color: ${({ theme }) => theme.COLORS.DARK_800};
+
     }
 
     > button:last-child {
       background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
-      margin: 2.4rem auto;
   
-      max-width: 136.6rem;
       width: 100%;
     }
+  }
+
+  }
+  
+  @media ( min-width: 820px ) {
+    margin-top: 1rem;
+    > button:first-child {
+      font-weight: 700;
+      font-size: 1.8rem;
+
+      svg {
+        font-size: 2.8rem;
+      }
+    }
+
+    .inputWrapperOne {
+      display: flex;
+      align-items: center;
+      gap: 3.2rem;
+
+      > div:nth-child(2) {
+        max-width: 55rem;
+        width: 100%;
+      }
+
+      > div:nth-child(3) {
+        max-width: 42rem;
+        width: 100%;
+      }
+    }
+
+    .inputWrapperTwo {
+      display: flex;
+      align-items: center;
+      gap: 3.2rem;
+
+      > div:nth-child(1) {
+        width: 100%;
+      }
+
+      > div:nth-child(2) {
+        width: 100%;
+        max-width: 30rem;
+      }
+    }
+
+    main {
+      > footer {
+        > button:first-child {
+          max-width: 20rem;
+        }
+
+        > button:last-child {
+          max-width: 25rem;
+    
+        }
+
+      }
+  }
   }
 `
 
 export const UploadImage = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   > input {
     display: none;
@@ -168,5 +255,9 @@ export const UploadImage = styled.div`
     }
     
     cursor: pointer;
+  }
+
+  @media(min-width: 820px) {
+    max-width: 28rem;
   }
 `

@@ -78,14 +78,12 @@ export const Content = styled.main`
     overflow: auto;
 
     > section {
-        white-space: nowrap;
         position: relative;
         margin: 0 auto;
         max-width: 120rem;
 
         
         > div:first-child {
-            white-space: nowrap;
             display: flex;
             align-items: center;
             overflow-x: hidden;

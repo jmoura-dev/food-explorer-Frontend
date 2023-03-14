@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    min-width: 21rem;
-    min-height: 29.2rem;
+    min-width: 23rem;
+    max-width: 24rem;
 
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@ export const Container = styled.div`
     border: none;
     border-radius: 8px;
     padding: 0 2.4rem 2.4rem 2.4rem;
-    gap: 1.2rem;
+    gap: 1rem;
     margin-top: 2.4rem;
     margin-right: 1.6rem;
     margin-bottom: 2.4rem;
@@ -41,6 +41,17 @@ export const Container = styled.div`
         }
     }
 
+    > h2 {
+        font-family: "Poppins", "serif";
+        font-weight: 700;
+        font-size: 1.9rem;
+        white-space: nowrap;
+    }
+
+    > p {
+        display: none;
+    }
+
     > span {
         font-family: "Roboto", "serif";
         font-weight: 400;
@@ -48,10 +59,17 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.COLORS.CAKE_200};
     }
 
-    > div {
+    > footer {
+        margin: 0 auto;
+        width: 100%;
+        margin-top: 0.5rem;
+
+    div {
         display: flex;
         align-items: center;
         gap: 1rem;
+        justify-content: center;
+        margin-bottom: 1.5rem;
 
         button {
             background: none;
@@ -71,14 +89,53 @@ export const Container = styled.div`
         }
     }
 
-    > button:last-child{
+    > button{
         height: 3.2rem;
         border-radius: 5px;
+        min-width: 16rem;
+        width: 100%;
+    }
+}
+
+@media(min-width: 820px) {
+    > footer {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: space-between;
+
+        gap: 1rem;
+
+        padding: 0 0.5rem;
+
+        div {
+            margin: 0;
+        }
+
+        > button{
+            min-width: 7rem;
+            max-width: 8rem;
+        }
+    }
+    
+    > p {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 17rem;
+
+        text-align: justify;
+
+        font-family: "Roboto", "serif";
+        font-weight: 400;
+        font-size: 1.1rem;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
     }
 
-    @media (min-width: 900px) {
-        min-width: 24rem;
+    > span {
+        font-size: 2.2rem;
     }
+}
 `
 
 export const DishImage = styled.button`

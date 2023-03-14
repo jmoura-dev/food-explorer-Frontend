@@ -26,10 +26,13 @@ export function DishUsers ({ data, ...rest }) {
                 />
             </DishImage>
 
-            <p>Salada Ravanello</p>
+            <h2>Salada Ravanello</h2>
+
+            <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim</p>
             
             <span>R$ 49,97</span>
 
+        <footer>
             <div>
             <button>
                 <FiMinus/>
@@ -43,6 +46,7 @@ export function DishUsers ({ data, ...rest }) {
             </div>
 
             <Button title="incluir"/>
+        </footer>
         </Container>
     )
 }

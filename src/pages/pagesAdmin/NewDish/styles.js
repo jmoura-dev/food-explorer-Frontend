@@ -106,7 +106,7 @@ export const Form = styled.form`
     font-size: 1.4rem;
       
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    background-color: transparent;
+    background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
 
     border: none;
@@ -116,6 +116,10 @@ export const Form = styled.form`
   }
   @media(min-width: 820px) {
     background-color: ${({ theme }) => theme.COLORS.DARK_800};
+
+    > select {
+      background-color: ${({ theme }) => theme.COLORS.DARK_800};
+    }
   }
   }
 
