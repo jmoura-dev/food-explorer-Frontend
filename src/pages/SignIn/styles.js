@@ -61,6 +61,7 @@ export const Form = styled.form`
     > div {
         margin-top: 2px;
         margin-bottom: 3.2rem;
+        padding: 0 1rem;
     }
 
     > a {
