@@ -2,6 +2,8 @@ import { Container, WindowMobile, WindowDesktop } from "./styles";
 import { AiOutlineMenu, AiOutlineShoppingCart, AiOutlineBank, AiOutlineDatabase } from "react-icons/ai";
 import { FiX } from "react-icons/fi";
 
+import { useAuth } from "../../hooks/auth";
+
 import { FiLogOut, FiSearch, FiHeart, FiClipboard } from "react-icons/fi";
 import { ButtonText } from "../ButtonText";
 import { Input } from "../Input";
@@ -14,6 +16,8 @@ import { Link, useNavigate } from "react-router-dom";
 export function HeaderUsers () {
     const [isScreenMobile, setIsScreenMobile] = useState(window.innerWidth < 820);
     const [openMenu, setOpenMenu] = useState(true);
+
+    const { signOut } = useAuth();
 
     const navigate = useNavigate();
     
@@ -113,7 +117,10 @@ export function HeaderUsers () {
                         Pedidos (0)
                     </Link>
 
-                    <ButtonText icon={FiLogOut}/>
+                    <ButtonText 
+                    icon={FiLogOut}
+                    onClick={signOut}
+                    />
                     
                 </WindowDesktop>
                 )

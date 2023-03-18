@@ -2,6 +2,8 @@ import { Container, WindowMobile, WindowDesktop } from "./styles";
 import { AiOutlineMenu, AiOutlineSchedule, AiOutlineBank, AiOutlineDatabase } from "react-icons/ai";
 import { FiX } from "react-icons/fi";
 
+import { useAuth } from "../../hooks/auth";
+
 import { FiLogOut, FiSearch, FiHeart, FiClipboard } from "react-icons/fi";
 import { ButtonText } from "../ButtonText";
 import { Input } from "../Input";
@@ -14,6 +16,8 @@ import { Link } from "react-router-dom";
 export function HeaderAdmin () {
     const [isScreenMobile, setIsScreenMobile] = useState(window.innerWidth < 820);
     const [openMenu, setOpenMenu] = useState(true);
+
+    const { signOut } = useAuth();
 
     function handleClickOpenMenu () {
         setOpenMenu(false);
@@ -111,7 +115,10 @@ export function HeaderAdmin () {
                         Pedidos (0)
                     </Link>
 
-                    <ButtonText icon={FiLogOut}/>
+                    <ButtonText 
+                    icon={FiLogOut}
+                    onClick={signOut}
+                    />
                     
                 </WindowDesktop>
                 )
