@@ -6,6 +6,7 @@ import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
 
 export function DishUsers ({ data, ...rest }) {
+
     const navigate = useNavigate();
 
     function handleClickImage () {
