@@ -8,20 +8,22 @@ import { ButtonText } from "../../../components/ButtonText";
 import { Button } from "../../../components/Button";
 import { DishItem } from "../../../components/DishItem";
 
-
 import { FiChevronLeft, FiUpload } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export function NewDish () {
+  const [formData, setNewFormData] = useState(null)
+
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Refeição");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-
+  
   const [ingredientes, setIngredientes] = useState([]);
   const [newIngrediente, setNewIngrediente] = useState("");
 
+  const [avatar, setAvatar] = useState(null);
 
   const navigate = useNavigate();
 
@@ -39,17 +41,36 @@ export function NewDish () {
     navigate(-1);
   }
 
+  function handleAddAvatar (event) {
+    const file = event.target.files[0];
+    setAvatar(file);
+  }
+  
   async function handleAddNewDish () {
-    await api.post("/dishes", { 
-      name,
-      category_name: category,
-      price,
-      ingredients: ingredientes,
-      description
-    });
 
-    alert("Prato adicionado!");
-    navigate(-1);
+    if(avatar){
+      const newFormData = new FormData();
+      newFormData.append("avatar_dish", avatar);
+
+      setNewFormData(newFormData)
+    }
+    
+    try {
+      await api.post("/dishes", { 
+        name,
+        category_name: category,
+        price,
+        avatar_dish: formData,
+        ingredients: ingredientes,
+        description
+      });
+      alert("Prato adicionado com sucesso!");
+      navigate(-1);
+      
+    } catch (error) {
+      console.error(error.response.data.message);
+    }
+    
   }
 
   return (
@@ -69,7 +90,11 @@ export function NewDish () {
       <div className="inputWrapperOne">
         <UploadImage>
         <label>Imagem do prato</label>
-        <input type="file" id="imageDish"/>
+        <input 
+        type="file" 
+        id="imageDish"
+        onChange={handleAddAvatar}
+        />
         <label htmlFor="imageDish">
           <FiUpload/>
           Selecione imagem
@@ -84,6 +109,7 @@ export function NewDish () {
         id="name"
         placeholder="Ex: Salada Caesar"
         onChange={e => setName(e.target.value)}
+        accept="image/*"
         />
         </div>
 
