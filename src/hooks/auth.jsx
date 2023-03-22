@@ -30,11 +30,6 @@ function AuthProvider ({ children }) {
 
   }
 
-  async function getDishes({ dish }) {
-    const response = await api.get("/dishes", dish);
-    console.log(response)
-  }
-
   function signOut () {
     localStorage.removeItem("@foodexplorer:user");
     localStorage.removeItem("@foodexplorer:token");
@@ -54,7 +49,6 @@ function AuthProvider ({ children }) {
         user: JSON.parse(user)
       });
     }
-
   }, 
   [])
 
@@ -62,7 +56,6 @@ function AuthProvider ({ children }) {
     <AuthContext.Provider value={{ 
       signIn,
       signOut,
-      getDishes,
       user: data.user
       }}>
       {children}

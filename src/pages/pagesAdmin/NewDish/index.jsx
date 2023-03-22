@@ -13,8 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export function NewDish () {
-  const [formData, setNewFormData] = useState(null)
-
   const [name, setName] = useState("");
   const [category, setCategory] = useState("Refeição");
   const [price, setPrice] = useState("");
@@ -24,7 +22,7 @@ export function NewDish () {
   const [newIngrediente, setNewIngrediente] = useState("");
 
   const [avatar, setAvatar] = useState(null);
-
+  
   const navigate = useNavigate();
 
   function handleAddIngredient() {
@@ -40,30 +38,28 @@ export function NewDish () {
   function handleClickBack () {
     navigate(-1);
   }
-
-  function handleAddAvatar (event) {
-    const file = event.target.files[0];
-    setAvatar(file);
-  }
   
   async function handleAddNewDish () {
 
-    if(avatar){
-      const newFormData = new FormData();
-      newFormData.append("avatar_dish", avatar);
-
-      setNewFormData(newFormData)
+    if(!name || !price || !description || !ingredientes || !avatar){
+      alert("Preencha todos os campos para criar o prato.")
     }
     
+    if(newIngrediente) {
+      return alert("Você deixou o campo de ingrediente incompleto, finalize ou apague o conteúdo para adicionar o ingrediente.")
+    }
+
     try {
-      await api.post("/dishes", { 
-        name,
-        category_name: category,
-        price,
-        avatar_dish: formData,
-        ingredients: ingredientes,
-        description
-      });
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("category_name", category);
+      formData.append("price", price);
+      formData.append("ingredients", ingredientes);
+      formData.append("description", description);
+      formData.append("avatar_dish", avatar);
+
+
+      await api.post("/dishes", formData);
       alert("Prato adicionado com sucesso!");
       navigate(-1);
       
@@ -93,7 +89,7 @@ export function NewDish () {
         <input 
         type="file" 
         id="imageDish"
-        onChange={handleAddAvatar}
+        onChange={e => setAvatar(e.target.files[0])}
         />
         <label htmlFor="imageDish">
           <FiUpload/>

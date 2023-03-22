@@ -36,8 +36,8 @@ export const Container = styled.div`
             height: 2.4rem;
 
             position: relative;
-            top: 0.5rem;
-            right: -7rem;
+            top: 1.5rem;
+            right: -8rem;
         }
     }
 
@@ -58,4 +58,11 @@ export const Container = styled.div`
 export const DishImage = styled.button`
     background: none;
     border: none;
+    margin: 0 auto;
+    > img {
+        width: 13rem;
+        height: 13rem;
+
+        border-radius: 999px;
+    }
 `

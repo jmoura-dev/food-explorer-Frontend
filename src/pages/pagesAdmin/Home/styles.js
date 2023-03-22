@@ -79,12 +79,28 @@ export const Content = styled.main`
 
     > section {
         white-space: nowrap;
-        position: relative;
         margin: 0 auto;
         max-width: 120rem;
 
+        position: relative;
+
         
         > div {
+            p {
+                margin: 0 auto;
+                height: 35.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 600;
+
+                @media (max-width: 820px) {
+                    font-size: 1.4rem;
+                    font-family: 500;
+                    min-width: 20rem;
+                }
+            }
+
             white-space: nowrap;
             display: flex;
             align-items: center;

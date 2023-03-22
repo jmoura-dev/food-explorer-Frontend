@@ -1,18 +1,20 @@
 import { Container, Content, Scrolling } from "./styles";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+
+import { api } from "../../../services/api";
 
 import { HeaderAdmin} from "../../../components/HeaderAdmin";
 import { About } from "../../../components/About";
 import { Section } from "../../../components/Section";
 import { DishAdmin } from "../../../components/DishAdmin";
 import { Footer } from "../../../components/Footer";
-import { useNavigate } from "react-router-dom";
 
 export function Home () {
         const scrollMealList = useRef(null);
         const scrollDrinkList = useRef(null);
         const scrollDessertList = useRef(null);
+        const [dishes, setDishes] = useState([]);
         
         const handlePrevMealList = () => {
             scrollMealList.current.scrollBy({
@@ -33,28 +35,38 @@ export function Home () {
               left: -120,
               behavior: 'smooth'
             });
-          }
+        }
         
-          const handleNextDrinkList = () => {
+        const handleNextDrinkList = () => {
             scrollDrinkList.current.scrollBy({
               left: 120,
               behavior: 'smooth'
             });
-          }
+        }
 
-          const handlePrevDessertList = () => {
+        const handlePrevDessertList = () => {
             scrollDessertList.current.scrollBy({
               left: -120,
               behavior: 'smooth'
             });
-          }
+        }
         
-          const handleNextDessertList = () => {
+        const handleNextDessertList = () => {
             scrollDessertList.current.scrollBy({
               left: 120,
               behavior: 'smooth'
             });
+        }
+
+        useEffect(() => {
+          async function getDishes() {
+            const response = await api.get("/dishes")
+            setDishes( response.data )
           }
+
+          getDishes();
+        }, []);
+
     return (
         <Container>
 
@@ -65,16 +77,20 @@ export function Home () {
 
             <Section title="Refeições">
             <div ref={scrollMealList}>
-                <DishAdmin/>
-                <DishAdmin/>
-                <DishAdmin/>
-                <DishAdmin/>
-                <DishAdmin/>
-                <DishAdmin/>
-                <DishAdmin/>
-                <DishAdmin/>
-                <DishAdmin/>
 
+              {
+                dishes.filter(dish => dish.category_id === 1).length === 0 ?
+                ( <p>Você ainda não adicionou nenhum prato.</p> )
+                :
+                (
+                  dishes.filter(dish => dish.category_id === 1).map(dish => (
+                    <DishAdmin
+                    key={String(dish.id)}
+                    data={dish}
+                    />
+                  ))
+                )
+              }
             </div>
 
             
@@ -93,9 +109,19 @@ export function Home () {
 
             <Section title="Bebidas">
             <div ref={scrollDrinkList}>
-                <DishAdmin/>
-                <DishAdmin/>
-                <DishAdmin/>
+            {
+                dishes.filter(dish => dish.category_id === 2).length === 0 ?
+                ( <p>Você ainda não adicionou nenhum prato.</p> )
+                :
+                (
+                  dishes.filter(dish => dish.category_id === 2).map(dish => (
+                    <DishAdmin
+                    key={String(dish.id)}
+                    data={dish}
+                    />
+                  ))
+                )
+              }
             </div>
 
             <Scrolling 
@@ -116,9 +142,19 @@ export function Home () {
 
             <Section title="Sobremesas">
             <div ref={scrollDessertList}>
-                <DishAdmin/>
-                <DishAdmin/>
-                <DishAdmin/>
+            {
+                dishes.filter(dish => dish.category_id === 3).length === 0 ?
+                ( <p>Você ainda não adicionou nenhum prato.</p> )
+                :
+                (
+                  dishes.filter(dish => dish.category_id === 3).map(dish => (
+                    <DishAdmin
+                    key={String(dish.id)}
+                    data={dish}
+                    />
+                  ))
+                )
+              }
             </div>
 
             <Scrolling 

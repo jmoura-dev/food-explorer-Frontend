@@ -1,38 +1,56 @@
 import { Container, DishImage } from "./styles";
-import dishImage from "../../assets/imageDish.svg";
 import { BsPencil } from "react-icons/bs";
 
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
 
 export function DishAdmin ({ data, ...rest }) {
     const navigate = useNavigate();
 
+    const [imageDish, setImageDish] = useState(null);
+
     function handleClickImage () {
-        navigate("/dishview/3")
+        navigate("/dishview/3");
     }
 
     function handleClickEditDish () {
         navigate("/editdish")
     }
+    
+    useEffect(() => {
+        async function getImage () {
+            if(data) {
+                setImageDish(`${api.defaults.baseURL}/files/${data.avatar_dish}`);
+            }
+        }
+
+        getImage();
+    }, [data])
 
     return (
         <Container {...rest}>
+            {
+                data &&
+            <>
             <button onClick={handleClickEditDish}>
                 <BsPencil/>
             </button>
             
             <DishImage>
                 <img
-                src={dishImage} 
-                alt="imagem da refeição"
+                src={imageDish}
+                alt={data.name}
                 onClick={handleClickImage}
                 />
             </DishImage>
 
-            <p>Salada Ravanello</p>
-            
-            <span>R$ 49,97</span>
 
+            <p>{data.name}</p>    
+
+            <span>{`R$ ${data.price}`}</span>
+            </>
+           }
         </Container>
     )
 }
