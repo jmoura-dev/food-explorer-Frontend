@@ -59,12 +59,12 @@ export function Home () {
         }
 
         useEffect(() => {
-          async function getDishes() {
+          async function fetchDishes() {
             const response = await api.get("/dishes")
             setDishes( response.data )
           }
 
-          getDishes();
+          fetchDishes();
         }, []);
 
     return (

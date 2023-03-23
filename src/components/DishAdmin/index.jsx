@@ -9,9 +9,10 @@ export function DishAdmin ({ data, ...rest }) {
     const navigate = useNavigate();
 
     const [imageDish, setImageDish] = useState(null);
+    const { id } = data;
 
     function handleClickImage () {
-        navigate("/dishview/3");
+        navigate(`/dishview/${id}`);
     }
 
     function handleClickEditDish () {
@@ -19,13 +20,13 @@ export function DishAdmin ({ data, ...rest }) {
     }
     
     useEffect(() => {
-        async function getImage () {
+        async function fetchImage () {
             if(data) {
                 setImageDish(`${api.defaults.baseURL}/files/${data.avatar_dish}`);
             }
         }
 
-        getImage();
+        fetchImage();
     }, [data])
 
     return (

@@ -5,7 +5,7 @@ export function Ingredients ({ title, ...rest }) {
         <Container
         {...rest}
         >
-            {title}
+        {title}
         </Container>
     )
 }

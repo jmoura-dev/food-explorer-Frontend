@@ -39,6 +39,12 @@ export const Content = styled.main`
             width: 20.4rem;
             height: 20.4rem;
             margin-right: 2rem;
+
+            border-radius: 999px;
+   
+            margin: 2rem auto;
+            
+
         }
 
         > div {
@@ -72,7 +78,7 @@ export const Content = styled.main`
                 flex-direction: row;
                 align-items: center;
                 justify-content: center;
-                gap: 7px;
+                min-width: 14rem;
 
                 font-family: "Poppins", "serif";
                 font-weight: 500;
@@ -85,7 +91,7 @@ export const Content = styled.main`
             display: flex;
             flex-direction: row;
             max-width: 136.6rem;
-            justify-content: space-between;
+
             margin: 4rem auto 0;
             padding: 3.6rem 5rem 0;
 
@@ -94,14 +100,11 @@ export const Content = styled.main`
                 height: 34rem;
             }
 
-            p {
-                text-align: left;
-            }
-
             div {
                 display: flex;
                 flex-direction: column;
                 align-items: start;
+                margin: 0 auto;
             }
 
             button {

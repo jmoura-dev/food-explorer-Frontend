@@ -40,6 +40,7 @@ export function NewDish () {
   }
   
   async function handleAddNewDish () {
+    const formData = new FormData();
 
     if(!name || !price || !description || !ingredientes || !avatar){
       alert("Preencha todos os campos para criar o prato.")
@@ -49,16 +50,14 @@ export function NewDish () {
       return alert("Você deixou o campo de ingrediente incompleto, finalize ou apague o conteúdo para adicionar o ingrediente.")
     }
 
+    formData.append("name", name);
+    formData.append("category_name", category);
+    formData.append("price", price);
+    formData.append("ingredients", ingredientes);
+    formData.append("description", description);
+    formData.append("avatar_dish", avatar);
+
     try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("category_name", category);
-      formData.append("price", price);
-      formData.append("ingredients", ingredientes);
-      formData.append("description", description);
-      formData.append("avatar_dish", avatar);
-
-
       await api.post("/dishes", formData);
       alert("Prato adicionado com sucesso!");
       navigate(-1);
@@ -133,7 +132,7 @@ export function NewDish () {
         {
           ingredientes.map((ingrediente, index) => (
             <DishItem 
-            value={ingrediente}
+            value={String([ingrediente])}
             key={index}
             onClick={() => handleRemoveIngredient(ingrediente)}
             />
