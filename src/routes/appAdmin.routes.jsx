@@ -20,7 +20,7 @@ export function AppAdminRoutes () {
       <Route path="/payment" element={ <Payment/> }/>
       <Route path="/requests" element={ <Requests/> }/>
       <Route path="/newdish" element={ <NewDish/> }/>
-      <Route path="/editdish" element={ <EditDish/> }/>
+      <Route path="/editdish/:id" element={ <EditDish/> }/>
 
     </Routes>
   )

@@ -18,21 +18,21 @@ export function NewDish () {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   
-  const [ingredientes, setIngredientes] = useState([]);
-  const [newIngrediente, setNewIngrediente] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+  const [newIngredient, setNewIngredient] = useState("");
 
-  const [avatar, setAvatar] = useState(null);
+  const [image, setImage] = useState(null);
   
   const navigate = useNavigate();
 
   function handleAddIngredient() {
-      setIngredientes(prevState => [...prevState, newIngrediente]);
+      setIngredients(prevState => [...prevState, newIngredient]);
 
-      setNewIngrediente("");
+      setNewIngredient("");
   }
 
   function handleRemoveIngredient(deleted) {
-    setIngredientes(prevState => prevState.filter(ingrediente => ingrediente !== deleted))
+    setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted))
   }
 
   function handleClickBack () {
@@ -42,20 +42,20 @@ export function NewDish () {
   async function handleAddNewDish () {
     const formData = new FormData();
 
-    if(!name || !price || !description || !ingredientes || !avatar){
-      alert("Preencha todos os campos para criar o prato.")
+    if(!name || !price || !description || !ingredients || !image){
+      return alert("Preencha todos os campos para criar o prato.")
     }
     
-    if(newIngrediente) {
+    if(newIngredient) {
       return alert("Você deixou o campo de ingrediente incompleto, finalize ou apague o conteúdo para adicionar o ingrediente.")
     }
 
     formData.append("name", name);
     formData.append("category_name", category);
     formData.append("price", price);
-    formData.append("ingredients", ingredientes);
+    formData.append("ingredients", ingredients);
     formData.append("description", description);
-    formData.append("avatar_dish", avatar);
+    formData.append("avatar_dish", image);
 
     try {
       await api.post("/dishes", formData);
@@ -88,7 +88,7 @@ export function NewDish () {
         <input 
         type="file" 
         id="imageDish"
-        onChange={e => setAvatar(e.target.files[0])}
+        onChange={e => setImage(e.target.files[0])}
         />
         <label htmlFor="imageDish">
           <FiUpload/>
@@ -130,11 +130,11 @@ export function NewDish () {
         <label htmlFor="ingredients">Ingredientes</label>
         <div className="ingredients" id="ingredients">
         {
-          ingredientes.map((ingrediente, index) => (
+          ingredients.map((ingredient, index) => (
             <DishItem 
-            value={String([ingrediente])}
+            value={String(ingredient)}
             key={index}
-            onClick={() => handleRemoveIngredient(ingrediente)}
+            onClick={() => handleRemoveIngredient(ingredient)}
             />
           ))
         }
@@ -142,8 +142,8 @@ export function NewDish () {
         <DishItem 
         placeholder="Adicionar" 
         isNew
-        onChange={e => setNewIngrediente(e.target.value)}
-        value={newIngrediente}
+        onChange={e => setNewIngredient(e.target.value)}
+        value={newIngredient}
         onClick={handleAddIngredient}
         />
         </div>

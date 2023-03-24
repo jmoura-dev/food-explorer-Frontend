@@ -18,10 +18,14 @@ export function DishView ({ ...rest }) {
     const navigate = useNavigate();
     const [data, setData] = useState(null);
     const [image, setImage] = useState(null);
-
+    
     function handleNavigate () {
         navigate(-1)
     };
+    
+    function handleClickEdit () {
+        navigate(`/editdish/${params.id}`);
+    }
 
     useEffect(() => {
         async function fetchDishes() {
@@ -82,7 +86,10 @@ export function DishView ({ ...rest }) {
             }
 
 
-                <Button title="Editar prato"/>
+                <Button 
+                title="Editar prato"
+                onClick={handleClickEdit}
+                />
 
             </div>
             </form>

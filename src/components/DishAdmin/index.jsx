@@ -16,7 +16,7 @@ export function DishAdmin ({ data, ...rest }) {
     }
 
     function handleClickEditDish () {
-        navigate("/editdish")
+        navigate(`/editdish/${id}`);
     }
     
     useEffect(() => {

@@ -6,6 +6,7 @@ export const AuthContext = createContext({});
 
 function AuthProvider ({ children }) {
   const [data, setData] = useState({});
+  const [dataDishes, setDishes] = useState([]);
 
   async function signIn({ email, password }) {
 
@@ -18,7 +19,7 @@ function AuthProvider ({ children }) {
 
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      setData({ user, token })
+      setData({ user, token });
 
     } catch (error) {
       if (error.response){
@@ -28,6 +29,11 @@ function AuthProvider ({ children }) {
       }
     }
 
+  }
+
+  async function fetchDishes () {
+    const responseDish = await api.get("/dishes");
+    setDishes(responseDish.data);
   }
 
   function signOut () {
@@ -46,16 +52,18 @@ function AuthProvider ({ children }) {
 
       setData({
         token,
-        user: JSON.parse(user)
+        user: JSON.parse(user),
       });
     }
   }, 
-  [])
+  []);
 
   return (
     <AuthContext.Provider value={{ 
       signIn,
       signOut,
+      fetchDishes,
+      dataDishes,
       user: data.user
       }}>
       {children}
