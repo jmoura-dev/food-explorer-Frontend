@@ -18,8 +18,16 @@ export function HeaderUsers () {
     const [openMenu, setOpenMenu] = useState(true);
 
     const { signOut } = useAuth();
-
     const navigate = useNavigate();
+
+    function handleSignOut () {
+        const confirm = window.confirm("Deseja mesmo sair ?");
+
+        if(confirm) {
+        navigate("/")
+        signOut();
+        }
+    }
     
     function handleClickRequests () {
         navigate("/requests")
@@ -119,7 +127,7 @@ export function HeaderUsers () {
 
                     <ButtonText 
                     icon={FiLogOut}
-                    onClick={signOut}
+                    onClick={handleSignOut}
                     />
                     
                 </WindowDesktop>

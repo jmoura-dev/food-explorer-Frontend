@@ -11,13 +11,23 @@ import { Input } from "../Input";
 import { useEffect, useState } from "react";
 
 import logo from "../../assets/polygonTitle.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function HeaderAdmin () {
+    const navigate = useNavigate();
     const [isScreenMobile, setIsScreenMobile] = useState(window.innerWidth < 820);
     const [openMenu, setOpenMenu] = useState(true);
 
     const { signOut } = useAuth();
+
+    function handleSignOut () {
+        const confirm = window.confirm("Deseja mesmo sair ?");
+
+        if(confirm) {
+        navigate("/")
+        signOut();
+        }
+    }
 
     function handleClickOpenMenu () {
         setOpenMenu(false);
@@ -117,7 +127,7 @@ export function HeaderAdmin () {
 
                     <ButtonText 
                     icon={FiLogOut}
-                    onClick={signOut}
+                    onClick={handleSignOut}
                     />
                     
                 </WindowDesktop>
