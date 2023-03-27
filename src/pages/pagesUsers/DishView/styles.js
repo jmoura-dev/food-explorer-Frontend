@@ -38,7 +38,12 @@ export const Content = styled.main`
             display: flex;
             width: 20.4rem;
             height: 20.4rem;
-            margin-right: 2rem;
+            margin-top: 2rem;
+            border-radius: 50%;
+
+            @media (min-width: 820px) {
+                margin-right: 2rem;
+            }
         }
 
         h1 {
@@ -97,9 +102,16 @@ export const Content = styled.main`
                 font-family: "Poppins", "serif";
                 font-weight: 500;
                 font-size: 1rem;
+                padding: 1rem;
 
                 svg {
                     font-size: 2rem;
+                }
+
+                @media (max-width: 820px) {
+                    svg {
+                        display: none;
+                    }
                 }
             }
     }

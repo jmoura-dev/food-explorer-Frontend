@@ -46,7 +46,7 @@ export function DishView ({ ...rest }) {
         fetchImage();
     }, [data])
 
-    return (
+      return (
         <Container 
         {...rest}
         >

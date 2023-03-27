@@ -4,23 +4,51 @@ import { Footer } from "../../../components/Footer";
 import { ButtonText } from "../../../components/ButtonText";
 import { Button } from "../../../components/Button";
 
+import { api } from "../../../services/api";
+
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { FiChevronLeft } from 'react-icons/fi';
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
-import imageDish from "../../../assets/imageDish.svg";
 import { Ingredients } from "../../../components/Ingredients";
 
-import { useNavigate } from "react-router-dom";
 
 
-export function DishView ({ data, ...rest }) {
+export function DishView ({ ...rest }) {
+    const params = useParams();
     const navigate = useNavigate();
-
+    const [data, setData] = useState(null);
+    const [image, setImage] = useState(null);
+    
     function handleNavigate () {
         navigate(-1)
     };
 
+    useEffect(() => {
+        async function fetchDishes() {
+            const response = await api.get(`/dishes/${params.id}`);
+            setData(response.data)
+        }
+
+        fetchDishes();
+    }, [])
+
+    useEffect(() => {
+        function fetchImage() {
+            if(data) {
+                setImage(`${api.defaults.baseURL}/files/${data.avatar_dish}`);
+            }
+        }
+
+        fetchImage();
+    }, [data])
+
+    console.log(image)
+    console.log(data)
+    
     return (
         <Container 
         {...rest}
@@ -35,24 +63,36 @@ export function DishView ({ data, ...rest }) {
             onClick={handleNavigate}
             />
 
+        {
+            data &&
+
             <form>
 
-                <img src={imageDish} alt="Imagem da refeição" />
+                <img src={image} alt="Imagem da refeição" />
 
             <div>
                 <h1>
-                    Salada Ravanello
+                    {data.name}
                 </h1>
 
                 <p>
-                    Rababetes, folhas verdes e molho agridoce salpicados com gergelim.
+                    {data.description}
                 </p>
 
+            {
+                data.ingredients &&
                 <span>
-                <Ingredients title="Alface"/>
-                <Ingredients title="Alface"/>
-                <Ingredients title="Alface"/>     
+                    {
+                        data.ingredients.map(ingredient => (
+                            <Ingredients
+                            key={String(ingredient.id)}
+                            title={ingredient.name}
+                            />
+                        ))
+                    }
                 </span>
+            }
+
 
                 
                 <footer>
@@ -65,11 +105,16 @@ export function DishView ({ data, ...rest }) {
                         <FiPlus/>
                     </button>
 
-                    <Button icon={AiOutlineShoppingCart} title="Incluir - R$ 25,00"/>
+                    <Button 
+                    icon={AiOutlineShoppingCart} 
+                    title={`Incluir - ${data.price}`}
+                    />
                 </footer>
 
             </div>
             </form>
+        }
+
 
             </Content>
 

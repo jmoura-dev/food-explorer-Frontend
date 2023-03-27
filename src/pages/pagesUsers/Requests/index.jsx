@@ -40,7 +40,9 @@ export function Requests() {
                     
                     <li>
                     <DishFavoritesUsers data={{
-                    title: "Salada Ravanello"
+                    title: "Salada Ravanello",
+                    price: "25,30",
+                    amount: "3",
                     }}/>
                     </li>
 

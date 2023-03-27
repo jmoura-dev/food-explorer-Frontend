@@ -2,13 +2,19 @@ import { Container } from "./styles";
 import { ButtonText } from "../../components/ButtonText";
 import { AiOutlineDelete } from "react-icons/ai";
 
-import imageDish from "../../assets/imageDish.svg";
-
 export function DishFavoritesUsers ({ data, ...rest }) {
+
     return (
         <Container {...rest}>
                 <span>
-                <img src={imageDish} alt="imagem da refeição" />
+                {
+                    data.imageDish &&
+                    <img 
+                    src={data.imageDish} 
+                    alt="imagem da refeição" 
+                    />
+                }
+
                 </span>
 
                 <main>

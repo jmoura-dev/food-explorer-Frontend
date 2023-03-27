@@ -47,18 +47,49 @@ export const Container = styled.main`
         }
     }
 
-    @media (min-width: 800px) {
+    @media (max-width: 820px) {
+        > section {
+            ul li {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 0 auto;
+                padding-right: 2rem;
+            }
+        }
+    }
+    @media (max-height: 830px) {
+        > section {
+            ul li {
+                margin-top: 10rem;
+                max-height: 25rem;
+            }
+        }
+    }
 
-        section {
+    @media (max-height: 700px) {
+        > section {
+            > ul li {
+                margin-top: 12rem;
+                max-height: 18rem;
+            }
+        }
+    }
+
+    @media (min-width: 820px) {
+
+        > section {
             margin: 5rem auto;
             padding: 0 3rem;
 
-            > ul {
+            > ul li {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 max-width: 136.6rem;
-                gap: 1rem;
+                gap: 2rem;
+                color: red;
 
                 flex-wrap: wrap;
             }

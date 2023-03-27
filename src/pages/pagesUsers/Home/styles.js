@@ -83,7 +83,22 @@ export const Content = styled.main`
         max-width: 120rem;
 
         
-        > div:first-child {
+        > div {
+            p {
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 600;
+                height: 35.5rem;
+                
+                @media (max-width: 820px) {
+                    font-size: 1.4rem;
+                    font-family: 500;
+                    min-width: 20rem;
+                }
+            }
+            
             display: flex;
             align-items: center;
             overflow-x: hidden;
@@ -109,10 +124,18 @@ export const Scrolling = styled.button`
     z-index: 0.5;
 
     ${({ direction }) => direction === 'prev' ? `
+        left: -1.2rem;
+    ` : `
+        right: -1.2rem;
+    `}
+
+    @media (max-width: 820px ) {
+    ${({ direction }) => direction === 'prev' ? `
         left: 0;
     ` : `
         right: 0;
     `}
+    }
 
     :hover {
         filter: opacity(0.9);

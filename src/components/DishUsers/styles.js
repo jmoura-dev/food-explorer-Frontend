@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
     min-width: 23rem;
     max-width: 24rem;
+    min-height: 31.5rem;
+    max-height: 32.2rem;
 
     display: flex;
     flex-direction: column;
@@ -13,7 +15,7 @@ export const Container = styled.div`
     border: none;
     border-radius: 8px;
     padding: 0 2.4rem 2.4rem 2.4rem;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-top: 2.4rem;
     margin-right: 1.6rem;
     margin-bottom: 2.4rem;
@@ -41,15 +43,27 @@ export const Container = styled.div`
         }
     }
 
-    > h2 {
+    > h1 {
         font-family: "Poppins", "serif";
         font-weight: 700;
         font-size: 1.9rem;
         white-space: nowrap;
     }
 
-    > p {
-        display: none;
+    > h2 {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 17rem;
+        width: 100%;
+        justify-content: center;
+
+        text-align: justify;
+
+        font-family: "Roboto", "serif";
+        font-weight: 400;
+        font-size: 1.1rem;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
     }
 
     > span {
@@ -117,20 +131,6 @@ export const Container = styled.div`
             max-width: 8rem;
         }
     }
-    
-    > p {
-        display: flex;
-        flex-wrap: wrap;
-        max-width: 17rem;
-
-        text-align: justify;
-
-        font-family: "Roboto", "serif";
-        font-weight: 400;
-        font-size: 1.1rem;
-
-        color: ${({ theme }) => theme.COLORS.LIGHT_400};
-    }
 
     > span {
         font-size: 2.2rem;
@@ -141,4 +141,11 @@ export const Container = styled.div`
 export const DishImage = styled.button`
     background: none;
     border: none;
+
+    > img {
+        width: 12rem;
+        height: 12rem;
+
+        border-radius: 999px;
+    }
 `

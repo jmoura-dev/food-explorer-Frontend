@@ -20,13 +20,13 @@ export function DishAdmin ({ data, ...rest }) {
     }
     
     useEffect(() => {
-        async function fetchImage () {
+        async function fetchImageDish () {
             if(data) {
                 setImageDish(`${api.defaults.baseURL}/files/${data.avatar_dish}`);
             }
         }
 
-        fetchImage();
+        fetchImageDish();
     }, [data])
 
     return (
