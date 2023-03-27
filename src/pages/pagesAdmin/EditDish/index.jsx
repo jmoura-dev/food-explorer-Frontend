@@ -40,11 +40,23 @@ export function EditDish () {
     navigate(-1)
   }
 
+  async function handleDeleteDish () {
+    const confirm = window.confirm("Deseja mesmo excluir o prato ?");
+
+    if(confirm) {
+      await api.delete(`/dishes/${params.id}`);
+      navigate("/");
+    }
+  }
+
   async function handleSaveDish () {
     const formData = new FormData();
-    const filterIngredients = ingredients.filter(ingredient => !data.ingredients.includes(ingredient));
 
-    if(!name || !price || !description || !ingredients || !image){
+    if(!image) {
+      return alert("É necessário adicionar uma nova imagem para o prato.")
+    }
+
+    if(!name || !price || !description || !ingredients ){
       return alert("Preencha todos os campos para criar o prato.")
     }
     
@@ -55,7 +67,7 @@ export function EditDish () {
     formData.append("name", name);
     formData.append("category_name", category);
     formData.append("price", price);
-    formData.append("ingredients", filterIngredients);
+    formData.append("ingredients", ingredients);
     formData.append("description", description);
     formData.append("avatar_dish", image);
 
@@ -185,7 +197,11 @@ export function EditDish () {
       
 
       <footer>
-        <Button title="Excluir prato"/>
+        <Button 
+        title="Excluir prato"
+        onClick={handleDeleteDish}
+        />
+
         <Button 
         title="Salvar prato"
         onClick={handleSaveDish}

@@ -75,7 +75,7 @@ export function Home () {
 
               {
                 dataDishes.filter(dish => dish.category_id === 1).length === 0 ?
-                ( <p>Você ainda não adicionou nenhum prato.</p> )
+                ( <p>Você ainda não adicionou nenhuma refeição.</p> )
                 :
                 (
                   dataDishes.filter(dish => dish.category_id === 1).map(dish => (
@@ -106,7 +106,7 @@ export function Home () {
             <div ref={scrollDrinkList}>
             {
                 dataDishes.filter(dish => dish.category_id === 2).length === 0 ?
-                ( <p>Você ainda não adicionou nenhum prato.</p> )
+                ( <p>Você ainda não adicionou nenhuma bebida.</p> )
                 :
                 (
                   dataDishes.filter(dish => dish.category_id === 2).map(dish => (
@@ -139,7 +139,7 @@ export function Home () {
             <div ref={scrollDessertList}>
             {
                 dataDishes.filter(dish => dish.category_id === 3).length === 0 ?
-                ( <p>Você ainda não adicionou nenhum prato.</p> )
+                ( <p>Você ainda não adicionou nenhuma sobremesa.</p> )
                 :
                 (
                   dataDishes.filter(dish => dish.category_id === 3).map(dish => (
