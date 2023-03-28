@@ -21,7 +21,7 @@ export const Container = styled.div`
     margin-bottom: 2.4rem;
 
     :hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
         transition-duration: 0.4s;
     }
 

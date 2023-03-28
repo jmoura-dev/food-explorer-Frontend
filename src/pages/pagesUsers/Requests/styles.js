@@ -10,10 +10,11 @@ export const Content = styled.main`
     grid-area: content;
     padding: 2rem;
     text-align: start;
+    max-width: 136.6rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 5rem;
 
-    @media(min-width: 820px) {
-            margin: 0 auto;
-    }
 
     > button:first-child {
         display: flex;
@@ -23,10 +24,9 @@ export const Content = styled.main`
     }
 
     > section {
-        max-width: 136.6rem;
+        width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
         font-family: "Poppins", "serif";
         font-size: 3.2rem;
         font-weight: 500;
@@ -58,6 +58,23 @@ export const Content = styled.main`
 
                 gap: 2rem;
                 flex-wrap: wrap;
+            }
+
+            li {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 3rem;
+                padding: 1rem 2.5rem;
+
+                @media (max-width: 820px) {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+
+            p {
+                margin: 5rem auto;
             }
         }
 

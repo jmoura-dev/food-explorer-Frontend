@@ -4,6 +4,7 @@ export const Container = styled.div`
     display: grid;
     grid-template-areas: "header" "main" "footer"; 
     grid-template-rows: 11.4rem auto 7.7rem;
+    height: 100vh;
 `
 
 export const Content = styled.main`
@@ -43,6 +44,11 @@ export const Content = styled.main`
 
             @media (min-width: 820px) {
                 margin-right: 2rem;
+            }
+
+            @media (max-height: 700px) {
+                width: 16rem;
+                height: 16rem;
             }
         }
 
@@ -140,6 +146,9 @@ export const Content = styled.main`
             }
         }
     
+    @media (min-height: 800px) {
+        gap: 2rem;
+    }
 
     @media (min-width: 1000px) {
         gap: 5rem;

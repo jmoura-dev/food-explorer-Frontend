@@ -3,6 +3,7 @@ import { AiOutlineMenu, AiOutlineShoppingCart, AiOutlineBank, AiOutlineDatabase 
 import { FiX } from "react-icons/fi";
 
 import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart";
 
 import { FiLogOut, FiSearch, FiHeart, FiClipboard } from "react-icons/fi";
 import { ButtonText } from "../ButtonText";
@@ -13,7 +14,8 @@ import { useEffect, useState } from "react";
 import logo from "../../assets/polygonTitle.svg";
 import { Link, useNavigate } from "react-router-dom";
 
-export function HeaderUsers () {
+export function HeaderUsers ({ cartItems, ...rest }) {
+    const [cart, setCart] = useCart();
     const [isScreenMobile, setIsScreenMobile] = useState(window.innerWidth < 820);
     const [openMenu, setOpenMenu] = useState(true);
 
@@ -52,7 +54,9 @@ export function HeaderUsers () {
     }, []);
 
     return (
-        <Container>
+        <Container
+        {...rest}
+        >
             {
                 isScreenMobile ?
             (
@@ -122,7 +126,7 @@ export function HeaderUsers () {
 
                     <Link to="/requests">
                     <AiOutlineShoppingCart/>
-                        Pedidos (0)
+                        Carrinho ({cartItems=cart.length})
                     </Link>
 
                     <ButtonText 

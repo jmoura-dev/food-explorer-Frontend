@@ -53,7 +53,7 @@ export const Container = styled.div`
 }
 
     button {
-            max-width: 10rem;
+            max-width: 15rem;
             gap: 0.5rem;
             display: flex;
             align-items: center;

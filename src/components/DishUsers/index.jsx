@@ -1,18 +1,51 @@
 import { Container, DishImage } from "./styles";
 import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
 
+import { api } from "../../services/api";
+import { useCart } from "../../hooks/cart";
+
 import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { api } from "../../services/api";
 
 export function DishUsers ({ data, ...rest }) {
+    const [cart, setCart] = useCart();
+    const [amount, setAmount] = useState(1);
     const navigate = useNavigate();
     const { id } = data;
     const [imageDish, setImageDish] = useState(null);
 
     function handleClickImage () {
         navigate(`/dishview/${id}`);
+    }
+
+    function handleDecrease () {
+        if(amount <= 1) {
+            return alert("O valor mínimo é um prato por pedido.");
+        }
+        setAmount(prevState => prevState -1);
+    }
+
+    function handleIncrease () {
+        if(amount >= 15) {
+            return alert("Só são permitidos quinze pratos por pedido.");
+        }
+        setAmount(prevState => prevState + 1);
+    }
+
+    function handleAddNewItemCart () {
+        const newItemCart = {
+            id: data.id,
+            name: data.name,
+            imageDish: imageDish,
+            amount,
+            unit_price: data.price,
+            total_price: amount * data.price
+        };
+
+        setCart(prevCart => [...prevCart, newItemCart]);
+        setAmount(1);
+
     }
 
     useEffect(() => {
@@ -23,7 +56,7 @@ export function DishUsers ({ data, ...rest }) {
         }
 
         fetchImageDish();
-    }, [data])
+    }, [data]);
 
     return (
         <Container {...rest}>
@@ -47,19 +80,30 @@ export function DishUsers ({ data, ...rest }) {
 
         <footer>
             <div>
-            <button>
+            <button
+            type="button"
+            onClick={handleDecrease}
+            >
                 <FiMinus/>
             </button>
 
-            <span>01</span>
+            <span
+            >
+                {amount}
+            </span>
 
-            <button>
+            <button
+            type="button"
+            onClick={handleIncrease}
+            >
                 <FiPlus/>
             </button>
+
             </div>
 
             <Button 
             title="incluir"
+            onClick={handleAddNewItemCart}
             />
         </footer>
         </Container>
