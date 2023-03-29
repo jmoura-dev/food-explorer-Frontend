@@ -11,6 +11,8 @@ import { Section } from "../../../components/Section";
 import { Input } from "../../../components/Input";
 import { DishFavoritesUsers } from "../../../components/DishFavoritesUsers";
 
+import { useAuth } from "../../../hooks/auth";
+
 import imagePix from "../../../assets/imagePix.svg";
 
 import { useEffect, useState } from "react";
@@ -19,9 +21,16 @@ import { Button } from "../../../components/Button";
 
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../hooks/cart";
+import { api } from "../../../services/api";
 
 export function Payment() {
     const [cart, setCart] = useCart();
+    const { user } = useAuth();
+
+    const [validity, setValidity] = useState("");
+    const [numberCard, setNumberCard] = useState("");
+    const [codeSecurity, setCodeSecurity] = useState("");
+
     const [totalPrice, setTotalPrice] = useState("");
     const [buttonPix, setButtonPix] = useState(true);
     const [buttonCard, setButtonCard] = useState(false);
@@ -31,6 +40,7 @@ export function Payment() {
     const [isScreenDesktop, setIsScreeDesktop] = useState(window.innerWidth > 820); 
 
     const navigate = useNavigate();
+    console.log(cart)
 
     function handleRemoveItemCart (deleted) {
         setCart(prevCart => prevCart.filter(item => item !== deleted));
@@ -55,6 +65,11 @@ export function Payment() {
     }
 
     function handleWhenFinish () {
+        if(!numberCard || !codeSecurity || !validity) {
+            return alert("Preencha todos os campos (os dados não precisam ser verdadeiros)")
+        }
+
+        handleNewOrder();
         setWhenFinish(false);
         isFinish(true);
     }
@@ -62,6 +77,32 @@ export function Payment() {
     function handleClickReturn() {
         setWhenFinish(true)
         navigate("/")
+    }
+
+    async function handleNewOrder () {
+
+        try{
+            const response = await api.post("/requests", { user_id: user.id });
+            const newOrder = response.data;
+
+            if(newOrder) {
+                await api.post("items_requests", {
+                    request_id: newOrder,
+                    items: cart.map(item => ({
+                        amount: item.amount,
+                        dish_id: item.id,
+                        unit_price: item.unit_price,
+                        total_price: item.amount * item.unit_price
+                    }))
+                })
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+        setCart([]);
+        return alert("Pedido confirmado! Aguarde a entrega. Você pode ir acompanhando o pedido na aba 'Histórico de pedidos' ")
     }
 
     useEffect(() => {
@@ -102,7 +143,8 @@ export function Payment() {
                             data={{
                                 title: item.name,
                                 amount: item.amount,
-                                price: item.unit_price
+                                price: item.unit_price,
+                                imageDish: item.imageDish
                             }}
                             onClick={() => handleRemoveItemCart(item)}
                             loading={finish}
@@ -157,6 +199,12 @@ export function Payment() {
                                 placeholder="0000 0000 0000 0000" 
                                 type="number"
                                 id="numberCard"
+                                onChange={e => setNumberCard(e.target.value)}
+                                onKeyPress={e => {
+                                    if (e.target.value.length >= 16) {
+                                        e.preventDefault();
+                                    }
+                                    }}
                             />
 
                             <div>
@@ -166,6 +214,8 @@ export function Payment() {
                                 placeholder="04/25" 
                                 type="data"
                                 id="validity"
+                                onChange={e => setValidity(e.target.value)}
+                                maxlength="4"
                                 />
                                 </div>
 
@@ -175,6 +225,12 @@ export function Payment() {
                                 placeholder="000" 
                                 type="number"
                                 id="code"
+                                onChange={e => setCodeSecurity(e.target.value)}
+                                onKeyPress={e => {
+                                    if (e.target.value.length >= 3) {
+                                        e.preventDefault();
+                                    }
+                                    }}
                                 />
                                 </div>
                             </div>
@@ -194,7 +250,6 @@ export function Payment() {
                                 <Button 
                                 onClick={handleClickReturn}
                                 title="Voltar"
-                                loading={finish}
                                 />
                             </div>
                         )

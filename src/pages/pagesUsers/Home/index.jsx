@@ -73,7 +73,7 @@ export function Home () {
         <div ref={scrollMealList}>
           {
             dataDishes.filter(dish => dish.category_id === 1).length === 0 ?
-              ( <p>Você ainda não adicionou nenhuma refeição.</p> )
+              ( <p>Nenhuma refeição disponível.</p> )
               :
               (
                 dataDishes.filter(dish => dish.category_id === 1).map(dish => (
@@ -104,7 +104,7 @@ export function Home () {
         <div ref={scrollDrinkList}>
           {
             dataDishes.filter(dish => dish.category_id === 2).length === 0 ?
-              ( <p>Você ainda não adicionou nenhuma bebibda.</p> )
+              ( <p>Nenhuma bebida disponível.</p> )
               :
               (
                 dataDishes.filter(dish => dish.category_id === 2).map(dish => (
@@ -137,7 +137,7 @@ export function Home () {
         <div ref={scrollDessertList}>
           {
             dataDishes.filter(dish => dish.category_id === 3).length === 0 ?
-              ( <p>Você ainda não adicionou nenhuma sobremesa.</p> )
+              ( <p>Nenhuma sobremesa disponível.</p> )
               :
               (
                 dataDishes.filter(dish => dish.category_id === 3).map(dish => (
