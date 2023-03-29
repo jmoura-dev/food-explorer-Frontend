@@ -8,6 +8,14 @@ export const Container = styled.div`
     border-radius: 0.8rem;
     height: 4.8rem;
 
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
     > svg {
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
     }
@@ -25,7 +33,6 @@ export const Container = styled.div`
         font-size: 1.6rem;
         font-weight: 400;
         margin-left: 1.6rem;
-
 
         &::placeholder {
             color: ${({ theme }) => theme.COLORS.LIGHT_500};
