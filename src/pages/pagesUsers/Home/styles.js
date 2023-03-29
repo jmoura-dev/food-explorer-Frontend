@@ -116,28 +116,29 @@ export const Scrolling = styled.button`
     transform: translateY(-50%);
     border: none;
     filter: opacity(0.7);
-    background-color: ${({ theme }) => theme.COLORS.DARK_400};
     height: 31rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 3.5rem;
-    box-shadow: 0 0 3px 3px ${({ theme }) => theme.COLORS.DARK_800};
+    background: transparent;
     z-index: 0.5;
 
     ${({ direction }) => direction === 'prev' ? `
-        left: -1.2rem;
+        left: -2rem;
     ` : `
-        right: -1.2rem;
+        right: -2rem;
     `}
 
     @media (max-width: 820px ) {
     ${({ direction }) => direction === 'prev' ? `
-        left: 0;
+        left: -02rem;
     ` : `
-        right: 0;
+        right: 0-2rem;
     `}
     }
 
     :hover {
+        background-color: ${({ theme }) => theme.COLORS.DARK_400};
+        box-shadow: 0 0 3px 3px ${({ theme }) => theme.COLORS.DARK_800};
         filter: opacity(0.9);
     }
 `

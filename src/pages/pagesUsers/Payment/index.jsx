@@ -2,6 +2,7 @@ import { Container, Content, Form, Request } from "./styles";
 
 import { AiOutlineCreditCard, AiOutlineCheckCircle } from "react-icons/ai";
 import { BsFillXDiamondFill } from "react-icons/bs";
+import { FiArrowLeft } from "react-icons/fi";
 
 
 import { HeaderUsers } from "../../../components/HeaderUsers";
@@ -17,15 +18,31 @@ import { ButtonText } from "../../../components/ButtonText";
 import { Button } from "../../../components/Button";
 
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../../hooks/cart";
 
 export function Payment() {
+    const [cart, setCart] = useCart();
+    const [totalPrice, setTotalPrice] = useState("");
     const [buttonPix, setButtonPix] = useState(true);
     const [buttonCard, setButtonCard] = useState(false);
     const [whenFinish, setWhenFinish] = useState(true);
+    const [finish, isFinish] = useState(false);
 
-    const [isScreenDesktop, setIsScreeDesktop] = useState(false); 
+    const [isScreenDesktop, setIsScreeDesktop] = useState(window.innerWidth > 820); 
 
     const navigate = useNavigate();
+
+    function handleRemoveItemCart (deleted) {
+        setCart(prevCart => prevCart.filter(item => item !== deleted));
+    }
+
+    function handleBack () {
+        if(!finish) {
+            navigate(-1);
+        } else {
+            navigate("/")
+        }
+    }
 
     function handleButtonPix() {
         setButtonPix(true)
@@ -38,13 +55,20 @@ export function Payment() {
     }
 
     function handleWhenFinish () {
-        setWhenFinish(false)
+        setWhenFinish(false);
+        isFinish(true);
     }
 
     function handleClickReturn() {
         setWhenFinish(true)
         navigate("/")
     }
+
+    useEffect(() => {
+        const carts = cart.map(item => item.total_price);
+        const sum = carts.reduce((acc, curr) => acc + curr, 0);
+        setTotalPrice(sum.toFixed(2));
+    }, [cart]);
 
     useEffect(() => {
         const handleWindowResize = () => {
@@ -68,39 +92,34 @@ export function Payment() {
                 <h1>Meus pedidos</h1>
 
                 <ul>
-                    <li><DishFavoritesUsers data={{
-                        title: "Macarronada",
-                        amount: "2",
-                        price: "28,99"
-                    }}/></li>
-
-                    <li><DishFavoritesUsers data={{
-                        title: "Peixada",
-                        amount: "3",
-                        price: "30,00"
-                    }}/></li>      
-
-                    <li><DishFavoritesUsers data={{
-                        title: "Salada Ravanello",
-                        amount: "2",
-                        price: "18,99"
-                    }}/></li>
-
-                    <li><DishFavoritesUsers data={{
-                        title: "Cuscuz",
-                        amount: "1",
-                        price: "14,99"
-                    }}/></li>                   
-            
-            <li><DishFavoritesUsers data={{
-                        title: "Cuscuz",
-                        amount: "1",
-                        price: "14,99"
-                    }}/></li>  
-
+                {
+                    cart &&
+                    <li>
+                    {
+                        cart.map((item, index) => (
+                            <DishFavoritesUsers
+                            key={index}
+                            data={{
+                                title: item.name,
+                                amount: item.amount,
+                                price: item.unit_price
+                            }}
+                            onClick={() => handleRemoveItemCart(item)}
+                            loading={finish}
+                            />
+                        ))
+                    }
+                    </li>
+                }
                 </ul>
 
-                <span>Total: R$ 103,99</span>
+                <span>Total: R$ {totalPrice}</span>
+
+                <Button
+                icon={FiArrowLeft}
+                title="Voltar"
+                onClick={handleBack}
+                />
             </Request>
             }
 
@@ -175,6 +194,7 @@ export function Payment() {
                                 <Button 
                                 onClick={handleClickReturn}
                                 title="Voltar"
+                                loading={finish}
                                 />
                             </div>
                         )

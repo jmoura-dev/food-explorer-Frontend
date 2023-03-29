@@ -111,6 +111,7 @@ export const Content = styled.main`
 export const Request = styled.div`
     margin: 0 auto;
     padding-left: 1rem;
+    position: relative;
     
     > ul {
         max-height: 55vh;
@@ -145,6 +146,21 @@ export const Request = styled.div`
         font-size: 2rem;
 
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    }
+
+    > button {
+        position: absolute;
+        left: 1rem;
+        bottom: 0rem;
+        max-width: 25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        svg {
+            font-size: 2rem;
+        }
     }
 `
 
