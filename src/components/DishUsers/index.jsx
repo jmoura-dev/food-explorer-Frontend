@@ -8,7 +8,7 @@ import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export function DishUsers ({ data, ...rest }) {
+export function DishUsers ({ data, onClick, ...rest }) {
     const [cart, setCart] = useCart();
     const [amount, setAmount] = useState(1);
     const navigate = useNavigate();
@@ -60,7 +60,9 @@ export function DishUsers ({ data, ...rest }) {
 
     return (
         <Container {...rest}>
-            <button>
+            <button
+            onClick={onClick}
+            >
                 <FiHeart/>
             </button>
             
