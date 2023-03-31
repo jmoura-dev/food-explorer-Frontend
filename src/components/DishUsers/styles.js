@@ -30,16 +30,19 @@ export const Container = styled.div`
 
     > button:first-child {
         border: none;
-        background: none;
+        background: transparent;
+        width: 0;
+        position: relative;
+        top: 2.2rem;
+        right: -6rem;
         
         svg {
+            width: 2.6rem;
+            height: 2.6rem;
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
-            width: 2.4rem;
-            height: 2.4rem;
-
-            position: relative;
-            top: 2rem;
-            right: -7rem;
+        }
+        .redHeart {
+            color: ${({ theme }) => theme.COLORS.TOMATO_100};
         }
     }
 

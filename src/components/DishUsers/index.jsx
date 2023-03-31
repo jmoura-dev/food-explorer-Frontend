@@ -1,5 +1,6 @@
 import { Container, DishImage } from "./styles";
 import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 
 import { api } from "../../services/api";
 import { useCart } from "../../hooks/cart";
@@ -8,7 +9,7 @@ import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export function DishUsers ({ data, onClick, ...rest }) {
+export function DishUsers ({ data, onClick, isFavorite=false, ...rest }) {
     const [cart, setCart] = useCart();
     const [amount, setAmount] = useState(1);
     const navigate = useNavigate();
@@ -63,7 +64,8 @@ export function DishUsers ({ data, onClick, ...rest }) {
             <button
             onClick={onClick}
             >
-                <FiHeart/>
+                {isFavorite ? <FaHeart
+                className="redHeart"/> : <FiHeart/>} 
             </button>
             
             <DishImage>

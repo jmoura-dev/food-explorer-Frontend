@@ -1,5 +1,5 @@
 import { Container, Content, Scrolling } from "./styles";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 import { useAuth } from "../../../hooks/auth";
@@ -12,10 +12,13 @@ import { Footer } from "../../../components/Footer";
 import { api } from "../../../services/api";
 
 export function Home () {
+    const [favorites, setFavorites] = useState([]);
     const { fetchDishes, dataDishes, user } = useAuth();
     const scrollMealList = useRef(null);
     const scrollDrinkList = useRef(null);
     const scrollDessertList = useRef(null);
+    console.log(favorites)
+    
 
     const handlePrevMealList = () => {
         scrollMealList.current.scrollBy({
@@ -68,6 +71,7 @@ export function Home () {
 
           if(isFavorite) {
             await api.delete(`favorites/${dishId}`);
+            setFavorites(favorites.filter(dish => dish.id !== dishId));
             alert("Prato removido dos favoritos.");
 
           } else {
@@ -75,6 +79,7 @@ export function Home () {
               dish_id : dishId,
               user_id: user.id
             });
+            setFavorites([...favorites, {id: dishId}]);
             alert("Prato salvo em favoritos.");
           }
 
@@ -85,8 +90,19 @@ export function Home () {
       }
 
       useEffect(() => {
+        async function fetchFavorites () {
+          const response = await api.get(`favorites/${user.id}`);
+          const listFavorites = response.data.map(item => item.id);
+          setFavorites(listFavorites);
+        }
+
+        fetchFavorites();
+      }, [favorites])
+
+      useEffect(() => {
         fetchDishes();
-      },[])
+      }, [dataDishes]);
+
   return (
     <Container>
 
@@ -107,6 +123,7 @@ export function Home () {
                   key={String(dish.id)}
                   data={dish}
                   onClick={() => handleAddFavorites(dish.id)}
+                  isFavorite={favorites.includes(dish.id)}
                   />
                 ))
               )
@@ -139,6 +156,7 @@ export function Home () {
                   key={String(dish.id)}
                   data={dish}
                   onClick={() => handleAddFavorites(dish.id)}
+                  isFavorite={favorites.includes(dish.id)}
                   />
                 ))
               )
@@ -173,6 +191,7 @@ export function Home () {
                   key={String(dish.id)}
                   data={dish}
                   onClick={() => handleAddFavorites(dish.id)}
+                  isFavorite={favorites.includes(dish.id)}
                   />
                 ))
               )
