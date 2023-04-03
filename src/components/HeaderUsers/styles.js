@@ -31,16 +31,28 @@ export const WindowMobile = styled.main`
     }
 
     > nav {
+        position: relative;
         display: flex;
         gap: 0.5rem;
-        position: relative;
-        top: 40%;
-        border-radius: 8px;
-        padding-right: 2rem;
-        padding-bottom: 1rem;
+        top: -12%;
+
 
         background-color: ${({ theme }) => theme.COLORS.DARK_700};
         animation: leftright 0.7s ease;
+
+        > a {
+            z-index: 1;
+        }
+
+        ul {
+            position: absolute;
+            left: 60%;
+            top: -70%;
+            background-color: ${({ theme }) => theme.COLORS.DARK_700};
+            border-radius: 8px;
+            
+            padding: 1rem 2rem;
+        }
 
         a {
             max-height: 1rem;
@@ -53,7 +65,7 @@ export const WindowMobile = styled.main`
         > ul li a{
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.8rem;
             font-family: "Roboto", "serif";
             font-weight: 400;
             font-size: 1.6rem;

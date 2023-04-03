@@ -8,8 +8,10 @@ export const Container = styled.div`
 
 export const Content = styled.main`
     grid-area: content;
-    padding: 2rem;
+    padding: 2rem 5rem;
     text-align: start;
+    width: 100%;
+    max-width: 136.6rem;
 
     @media(min-width: 820px) {
             margin: 0 auto;
@@ -24,6 +26,8 @@ export const Content = styled.main`
 
     > section {
         max-width: 136.6rem;
+        margin: 0 auto;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -34,31 +38,48 @@ export const Content = styled.main`
         margin-top: 3rem;
 
 
+        > form {
+            width: 100%;
+            display: grid;
+            grid-template-rows: 7rem auto;
 
-        ul {
-            max-height: 55vh;
-            overflow: auto;
-            margin-bottom: 2rem;
-            padding-right: 1rem;
-
-            ::-webkit-scrollbar {
-                background-color: none;
-                width: 0.7rem;
-            }
-            
-            ::-webkit-scrollbar-thumb {
-                background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
-                border-radius: 1rem;
-
-            }
-            @media(min-width: 820px) {
+            nav {
                 display: flex;
-                flex-direction: row;
+                justify-content: space-between;
                 width: 100%;
 
-                gap: 2rem;
-                flex-wrap: wrap;
+                span {
+                    width: 100%;
+                    display: inline;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    font-family: "Roboto", "serif";
+                    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+                    border: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
+                    padding: 2.5rem;
+                }
+
+                > span:nth-child(1) {
+                    border-top-left-radius: 1rem;
+                }
+
+                > span:nth-child(4) {
+                    border-top-right-radius: 1rem;
+                }
             }
+
+            ul {
+                display: flex;
+                justify-content: space-between;
+
+                li {
+                    border: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
+                    border-top: none;
+                    width: 100%;
+                    padding: 2.5rem;
+                }
+            }
+
         }
 
     }

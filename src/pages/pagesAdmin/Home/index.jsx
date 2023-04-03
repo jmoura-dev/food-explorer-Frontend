@@ -102,6 +102,38 @@ export function Home () {
         
         </Section>
 
+        <Section title="Sobremesas">
+        <div ref={scrollDessertList}>
+        {
+            dataDishes.filter(dish => dish.category_id === 3).length === 0 ?
+            ( <p>Você ainda não adicionou nenhuma sobremesa.</p> )
+            :
+            (
+              dataDishes.filter(dish => dish.category_id === 3).map(dish => (
+                <DishAdmin
+                key={String(dish.id)}
+                data={dish}
+                />
+              ))
+            )
+          }
+        </div>
+
+        <Scrolling 
+        direction="prev" 
+        onClick={handlePrevDessertList}
+        >
+            <FiChevronLeft/>
+        </Scrolling>
+
+        <Scrolling 
+        direction="next" 
+        onClick={handleNextDessertList}
+        >
+            <FiChevronRight/>
+        </Scrolling>
+        </Section>
+
         <Section title="Bebidas">
         <div ref={scrollDrinkList}>
         {
@@ -133,38 +165,6 @@ export function Home () {
             <FiChevronRight/>
         </Scrolling>
 
-        </Section>
-
-        <Section title="Sobremesas">
-        <div ref={scrollDessertList}>
-        {
-            dataDishes.filter(dish => dish.category_id === 3).length === 0 ?
-            ( <p>Você ainda não adicionou nenhuma sobremesa.</p> )
-            :
-            (
-              dataDishes.filter(dish => dish.category_id === 3).map(dish => (
-                <DishAdmin
-                key={String(dish.id)}
-                data={dish}
-                />
-              ))
-            )
-          }
-        </div>
-
-        <Scrolling 
-        direction="prev" 
-        onClick={handlePrevDessertList}
-        >
-            <FiChevronLeft/>
-        </Scrolling>
-
-        <Scrolling 
-        direction="next" 
-        onClick={handleNextDessertList}
-        >
-            <FiChevronRight/>
-        </Scrolling>
         </Section>
 
         </Content>

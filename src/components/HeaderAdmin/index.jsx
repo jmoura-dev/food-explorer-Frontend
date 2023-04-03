@@ -68,21 +68,26 @@ export function HeaderAdmin () {
 
                 <ul>
                 <li>
-                    <Link to="#"><AiOutlineDatabase/>Histórico</Link>
+                    <Link to="/"><AiOutlineBank/>Home</Link>
                 </li>
-                
+
                 <li>
                     <Link to="/menu"><FiClipboard/>Menu</Link>
+                <li>
+
+                </li>
+                    <Link to="#"><AiOutlineDatabase/>Pedidos</Link>
                 </li>
 
                 <li>
                     <Link to="/favorites"><FiHeart/>Favoritos</Link>
                 </li>
-
+                
                 <li>
-                    <Link to="/"><AiOutlineBank/>Home</Link>
+                    <a onClick={handleSignOut}><FiLogOut/>Sair</a>
                 </li>
                 </ul>
+
             </nav>
                 )
             }

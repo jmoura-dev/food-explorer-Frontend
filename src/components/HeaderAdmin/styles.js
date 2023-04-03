@@ -32,9 +32,10 @@ export const WindowMobile = styled.main`
     > nav {
         display: flex;
         gap: 0.5rem;
-        position: relative;
+        position: absolute;
         top: 40%;
         border-radius: 8px;
+        padding-top: 1rem;
         padding-right: 2rem;
         padding-bottom: 1rem;
 
@@ -52,7 +53,7 @@ export const WindowMobile = styled.main`
         > ul li a{
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.8rem;
             font-family: "Roboto", "serif";
             font-weight: 400;
             font-size: 1.6rem;

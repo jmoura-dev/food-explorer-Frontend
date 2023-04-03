@@ -116,7 +116,7 @@ export const Scrolling = styled.button`
     transform: translateY(-50%);
     border: none;
     filter: opacity(0.7);
-    height: 31rem;
+    height: 33.5rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 3.5rem;
     background: transparent;

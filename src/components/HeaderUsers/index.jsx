@@ -74,6 +74,11 @@ export function HeaderUsers ({ cartItems, ...rest }) {
                 <Link onClick={handleClickCloseMenu}><FiX/></Link>
 
                 <ul>
+
+                <li>
+                    <Link to="/"><AiOutlineBank/>Home</Link>
+                </li>
+
                 <li>
                     <Link to="#"><AiOutlineDatabase/>Histórico</Link>
                 </li>
@@ -87,8 +92,9 @@ export function HeaderUsers ({ cartItems, ...rest }) {
                 </li>
 
                 <li>
-                    <Link to="/"><AiOutlineBank/>Home</Link>
+                    <a onClick={handleSignOut}><FiLogOut/>Sair</a>
                 </li>
+
                 </ul>
             </nav>
                 )
@@ -103,7 +109,7 @@ export function HeaderUsers ({ cartItems, ...rest }) {
                 <button onClick={handleClickRequests}>
                     <AiOutlineShoppingCart/>
                 </button>
-                <span>0</span>
+                <span>{cartItems=cart.length}</span>
             </div>
             </WindowMobile>
             ) 

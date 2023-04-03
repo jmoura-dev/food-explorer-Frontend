@@ -51,6 +51,11 @@ export const Content = styled.main`
                 border-radius: 1rem;
 
             }
+
+            @media(max-width: 600px) {
+                
+            }
+
             @media(min-width: 820px) {
                 display: flex;
                 flex-direction: row;
@@ -65,7 +70,7 @@ export const Content = styled.main`
                 flex-direction: row;
                 flex-wrap: wrap;
                 gap: 3rem;
-                padding: 1rem 2.5rem;
+                padding: 1rem;
 
                 @media (max-width: 820px) {
                     display: flex;
@@ -90,7 +95,7 @@ export const Content = styled.main`
     > button:last-child {
         position: fixed;
         right: 5%;
-        bottom: 15%;
+        bottom: 12%;
 
         display: flex;
         flex-direction: row-reverse;

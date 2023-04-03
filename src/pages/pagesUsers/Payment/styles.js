@@ -114,10 +114,10 @@ export const Request = styled.div`
     position: relative;
     
     > ul {
-        max-height: 55vh;
+        max-height: 50vh;
         overflow: auto;
         margin-bottom: 2rem;
-        padding-right: 1rem;
+        padding-right: 1.5rem;
 
         ::-webkit-scrollbar {
             background-color: none;
@@ -149,9 +149,9 @@ export const Request = styled.div`
     }
 
     > button {
-        position: absolute;
-        left: 1rem;
-        bottom: 0rem;
+        position: fixed;
+        left: 10%;
+        bottom: 15%;
         max-width: 25rem;
         display: flex;
         align-items: center;

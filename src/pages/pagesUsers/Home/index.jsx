@@ -17,8 +17,6 @@ export function Home () {
     const scrollMealList = useRef(null);
     const scrollDrinkList = useRef(null);
     const scrollDessertList = useRef(null);
-    console.log(favorites)
-    
 
     const handlePrevMealList = () => {
         scrollMealList.current.scrollBy({
@@ -144,6 +142,41 @@ export function Home () {
         
         </Section>
 
+        <Section title="Sobremesas">
+        <div ref={scrollDessertList}>
+          {
+            dataDishes.filter(dish => dish.category_id === 3).length === 0 ?
+              ( <p>Nenhuma sobremesa disponível.</p> )
+              :
+              (
+                dataDishes.filter(dish => dish.category_id === 3).map(dish => (
+                  <DishUsers
+                  key={String(dish.id)}
+                  data={dish}
+                  onClick={() => handleAddFavorites(dish.id)}
+                  isFavorite={favorites.includes(dish.id)}
+                  />
+                ))
+              )
+          }
+        </div>
+
+        <Scrolling 
+        direction="prev" 
+        onClick={handlePrevDessertList}
+        >
+            <FiChevronLeft/>
+        </Scrolling>
+
+        <Scrolling 
+        direction="next" 
+        onClick={handleNextDessertList}
+        >
+            <FiChevronRight/>
+        </Scrolling>
+        </Section>
+
+
         <Section title="Bebidas">
         <div ref={scrollDrinkList}>
           {
@@ -177,40 +210,6 @@ export function Home () {
             <FiChevronRight/>
         </Scrolling>
 
-        </Section>
-
-        <Section title="Sobremesas">
-        <div ref={scrollDessertList}>
-          {
-            dataDishes.filter(dish => dish.category_id === 3).length === 0 ?
-              ( <p>Nenhuma sobremesa disponível.</p> )
-              :
-              (
-                dataDishes.filter(dish => dish.category_id === 3).map(dish => (
-                  <DishUsers
-                  key={String(dish.id)}
-                  data={dish}
-                  onClick={() => handleAddFavorites(dish.id)}
-                  isFavorite={favorites.includes(dish.id)}
-                  />
-                ))
-              )
-          }
-        </div>
-
-        <Scrolling 
-        direction="prev" 
-        onClick={handlePrevDessertList}
-        >
-            <FiChevronLeft/>
-        </Scrolling>
-
-        <Scrolling 
-        direction="next" 
-        onClick={handleNextDessertList}
-        >
-            <FiChevronRight/>
-        </Scrolling>
         </Section>
 
         </Content>

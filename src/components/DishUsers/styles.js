@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    min-width: 23rem;
-    max-width: 24rem;
-    min-height: 31.5rem;
-    max-height: 32.2rem;
+    min-width: 24rem;
+    max-width: 25rem;
+    min-height: 33.5rem;
+    max-height: 34.2rem;
 
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@ export const Container = styled.div`
     margin-bottom: 2.4rem;
 
     :hover {
-        transform: scale(1.05);
+        transform: scale(1.02);
         transition-duration: 0.4s;
     }
 
