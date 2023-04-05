@@ -10,7 +10,6 @@ import { CartProvider } from './hooks/cart';
 import { Routes } from './routes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
       <AuthProvider>
@@ -19,5 +18,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </CartProvider>
       </AuthProvider>
     </ThemeProvider>
-  </React.StrictMode>
 )

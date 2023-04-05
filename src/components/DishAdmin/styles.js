@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     min-width: 21rem;
     height: 31.5rem;
+    position: relative;
 
     display: flex;
     flex-direction: column;
@@ -29,15 +30,33 @@ export const Container = styled.div`
     > button:first-child {
         border: none;
         background: none;
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+
+        svg {
+            color: ${({ theme }) => theme.COLORS.LIGHT_100};
+            width: 2.4rem;
+            height: 2.4rem;
+        }
+    }
+
+    .favorite{
+        border: none;
+        background: none;
+        position: absolute;
+
+        top: 2rem;
+        left: 2rem;
         
         svg {
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
             width: 2.4rem;
             height: 2.4rem;
+        }
 
-            position: relative;
-            top: 1.5rem;
-            right: -8rem;
+        .redHeart {
+            color: ${({ theme }) => theme.COLORS.TOMATO_100};
         }
     }
 
@@ -58,7 +77,8 @@ export const Container = styled.div`
 export const DishImage = styled.button`
     background: none;
     border: none;
-    margin: 0 auto;
+    margin: 3rem auto 0;
+
     > img {
         width: 13rem;
         height: 13rem;

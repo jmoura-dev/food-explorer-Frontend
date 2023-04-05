@@ -76,6 +76,19 @@ export const Content = styled.main`
     padding: 0 1.6rem;
     margin: 0 auto;
     overflow: auto;
+    animation: leftright 0.7s ease;
+
+    @keyframes leftright {
+            0% {
+                opacity: -2;
+                transform: translateX(-50%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
     > section {
         white-space: nowrap;

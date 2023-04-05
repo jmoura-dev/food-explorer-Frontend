@@ -4,6 +4,7 @@ export const Container = styled.div`
     display: grid;
     grid-template-areas: "header" "content" "footer";
     grid-template-rows: 11.4rem auto 7.7rem;
+    overflow-x: hidden;
 `
 
 export const Content = styled.main`
@@ -13,6 +14,7 @@ export const Content = styled.main`
     max-width: 136.6rem;
     margin: 5.6rem auto 0;
     gap: 2rem;
+    animation: rightleft 0.5s ease;
 
     > section {
         margin: 0 auto;
@@ -37,6 +39,7 @@ export const Content = styled.main`
             border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
             border-bottom-left-radius: 0.8rem;
             border-bottom-right-radius: 0.8rem;
+            animation: increaseSize 0.5s ease;
 
             svg {
                 width: 9.6rem;
@@ -68,6 +71,8 @@ export const Content = styled.main`
                 width: clamp(20rem, 40rem, 43rem);
                 border-bottom-left-radius: 8px;
                 border-bottom-right-radius: 8px;
+                animation: rotateRight 0.3s ease;
+
             }
             
             div {
@@ -149,9 +154,9 @@ export const Request = styled.div`
     }
 
     > button {
-        position: fixed;
+        position: absolute;
         left: 10%;
-        bottom: 15%;
+        bottom: 0%;
         max-width: 25rem;
         display: flex;
         align-items: center;
@@ -172,6 +177,7 @@ export const Form = styled.form`
     border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
     border-bottom-left-radius: 0.8rem;
     border-bottom-right-radius: 0.8rem;
+    animation: rotateLeft 0.3s ease;
 
     > label {
         font-family: "Roboto", "serif";
@@ -203,5 +209,33 @@ export const Form = styled.form`
     > button {
         margin: 3rem 0 0 0;
         border: transparent;
+    }
+
+    @keyframes rotateRight{
+        0% {
+            transform: rotate(-180deg);
+            opacity: 0;
+            scale: 0;
+        }
+
+        100% {
+            transform: rotate(0);
+            opacity: 1;
+            scale: 1;
+        }
+    }
+
+    @keyframes rotateLeft{
+        0% {
+            transform: rotate(180deg);
+            opacity: 0;
+            scale: 0;
+        }
+
+        100% {
+            transform: rotate(0);
+            opacity: 1;
+            scale: 1;
+        }
     }
 `

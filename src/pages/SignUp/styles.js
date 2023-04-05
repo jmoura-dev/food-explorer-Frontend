@@ -4,14 +4,16 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 auto;
+    margin: auto;
     width: 100%;
     height: 100vh;
-    padding: 0 2.6rem;
+    padding: 0 2.4rem;
     gap: 7rem;
+    overflow-x: hidden;
 
     > div {
         max-width: 70rem;
+        animation: increaseSize 0.5s ease;
         h1 {
             font-family: "Roboto", "serif";
             font-size: 4.2rem;
@@ -33,16 +35,39 @@ export const Container = styled.div`
 export const Form = styled.form`
     width: 100%;
     max-width: 70rem;
-    margin: 0 auto;
     padding: 0 2.4rem;
+    margin: 0 auto;
+    overflow-x: hidden;
+    animation: rotateSignUp 0.3s linear;
 
     > h1 {
         display: none;
     }
 
     > div:first-child {
-        margin-top: 15.8rem;
         margin-bottom: 7.3rem;
+
+        @media (max-width: 395px) {
+        > h1 {
+            font-size: 3.4rem;
+        }
+        
+        img {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+        }
+
+        @media (max-width: 371px) {
+        > h1 {
+            font-size: 2.8rem;
+        }
+        
+        img {
+            width: 3rem;
+            height: 3rem;
+        }
+        }
     }
     
     > label {
@@ -61,7 +86,7 @@ export const Form = styled.form`
     > a {
         display: flex;
         justify-content: center;
-        margin: 3.2rem auto 5rem;
+        margin: 3rem auto;
         max-width: 16.5rem;
 
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
@@ -91,6 +116,20 @@ export const Form = styled.form`
             font-family: "Poppins", "serif";
             font-weight: 500;
             font-size: 3.2rem;
+        }
+    }
+
+    @keyframes rotateSignUp{
+        0% {
+            transform: rotate(180deg);
+            opacity: 0;
+            scale: 0;
+        }
+
+        100% {
+            transform: rotate(0);
+            opacity: 1;
+            scale: 1;
         }
     }
 

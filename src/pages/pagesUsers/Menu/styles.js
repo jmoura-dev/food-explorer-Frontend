@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: 100%;
     height: 100vh;
+    animation: topdown 0.4s linear;
+    overflow-x: hidden;
     
     > header {
         display: flex;
@@ -58,4 +60,14 @@ export const Content = styled.main`
         }
     }
 
+    @keyframes topdown {
+        0% {
+            transform: translateY(-180px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
 `

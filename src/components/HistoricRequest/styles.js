@@ -49,6 +49,7 @@ export const Container = styled.ul`
     border: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
     border-top: none;
     gap: 1.5rem;
+    min-width: 15rem;
 
     p {
       font-size: 4.3rem;

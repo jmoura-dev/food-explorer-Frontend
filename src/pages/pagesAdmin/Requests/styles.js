@@ -9,10 +9,23 @@ export const Container = styled.div`
 
 export const Content = styled.main`
     grid-area: content;
-    padding: 2rem 5rem;
+    padding: 2rem 3rem;
     text-align: start;
     width: 100%;
     max-width: 136.6rem;
+    animation: increaseSize 0.7s ease;
+
+    @keyframes increaseSize {
+            0% {
+                opacity: 0;
+                scale: 0;
+            }
+
+            100% {
+                opacity: 1;
+                scale: 1;
+            }
+  }
 
     @media(min-width: 820px) {
             margin: 0 auto;

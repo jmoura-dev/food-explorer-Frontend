@@ -76,6 +76,7 @@ export const Content = styled.main`
     padding: 0 1.6rem;
     margin: 0 auto;
     overflow: auto;
+    animation: leftRight 0.4s ease;
 
     > section {
         position: relative;
@@ -142,5 +143,15 @@ export const Scrolling = styled.button`
         background-color: ${({ theme }) => theme.COLORS.DARK_400};
         box-shadow: 0 0 3px 3px ${({ theme }) => theme.COLORS.DARK_800};
         filter: opacity(0.9);
+    }
+
+    @keyframes leftRight {
+        0% {
+            transform: translateX(-360px)
+        }
+
+        100% {
+            transform: translateX(0)
+        }
     }
 `

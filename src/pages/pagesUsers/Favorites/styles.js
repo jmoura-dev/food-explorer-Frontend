@@ -4,12 +4,15 @@ export const Container = styled.main`
     display: grid;
     grid-template-areas: "header" "section" "footer";
     grid-template-rows: 11.4rem auto 7.7rem;
+    overflow-x: hidden;
 
     > section {
         margin: 5rem 3rem;
         font-family: "Poppins", "serif";
         font-weight: 500;
         font-size: 3.2rem;
+        animation: topdown 0.4s linear;
+
 
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
@@ -92,6 +95,18 @@ export const Container = styled.main`
 
                 flex-wrap: wrap;
             }
+        }
+    }
+
+    @keyframes topdown {
+        0% {
+            transform: translateY(-180px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
         }
     }
 `

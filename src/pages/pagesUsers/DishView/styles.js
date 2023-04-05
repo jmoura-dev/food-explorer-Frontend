@@ -10,6 +10,7 @@ export const Container = styled.div`
 export const Content = styled.main`
     grid-area: main;
     padding: 3.6rem 4rem;
+    animation: increaseSize 0.4s linear;
 
     > button {
         display: flex;
@@ -180,6 +181,18 @@ export const Content = styled.main`
 
     @media(min-width: 1200px) {
             padding: 3.6rem 10rem 0;
-        } 
+    }
+
+        @keyframes increaseSize{
+        0% {
+            opacity: 0;
+            scale: 0;
+        }
+
+        100% {
+            opacity: 1;
+            scale: 1;
+        }
+    }
 
 `

@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import logo from "../../assets/polygonTitle.svg";
 import { Link, useNavigate } from "react-router-dom";
 
-export function HeaderUsers ({ cartItems, ...rest }) {
+export function HeaderUsers ({ cartItems, onChange, ...rest }) {
     const [cart, setCart] = useCart();
     const [isScreenMobile, setIsScreenMobile] = useState(window.innerWidth < 820);
     const [openMenu, setOpenMenu] = useState(true);
@@ -125,6 +125,7 @@ export function HeaderUsers ({ cartItems, ...rest }) {
                         <Input 
                         icon={FiSearch}
                         placeholder="Busque por pratos ou ingredientes"
+                        onChange={onChange}
                         />               
                     
                     <Link to="/favorites">Meus favoritos</Link>

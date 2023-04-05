@@ -9,6 +9,7 @@ export const Container = styled.header`
     background-color: ${({ theme }) => theme.COLORS.DARK_700};
     position: fixed;
     z-index: 1;
+    animation: lowOpacity 1s linear;
 `
 
 export const WindowMobile = styled.main`
@@ -19,7 +20,7 @@ export const WindowMobile = styled.main`
     > a {
         background: none;
         border: none;
-        animation: rightleft 0.7s ease;
+        animation: rightleft 0.2s ease;
 
         svg {
             width: 2.5rem;
@@ -205,5 +206,15 @@ export const WindowDesktop = styled.main`
 
             border: none;
             border-radius: 8px;
+        }
+
+        @keyframes lowOpacity {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 `

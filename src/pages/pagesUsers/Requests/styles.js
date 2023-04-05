@@ -9,11 +9,12 @@ export const Container = styled.div`
 export const Content = styled.main`
     grid-area: content;
     padding: 2rem;
-    text-align: start;
     max-width: 136.6rem;
     width: 100%;
     margin: 0 auto;
     padding: 5rem;
+    animation: topdown 0.4s linear;
+    position: relative;
 
 
     > button:first-child {
@@ -93,10 +94,9 @@ export const Content = styled.main`
     }
 
     > button:last-child {
-        position: fixed;
+        position: absolute;
+        bottom: 0;
         right: 5%;
-        bottom: 12%;
-
         display: flex;
         flex-direction: row-reverse;
         align-items: center;
@@ -104,8 +104,21 @@ export const Content = styled.main`
         gap: 1rem;
         width: clamp(15rem, 18rem, 22rem);
 
+
         svg {
             font-size: 1.8rem;
+        }
+    }
+
+    @keyframes topdown {
+        0% {
+            transform: translateY(-180px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
         }
     }
 `

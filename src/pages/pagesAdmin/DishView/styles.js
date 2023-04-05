@@ -9,6 +9,7 @@ export const Container = styled.div`
 export const Content = styled.main`
     grid-area: main;
     padding: 3.6rem 4rem;
+    animation: increaseSize 0.4s linear;
 
     > button {
         display: flex;

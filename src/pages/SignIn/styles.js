@@ -4,14 +4,16 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 auto;
+    margin: auto;
     width: 100%;
     height: 100vh;
     padding: 0 2.6rem;
     gap: 7rem;
+    overflow-x : hidden;
 
     > div {
         max-width: 70rem;
+        animation: increaseSize 0.5s ease;
         h1 {
             font-family: "Roboto", "serif";
             font-size: 4.2rem;
@@ -23,9 +25,19 @@ export const Container = styled.div`
         }
     }
 
-    @media (max-width:819px) {
+    
+    @media (max-width: 395px) {
+        > h1 {
+            font-size: 3.4rem;
+        }
         
+        img {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+        }
 
+    @media (max-width:819px) {
         > div {
             display: none;
         }
@@ -34,6 +46,18 @@ export const Container = styled.div`
     @media(min-width: 1000px) {
         padding: 0 10.8rem;
     }
+
+    @keyframes increaseSize{
+        0% {
+            opacity: 0;
+            scale: 0;
+        }
+
+        100% {
+            opacity: 1;
+            scale: 1;
+        }
+    }
 `
 
 export const Form = styled.form`
@@ -41,14 +65,38 @@ export const Form = styled.form`
     max-width: 70rem;
     margin: 0 auto;
     padding: 0 2.4rem;
+    animation: rotateSignIn 0.3s linear;
 
     > h1 {
         display: none;
     }
 
     > div:first-child {
-        margin-top: 15.8rem;
         margin-bottom: 7.3rem;
+        padding: 0;
+
+        
+        @media (max-width: 395px) {
+        > h1 {
+            font-size: 3.4rem;
+        }
+        
+        img {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+        }
+
+        @media (max-width: 350px) {
+        > h1 {
+            font-size: 2.8rem;
+        }
+        
+        img {
+            width: 3rem;
+            height: 3rem;
+        }
+        }
     }
     
     > label {
@@ -67,7 +115,7 @@ export const Form = styled.form`
     > a {
         display: flex;
         justify-content: center;
-        margin: 3.2rem auto 5rem;
+        margin: 3rem auto;
         max-width: 13.5rem;
 
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
@@ -103,5 +151,19 @@ export const Form = styled.form`
 
     @media (min-width: 1360px) {
         padding: 0 10rem;
+    }
+
+    @keyframes rotateSignIn{
+        0% {
+            transform: rotate(-180deg);
+            opacity: 0;
+            scale: 0;
+        }
+
+        100% {
+            transform: rotate(0);
+            opacity: 1;
+            scale: 1;
+        }
     }
 `

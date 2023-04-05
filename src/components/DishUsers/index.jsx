@@ -80,7 +80,7 @@ export function DishUsers ({ data, onClick, isFavorite=false, ...rest }) {
 
             <h2>{data.description}</h2>
             
-            <span>{`R$ ${data.price}`}</span>
+            <span>{`R$ ${data.price.toFixed(2)}`}</span>
 
         <footer>
             <div>

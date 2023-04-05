@@ -5,6 +5,7 @@ export const Container = styled.div`
     grid-template-rows: 11.4rem auto 7.7rem;
     grid-template-areas: "header" "content" "footer";
     height: 100vh;
+    overflow-x: hidden;
 `
 
 export const Content = styled.main`
@@ -13,6 +14,7 @@ export const Content = styled.main`
     text-align: start;
     width: 100%;
     max-width: 136.6rem;
+    animation: leftright 0.5s ease;
 
     @media(min-width: 820px) {
             margin: 0 auto;
@@ -82,7 +84,7 @@ export const Content = styled.main`
 
                 > span:nth-child(1) {
                     border-top-left-radius: 1rem;
-                    min-width: 10rem;
+                    min-width: 15rem;
                 }
 
                 > span:nth-child(3) {
@@ -113,5 +115,17 @@ export const Content = styled.main`
         font-weight: 500;
         font-size: 2rem;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    }
+
+    @keyframes leftright {
+        0% {
+            transform: translateX(-180px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
 `

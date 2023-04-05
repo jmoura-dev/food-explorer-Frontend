@@ -12,8 +12,10 @@ import { useEffect, useState } from "react";
 
 import logo from "../../assets/polygonTitle.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
 
 export function HeaderAdmin () {
+    const [ordersAmount, setOrdersAmount] = useState([]);
     const navigate = useNavigate();
     const [isScreenMobile, setIsScreenMobile] = useState(window.innerWidth < 820);
     const [openMenu, setOpenMenu] = useState(true);
@@ -28,6 +30,8 @@ export function HeaderAdmin () {
         signOut();
         }
     }
+
+    console.log(ordersAmount)
 
     function handleClickOpenMenu () {
         setOpenMenu(false);
@@ -47,6 +51,14 @@ export function HeaderAdmin () {
 
             return () => window.removeEventListener("resize", handleWindowResize);
     }, []);
+
+    useEffect(() => {
+        async function fetchOrders () {
+            const response = await api.get("/requests");
+            setOrdersAmount(response.data);
+        }
+        fetchOrders();
+    }, [ordersAmount.length]);
 
     return (
         <Container>
@@ -76,7 +88,7 @@ export function HeaderAdmin () {
                 <li>
 
                 </li>
-                    <Link to="#"><AiOutlineDatabase/>Pedidos</Link>
+                    <Link to="/requests"><AiOutlineDatabase/>Pedidos</Link>
                 </li>
 
                 <li>
@@ -127,7 +139,7 @@ export function HeaderAdmin () {
 
                     <Link to="/requests">
                     <AiOutlineSchedule/>
-                        Pedidos (0)
+                        Pedidos ({ordersAmount.length})
                     </Link>
 
                     <ButtonText 

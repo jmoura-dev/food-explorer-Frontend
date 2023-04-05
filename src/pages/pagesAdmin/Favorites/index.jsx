@@ -8,13 +8,50 @@ import { DishFavoritesAdmin } from "../../../components/DishFavoritesAdmin";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/Button";
+import { useEffect, useState } from "react";
+import { api } from "../../../services/api";
 
 export function Favorites () {
+    const [image, setImage] = useState({});
     const navigate = useNavigate();
+    const [favorites, setFavorites] = useState([]);
 
     function handleNavigate () {
         navigate(-1)
     };
+
+    async function handleRemoveFavorites (deleted) {
+        await api.delete(`/favorites/${deleted}`);
+        alert("Prato removido.")
+    }
+
+    useEffect(() => {
+        async function fetchFavorites() {
+            const response = await api.get("/favorites")
+            setFavorites(response.data);
+        }
+
+        fetchFavorites();
+    }, [favorites.length])
+
+    useEffect(() => {
+        function fetchImageDish () {
+            if(favorites) {
+                setImage((prevState) => ({
+                    ...prevState,
+                    ...favorites.reduce((acc, dish) => {
+                        if (dish.avatar_dish) {
+                            acc[dish.id] = `${api.defaults.baseURL}/files/${dish.avatar_dish}`;
+                        }
+                        return acc;
+                    }, {}),
+                }));
+            }
+        };
+
+        fetchImageDish();
+    }, [favorites])
+
 
     return (
         <Container>
@@ -22,27 +59,25 @@ export function Favorites () {
 
             <Section title="Meus favoritos">
 
+            {
+                favorites && 
                 <ul>
-                    <li><DishFavoritesAdmin data={{ 
-                    title: "Salada Ravanelo",
-                    }}/></li>
-
-                    <li><DishFavoritesAdmin data={{ 
-                    title: "Salada Ravanelo",
-                    }}/></li>                    
-                        
-                    <li><DishFavoritesAdmin data={{ 
-                        title: "Salada Ravanelo",
-                    }}/></li>                    
-                    
-                    <li><DishFavoritesAdmin data={{ 
-                        title: "Salada Ravanelo",
-                    }}/></li>                    
-                    
-                    <li><DishFavoritesAdmin data={{ 
-                        title: "Salada Ravanelo",
-                    }}/></li>
+                    <li>
+                    {
+                        favorites.map((dish, index) => (
+                            <DishFavoritesAdmin
+                            key={String(index)}
+                            data={{
+                                title: dish.name,
+                                imageDish: image[dish.id],
+                            }}
+                            onClick={() => handleRemoveFavorites(dish.id)}
+                            />
+                        ))
+                    }
+                    </li>
                 </ul>
+            }
 
                     <footer>
                     <Button

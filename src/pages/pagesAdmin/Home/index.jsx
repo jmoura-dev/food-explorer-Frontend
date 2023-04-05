@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 import { useAuth } from "../../../hooks/auth";
+import { api } from "../../../services/api";
 
 import { HeaderAdmin} from "../../../components/HeaderAdmin";
 import { About } from "../../../components/About";
@@ -11,7 +12,8 @@ import { DishAdmin } from "../../../components/DishAdmin";
 import { Footer } from "../../../components/Footer";
 
 export function Home () {
-    const { fetchDishes, dataDishes } = useAuth();
+    const { fetchDishes, dataDishes, user } = useAuth();
+    const [favorites, setFavorites] = useState([]);
     const scrollMealList = useRef(null);
     const scrollDrinkList = useRef(null);
     const scrollDessertList = useRef(null);
@@ -58,9 +60,46 @@ export function Home () {
         });
     }
 
+    async function handleAddFavorites (dishId) {
+
+      try {
+        const response = await api.get(`favorites/${user.id}`);
+        const dishesFavorites = response.data;
+        const isFavorite = dishesFavorites.filter(item => item.id === dishId).length;
+
+        if(isFavorite) {
+          await api.delete(`favorites/${dishId}`);
+          setFavorites(favorites.filter(dish => dish !== dishId));
+          alert("Prato removido dos favoritos.");
+
+        } else {
+          await api.post("favorites", {
+            dish_id : dishId,
+            user_id: user.id
+          });
+          setFavorites([...favorites, dishId]);
+          alert("Prato salvo em favoritos.");
+        }
+
+    }catch (error) {
+      console.error(error)
+      alert("Não foi possível adicionar aos favoritos.");
+    }
+    }
+
+    useEffect(() => {
+      async function fetchFavorites () {
+        const response = await api.get(`favorites/${user.id}`);
+        const listFavorites = response.data.map(item => item.id);
+        setFavorites(listFavorites);
+      }
+
+      fetchFavorites();
+    }, []);
+
     useEffect(() => {
       fetchDishes();
-    }, [])
+    }, []);
 
   return (
     <Container>
@@ -82,6 +121,8 @@ export function Home () {
                 <DishAdmin
                 key={String(dish.id)}
                 data={dish}
+                onClick={() => handleAddFavorites(dish.id)}
+                isFavorite={favorites.includes(dish.id)}
                 />
               ))
             )
@@ -113,6 +154,8 @@ export function Home () {
                 <DishAdmin
                 key={String(dish.id)}
                 data={dish}
+                onClick={() => handleAddFavorites(dish.id)}
+                isFavorite={favorites.includes(dish.id)}
                 />
               ))
             )
@@ -145,6 +188,8 @@ export function Home () {
                 <DishAdmin
                 key={String(dish.id)}
                 data={dish}
+                onClick={() => handleAddFavorites(dish.id)}
+                isFavorite={favorites.includes(dish.id)}
                 />
               ))
             )

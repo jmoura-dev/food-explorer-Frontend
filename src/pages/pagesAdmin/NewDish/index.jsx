@@ -26,6 +26,9 @@ export function NewDish () {
   const navigate = useNavigate();
 
   function handleAddIngredient() {
+    if(!newIngredient) {
+      return alert("Não é possível adicionar o campo vazio.")
+    }
       setIngredients(prevState => [...prevState, newIngredient]);
 
       setNewIngredient("");

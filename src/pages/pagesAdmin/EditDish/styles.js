@@ -13,6 +13,20 @@ export const Form = styled.form`
   width: 100%;
   max-width: 136.6rem;
   margin: 0 auto;
+  animation: topdown 0.7s ease;
+
+
+  @keyframes topdown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+  }
 
   > button:first-child {
     font-family: "Poppins", "serif";

@@ -27,6 +27,9 @@ export function EditDish () {
   const params = useParams();
 
   function handleAddIngredient() {
+    if(!newIngredient) {
+      return alert("Não é possível adicionar campo vazio.")
+    }
     setIngredients(prevState => [...prevState, newIngredient]);
 
     setNewIngredient("");

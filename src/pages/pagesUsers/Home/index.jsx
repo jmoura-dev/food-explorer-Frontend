@@ -13,6 +13,7 @@ import { api } from "../../../services/api";
 
 export function Home () {
     const [favorites, setFavorites] = useState([]);
+    const [search, setSearch] = useState("");
     const { fetchDishes, dataDishes, user } = useAuth();
     const scrollMealList = useRef(null);
     const scrollDrinkList = useRef(null);
@@ -69,7 +70,7 @@ export function Home () {
 
           if(isFavorite) {
             await api.delete(`favorites/${dishId}`);
-            setFavorites(favorites.filter(dish => dish.id !== dishId));
+            setFavorites(favorites.filter(dish => dish !== dishId));
             alert("Prato removido dos favoritos.");
 
           } else {
@@ -77,7 +78,7 @@ export function Home () {
               dish_id : dishId,
               user_id: user.id
             });
-            setFavorites([...favorites, {id: dishId}]);
+            setFavorites([...favorites, dishId]);
             alert("Prato salvo em favoritos.");
           }
 
@@ -87,6 +88,15 @@ export function Home () {
       }
       }
 
+      // useEffect(() => {
+      //   async function searchDishes() {
+      //     const response = await api.get(`/dishes?name=${search}&ingredients=${searchIngredients}`);
+      //     setDishes(response.data);
+      //   }
+
+      //   searchDishes();
+      // }, [])
+
       useEffect(() => {
         async function fetchFavorites () {
           const response = await api.get(`favorites/${user.id}`);
@@ -95,16 +105,19 @@ export function Home () {
         }
 
         fetchFavorites();
-      }, [favorites])
+      }, []);
 
       useEffect(() => {
         fetchDishes();
-      }, [dataDishes]);
+      }, []);
+      console.log(dataDishes)
 
   return (
     <Container>
 
-        <HeaderUsers/>
+        <HeaderUsers
+        onChange={e => setSearch(e.target.value)}
+        />
 
         <Content>
         <About/>

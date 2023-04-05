@@ -1,11 +1,14 @@
 import { Container, DishImage } from "./styles";
 import { BsPencil } from "react-icons/bs";
 
+import { FaHeart } from "react-icons/fa";
+import { FiHeart } from "react-icons/fi";
+
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 
-export function DishAdmin ({ data, ...rest }) {
+export function DishAdmin ({ data, onClick, isFavorite=false, ...rest }) {
     const navigate = useNavigate();
 
     const [imageDish, setImageDish] = useState(null);
@@ -34,8 +37,19 @@ export function DishAdmin ({ data, ...rest }) {
             {
                 data &&
             <>
-            <button onClick={handleClickEditDish}>
+            <button 
+            onClick={handleClickEditDish}
+            className="pencil"
+            >
                 <BsPencil/>
+            </button>
+
+            <button
+            onClick={onClick}
+            className="favorite"
+            >
+                {isFavorite ? <FaHeart
+                className="redHeart"/> : <FiHeart/>} 
             </button>
             
             <DishImage>
@@ -49,7 +63,7 @@ export function DishAdmin ({ data, ...rest }) {
 
             <p>{data.name}</p>    
 
-            <span>{`R$ ${data.price}`}</span>
+            <span>{`R$ ${data.price.toFixed(2)}`}</span>
             </>
            }
         </Container>
