@@ -65,13 +65,16 @@ export function Payment() {
     }
 
     function handleWhenFinish () {
+        if(cart.length <= 0) {
+            return alert("Não há itens no carrinho.")
+        }
+
         if(!numberCard || !codeSecurity || !validity) {
             return alert("Preencha todos os campos (os dados não precisam ser verdadeiros)")
         }
 
         handleNewOrder();
-        setWhenFinish(false);
-        isFinish(true);
+
     }
 
     function handleClickReturn() {
@@ -87,22 +90,30 @@ export function Payment() {
 
             if(newOrder) {
                 await api.post("items_requests", {
-                    request_id: newOrder,
+                    request_id: newOrder.id,
                     items: cart.map(item => ({
                         amount: item.amount,
                         dish_id: item.id,
                         unit_price: item.unit_price,
                         total_price: item.amount * item.unit_price
+
                     }))
                 })
+
+                setCart([]);
+                setWhenFinish(false);
+                isFinish(true);
+                return alert("Pedido confirmado! Aguarde a entrega. Você pode ir acompanhando o pedido na aba 'Histórico de pedidos' ")
             }
 
         } catch (error) {
             console.log(error)
+            setWhenFinish(true);
+            isFinish(false)
+            return alert("Não foi possível fazer o pedido.")
         }
 
-        setCart([]);
-        return alert("Pedido confirmado! Aguarde a entrega. Você pode ir acompanhando o pedido na aba 'Histórico de pedidos' ")
+
     }
 
     useEffect(() => {
@@ -215,7 +226,7 @@ export function Payment() {
                                 type="data"
                                 id="validity"
                                 onChange={e => setValidity(e.target.value)}
-                                maxlength="4"
+                                maxLength="4"
                                 />
                                 </div>
 

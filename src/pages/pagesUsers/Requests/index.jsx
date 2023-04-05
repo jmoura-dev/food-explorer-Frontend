@@ -23,6 +23,9 @@ export function Requests() {
     }
 
     function handleClickProgress () {
+        if(cart.length <= 0) {
+            return alert("Não há itens no carrinho.")
+        }
         navigate("/payment")
     }
 

@@ -130,13 +130,15 @@ export const Scrolling = styled.button`
 
     @media (max-width: 820px ) {
     ${({ direction }) => direction === 'prev' ? `
-        left: -02rem;
+        left: -2rem;
     ` : `
-        right: 0-2rem;
+        right: -2rem;
     `}
     }
 
     :hover {
+        transition: 0.3s;
+
         background-color: ${({ theme }) => theme.COLORS.DARK_400};
         box-shadow: 0 0 3px 3px ${({ theme }) => theme.COLORS.DARK_800};
         filter: opacity(0.9);

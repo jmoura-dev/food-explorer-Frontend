@@ -117,7 +117,7 @@ export function NewDish () {
         >
         <option value="Refeição">Refeição</option>
         <option value="Bebidas">Bebidas</option>
-        <option value="Sobremesa">Sobremesa</option>
+        <option value="Sobremesas">Sobremesas</option>
         </select>
         </div>
         </div>

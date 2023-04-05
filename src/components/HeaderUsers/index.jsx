@@ -80,7 +80,7 @@ export function HeaderUsers ({ cartItems, ...rest }) {
                 </li>
 
                 <li>
-                    <Link to="#"><AiOutlineDatabase/>Histórico</Link>
+                    <Link to="/historic"><AiOutlineDatabase/>Histórico</Link>
                 </li>
                 
                 <li>
@@ -128,7 +128,7 @@ export function HeaderUsers ({ cartItems, ...rest }) {
                         />               
                     
                     <Link to="/favorites">Meus favoritos</Link>
-                    <Link to="#">Histórico de pedidos</Link>
+                    <Link to="/historic">Histórico de pedidos</Link>
 
                     <Link to="/requests">
                     <AiOutlineShoppingCart/>

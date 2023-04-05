@@ -15,22 +15,41 @@ import { ListRequests } from "../../../components/ListRequests";
 
 export function Requests() {
     const [itemsOrder, setItemsOrder] = useState([]);
+    const [isScreenDesktop, setIsScreenDesktop] = useState(window.innerWidth > 820);
 
     const navigate = useNavigate();
-    console.log(itemsOrder)
-
-    useEffect(() => {
-        async function fetchRequests () {
-            const response = await api.get(`/requests`);
-            setItemsOrder(response.data)
-        }
-
-        fetchRequests();
-    }, [])
 
     function handleClickBack () {
         navigate(-1)
     }
+
+    async function handleUpdateStatus(itemIds) {
+        await Promise.all(itemIds.map(itemId => {
+            const item = itemsOrder.find(item => item.id === itemId);
+            api.patch(`requests/${itemId}`, {status: item.status} );
+        }));
+
+        alert("Status atualizado com sucesso.")
+    }
+
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setIsScreenDesktop(window.innerWidth > 820);
+        }
+            handleWindowResize();
+        window.addEventListener("resize", handleWindowResize);
+
+        return () => window.removeEventListener("resize", handleWindowResize);
+    }, []);
+
+    useEffect(() => {
+        async function fetchRequests () {
+            const response = await api.get(`/requests`);
+            setItemsOrder(response.data.map(item => ({ ...item, status: item.status })))
+        }
+
+        fetchRequests();
+    }, []);
 
     return (
         <Container>
@@ -47,6 +66,9 @@ export function Requests() {
             {
                 itemsOrder &&
             <form>
+
+                {
+                    isScreenDesktop &&
                 <nav>
                 <span>
                     Status
@@ -64,16 +86,28 @@ export function Requests() {
                     Data e hora
                 </span>
                 </nav>
+                }
+
             {
                 itemsOrder.map((item, index) => (
                         <ListRequests
                             key={index}
                             data={{
-                                status: item.id,
-                                code: item.id,
+                                status: item.status,
+                                code: String(item.id).padStart(5, '0'),
                                 created_at: item.created_at
                             }}
                             details={item.items.map((i, index) => `${i.amount} x ${i.dish_name}${index > item.items.length -2 ? '': ', '}  `)}
+                            onChange={e => {
+                                const newStatus = e.target.value;
+                            setItemsOrder(prevItems => prevItems.map(prevItem => {
+                                if (prevItem.id === item.id) {
+                                    return { ...prevItem, status: newStatus }
+                                } else {
+                                    return prevItem;
+                                }
+                            }))
+                        }}
                         />
                 ))
             }
@@ -84,6 +118,7 @@ export function Requests() {
 
             <Button 
             title="Atualizar pedidos"
+            onClick={() => handleUpdateStatus(itemsOrder.map(item => item.id))}
             />
             </Content>
             <Footer/>

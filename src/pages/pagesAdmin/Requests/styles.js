@@ -4,6 +4,7 @@ export const Container = styled.div`
     display: grid;
     grid-template-rows: 11.4rem auto 7.7rem;
     grid-template-areas: "header" "content" "footer";
+    height: 100vh;
 `
 
 export const Content = styled.main`
@@ -25,6 +26,7 @@ export const Content = styled.main`
     }
 
     > section {
+        position: relative;
         max-width: 136.6rem;
         margin: 0 auto;
         width: 100%;
@@ -35,13 +37,25 @@ export const Content = styled.main`
         font-size: 3.2rem;
         font-weight: 500;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
-        margin-top: 3rem;
-
+        margin-top: 2rem;
 
         > form {
             width: 100%;
             display: grid;
-            grid-template-rows: 7rem auto;
+            margin-top: 2rem;
+            max-height: 47rem;
+            overflow-y: auto;
+
+            ::-webkit-scrollbar {
+            background-color: none;
+            width: 0.7rem;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
+                border-radius: 1rem;
+
+            }
 
             nav {
                 display: flex;
@@ -59,8 +73,14 @@ export const Content = styled.main`
                     padding: 2.5rem;
                 }
 
+
                 > span:nth-child(1) {
                     border-top-left-radius: 1rem;
+                    min-width: 15rem;
+                }
+
+                > span:nth-child(3) {
+                    min-width: 40rem;
                 }
 
                 > span:nth-child(4) {
@@ -69,17 +89,18 @@ export const Content = styled.main`
             }
 
             ul {
-                display: flex;
-                justify-content: space-between;
 
                 li {
                     border: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
                     border-top: none;
                     width: 100%;
                     padding: 2.5rem;
+
+                    @media (max-width: 820px) {
+                        border: none;
+                    }
                 }
             }
-
         }
 
     }
@@ -92,16 +113,13 @@ export const Content = styled.main`
     }
 
     > button:last-child {
-        position: fixed;
-        right: 5%;
-        bottom: 15%;
-
+        margin-top: 5rem;
+        margin: 5rem auto 7rem;
         display: flex;
-        flex-direction: row-reverse;
         align-items: center;
         justify-content: center;
         gap: 1rem;
-        width: clamp(15rem, 18rem, 22rem);
+        width: clamp(15rem, 25rem, 27rem);
 
         svg {
             font-size: 1.8rem;
