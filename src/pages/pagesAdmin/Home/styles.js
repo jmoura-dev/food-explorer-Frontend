@@ -76,6 +76,7 @@ export const Content = styled.main`
     padding: 0 1.6rem;
     margin: 0 auto;
     overflow: auto;
+    overflow-x: hidden;
     animation: leftright 0.7s ease;
 
     @keyframes leftright {

@@ -71,18 +71,18 @@ export const Container = styled.div`
 
 export const Content = styled.main`
     grid-area: main;
-
     width: 100%;
     padding: 0 1.6rem;
     margin: 0 auto;
     overflow: auto;
     animation: leftRight 0.4s ease;
+    overflow-x: hidden;
+
 
     > section {
         position: relative;
         margin: 0 auto;
         max-width: 120rem;
-
         
         > div {
             p {
@@ -99,7 +99,7 @@ export const Content = styled.main`
                     min-width: 20rem;
                 }
             }
-            
+
             display: flex;
             align-items: center;
             overflow-x: hidden;

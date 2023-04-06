@@ -12,7 +12,9 @@ import { DishAdmin } from "../../../components/DishAdmin";
 import { Footer } from "../../../components/Footer";
 
 export function Home () {
-    const { fetchDishes, dataDishes, user } = useAuth();
+    const { user } = useAuth();
+    const [search, setSearch] = useState("");
+    const [dishes, setDishes] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const scrollMealList = useRef(null);
     const scrollDrinkList = useRef(null);
@@ -88,6 +90,15 @@ export function Home () {
     }
 
     useEffect(() => {
+      async function searchDishes() {
+        const response = await api.get(`/dishes?dish=${search}&ingredients=${search}`);
+        setDishes(response.data);
+      }
+
+      searchDishes();
+    }, [search])
+
+    useEffect(() => {
       async function fetchFavorites () {
         const response = await api.get(`favorites/${user.id}`);
         const listFavorites = response.data.map(item => item.id);
@@ -97,14 +108,12 @@ export function Home () {
       fetchFavorites();
     }, []);
 
-    useEffect(() => {
-      fetchDishes();
-    }, []);
-
   return (
     <Container>
 
-        <HeaderAdmin/>
+        <HeaderAdmin
+        onChange={e => setSearch(e.target.value)}
+        />
 
         <Content>
         <About/>
@@ -113,11 +122,11 @@ export function Home () {
         <div ref={scrollMealList}>
 
           {
-            dataDishes.filter(dish => dish.category_id === 1).length === 0 ?
+            dishes.filter(dish => dish.category_id === 1).length === 0 ?
             ( <p>Você ainda não adicionou nenhuma refeição.</p> )
             :
             (
-              dataDishes.filter(dish => dish.category_id === 1).map(dish => (
+              dishes.filter(dish => dish.category_id === 1).map(dish => (
                 <DishAdmin
                 key={String(dish.id)}
                 data={dish}
@@ -146,11 +155,11 @@ export function Home () {
         <Section title="Sobremesas">
         <div ref={scrollDessertList}>
         {
-            dataDishes.filter(dish => dish.category_id === 3).length === 0 ?
+            dishes.filter(dish => dish.category_id === 3).length === 0 ?
             ( <p>Você ainda não adicionou nenhuma sobremesa.</p> )
             :
             (
-              dataDishes.filter(dish => dish.category_id === 3).map(dish => (
+              dishes.filter(dish => dish.category_id === 3).map(dish => (
                 <DishAdmin
                 key={String(dish.id)}
                 data={dish}
@@ -180,11 +189,11 @@ export function Home () {
         <Section title="Bebidas">
         <div ref={scrollDrinkList}>
         {
-            dataDishes.filter(dish => dish.category_id === 2).length === 0 ?
+            dishes.filter(dish => dish.category_id === 2).length === 0 ?
             ( <p>Você ainda não adicionou nenhuma bebida.</p> )
             :
             (
-              dataDishes.filter(dish => dish.category_id === 2).map(dish => (
+              dishes.filter(dish => dish.category_id === 2).map(dish => (
                 <DishAdmin
                 key={String(dish.id)}
                 data={dish}

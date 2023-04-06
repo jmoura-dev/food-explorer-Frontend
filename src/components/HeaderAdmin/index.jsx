@@ -14,7 +14,7 @@ import logo from "../../assets/polygonTitle.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 
-export function HeaderAdmin () {
+export function HeaderAdmin ({ onChange, ...rest }) {
     const [ordersAmount, setOrdersAmount] = useState([]);
     const navigate = useNavigate();
     const [isScreenMobile, setIsScreenMobile] = useState(window.innerWidth < 820);
@@ -61,7 +61,9 @@ export function HeaderAdmin () {
     }, [ordersAmount.length]);
 
     return (
-        <Container>
+        <Container
+        {...rest}
+        >
             {
                 isScreenMobile ?
             (
@@ -132,6 +134,7 @@ export function HeaderAdmin () {
                         <Input 
                         icon={FiSearch}
                         placeholder="Busque por pratos ou ingredientes"
+                        onChange={onChange}
                         />               
                     
                     <Link to="/favorites">Meus favoritos</Link>
