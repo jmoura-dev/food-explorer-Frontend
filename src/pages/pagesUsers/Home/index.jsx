@@ -14,7 +14,8 @@ import { api } from "../../../services/api";
 export function Home () {
     const [favorites, setFavorites] = useState([]);
     const [search, setSearch] = useState("");
-    const { fetchDishes, dataDishes, user } = useAuth();
+    const [dishes, setDishes] = useState([]);
+    const { user } = useAuth();
     const scrollMealList = useRef(null);
     const scrollDrinkList = useRef(null);
     const scrollDessertList = useRef(null);
@@ -88,14 +89,14 @@ export function Home () {
       }
       }
 
-      // useEffect(() => {
-      //   async function searchDishes() {
-      //     const response = await api.get(`/dishes?name=${search}&ingredients=${searchIngredients}`);
-      //     setDishes(response.data);
-      //   }
+      useEffect(() => {
+        async function searchDishes() {
+          const response = await api.get(`/dishes?dish=${search}&ingredients=${search}`);
+          setDishes(response.data);
+        }
 
-      //   searchDishes();
-      // }, [])
+        searchDishes();
+      }, [search])
 
       useEffect(() => {
         async function fetchFavorites () {
@@ -106,11 +107,6 @@ export function Home () {
 
         fetchFavorites();
       }, []);
-
-      useEffect(() => {
-        fetchDishes();
-      }, []);
-      console.log(dataDishes)
 
   return (
     <Container>
@@ -125,11 +121,11 @@ export function Home () {
         <Section title="Refeições">
         <div ref={scrollMealList}>
           {
-            dataDishes.filter(dish => dish.category_id === 1).length === 0 ?
+            dishes.filter(dish => dish.category_id === 1).length === 0 ?
               ( <p>Nenhuma refeição disponível.</p> )
               :
               (
-                dataDishes.filter(dish => dish.category_id === 1).map(dish => (
+                dishes.filter(dish => dish.category_id === 1).map(dish => (
                   <DishUsers
                   key={String(dish.id)}
                   data={dish}
@@ -158,11 +154,11 @@ export function Home () {
         <Section title="Sobremesas">
         <div ref={scrollDessertList}>
           {
-            dataDishes.filter(dish => dish.category_id === 3).length === 0 ?
+            dishes.filter(dish => dish.category_id === 3).length === 0 ?
               ( <p>Nenhuma sobremesa disponível.</p> )
               :
               (
-                dataDishes.filter(dish => dish.category_id === 3).map(dish => (
+                dishes.filter(dish => dish.category_id === 3).map(dish => (
                   <DishUsers
                   key={String(dish.id)}
                   data={dish}
@@ -193,11 +189,11 @@ export function Home () {
         <Section title="Bebidas">
         <div ref={scrollDrinkList}>
           {
-            dataDishes.filter(dish => dish.category_id === 2).length === 0 ?
+            dishes.filter(dish => dish.category_id === 2).length === 0 ?
               ( <p>Nenhuma bebida disponível.</p> )
               :
               (
-                dataDishes.filter(dish => dish.category_id === 2).map(dish => (
+                dishes.filter(dish => dish.category_id === 2).map(dish => (
                   <DishUsers
                   key={String(dish.id)}
                   data={dish}

@@ -71,7 +71,7 @@ export function DishUsers ({ data, onClick, isFavorite=false, ...rest }) {
             <DishImage>
                 <img
                 src={imageDish} 
-                alt={data.name}
+                alt={`Ìmagem do prato - ${data.name}`}
                 onClick={handleClickImage}
                 />
             </DishImage>
