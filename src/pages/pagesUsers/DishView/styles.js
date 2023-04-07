@@ -5,6 +5,16 @@ export const Container = styled.div`
     grid-template-areas: "header" "main" "footer"; 
     grid-template-rows: 11.4rem auto 7.7rem;
     height: 100vh;
+    overflow-y: auto;
+
+    .loader {
+        display: flex;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+        grid-area: main;
+        animation: lowOpacity 0.4s linear;
+    }
 `
 
 export const Content = styled.main`

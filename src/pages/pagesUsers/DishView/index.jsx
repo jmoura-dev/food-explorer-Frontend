@@ -6,6 +6,7 @@ import { Button } from "../../../components/Button";
 
 import { api } from "../../../services/api";
 import { useCart } from "../../../hooks/cart";
+import { useAuth } from "../../../hooks/auth";
 
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,10 +16,13 @@ import { FiMinus, FiPlus } from "react-icons/fi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import { Ingredients } from "../../../components/Ingredients";
+import { toast } from "react-toastify";
+import { Circles } from "react-loader-spinner";
 
 
 
 export function DishView ({ ...rest }) {
+    const { isLoading, setIsLoading } = useAuth();
     const params = useParams();
     const navigate = useNavigate();
     const [data, setData] = useState(null);
@@ -33,14 +37,18 @@ export function DishView ({ ...rest }) {
 
     function handleIncrease () {
         if(amount >= 15) {
-            return alert("Só são permitidos quinze pratos por pedido.")
+            return toast.error("Só são permitidos quinze pratos por pedido.", {
+                position: toast.POSITION.TOP_RIGHT
+            });
         }
         setAmount(prevState => prevState + 1);
     }
 
     function handleDecrease () {
         if(amount <= 1) {
-            return alert("o valor mínimo é um prato por pedido.");
+            return toast.error("o valor mínimo é um prato por pedido.", {
+                position: toast.POSITION.TOP_RIGHT
+            });
         }
 
         setAmount(prevState => prevState - 1);
@@ -62,8 +70,10 @@ export function DishView ({ ...rest }) {
 
     useEffect(() => {
         async function fetchDishes() {
+            setIsLoading(true);
             const response = await api.get(`/dishes/${params.id}`);
             setData(response.data);
+            setIsLoading(false);
         }
 
         fetchDishes();
@@ -78,7 +88,7 @@ export function DishView ({ ...rest }) {
 
         fetchImage();
     }, [data]);
-    
+
     return (
         <Container 
         {...rest}
@@ -87,6 +97,19 @@ export function DishView ({ ...rest }) {
             cartItems={cart.length}
             />
 
+        {
+            isLoading ?
+            (
+            <div className="loader">
+                <Circles
+                color="#126b37"
+                width="100"
+                height="100"
+                />
+            </div>
+            )
+            :
+            (
             <Content>
 
             <ButtonText 
@@ -100,7 +123,7 @@ export function DishView ({ ...rest }) {
 
             <form>
 
-                <img src={image} alt="Imagem da refeição" />
+                <img src={image} alt={`Imagem do prato - ${image}`} />
 
             <div>
                 <h1>
@@ -159,6 +182,9 @@ export function DishView ({ ...rest }) {
 
 
             </Content>
+            )
+        }
+
 
             <Footer/>
         </Container>

@@ -137,7 +137,8 @@ export const Scrolling = styled.button`
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 3.5rem;
     z-index: 0.5;
-    background: transparent;
+    box-shadow: 0 0 3px 3px ${({ theme }) => theme.COLORS.DARK_200};
+    background-color: ${({ theme }) => theme.COLORS.DARK_200};
 
     ${({ direction }) => direction === 'prev' ? `
         left: -2rem;

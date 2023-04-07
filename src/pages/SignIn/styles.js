@@ -11,6 +11,13 @@ export const Container = styled.div`
     gap: 7rem;
     overflow-x : hidden;
 
+    .loader {
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     > div {
         max-width: 70rem;
         animation: increaseSize 0.5s ease;

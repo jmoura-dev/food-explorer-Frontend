@@ -7,12 +7,16 @@ import { Section } from "../../../components/Section";
 import { DishFavoritesUsers } from "../../../components/DishFavoritesUsers";
 
 import { api } from "../../../services/api";
+import { useAuth } from "../../../hooks/auth";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/Button";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { Circles } from "react-loader-spinner";
 
 export function Favorites () {
+    const { isLoading, setIsLoading } = useAuth();
     const [image, setImage] = useState({});
     const navigate = useNavigate();
     const [favorites, setFavorites] = useState([]);
@@ -22,16 +26,22 @@ export function Favorites () {
     };
 
     async function handleRemoveFavorites (deleted) {
+        setIsLoading(true);
         await api.delete(`/favorites/${deleted}`);
-        const response = await api.get("/favorites")
+        const response = await api.get("/favorites");
         setFavorites(response.data);
-        alert("Prato removido dos favoritos.")
+        setIsLoading(false);
+        toast.success("Prato removido dos favoritos.", {
+            position: toast.POSITION.TOP_CENTER
+        });
     }
 
     useEffect(() => {
         async function fetchFavorites() {
-            const response = await api.get("/favorites")
+            setIsLoading(true);
+            const response = await api.get("/favorites");
             setFavorites(response.data);
+            setIsLoading(false);
         }
 
         fetchFavorites();
@@ -55,15 +65,27 @@ export function Favorites () {
         fetchImageDish();
     }, [favorites])
 
-
     return (
         <Container>
             <HeaderUsers/>
 
             <Section title="Meus favoritos">
-
             {
-                favorites && 
+                isLoading ?
+                    (
+                    <div className="loader">
+                        <Circles
+                        color="#126b37"
+                        width="100"
+                        height="100"
+                        />
+                    </div>
+                    )
+                :
+                (
+                <>
+            {
+                favorites &&
                 <ul>
                     <li>
                     {
@@ -89,6 +111,9 @@ export function Favorites () {
                     onClick={handleNavigate}
                     />
                     </footer>
+                    </>
+                    )
+            }
             </Section>
 
             <Footer/>

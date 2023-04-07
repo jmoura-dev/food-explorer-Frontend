@@ -12,9 +12,10 @@ import { ButtonText } from "../../../components/ButtonText";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { HistoricRequest } from "../../../components/HistoricRequest";
+import { Circles } from "react-loader-spinner";
 
 export function Historic() {
-    const { user } = useAuth();
+    const { user, isLoading, setIsLoading } = useAuth();
     const [itemsOrder, setItemsOrder] = useState([]);
     const [isScreenDesktop, setIsScreenDesktop] = useState(window.innerWidth > 820);
 
@@ -36,8 +37,10 @@ export function Historic() {
 
     useEffect(() => {
         async function fetchRequests () {
+            setIsLoading(true);
             const response = await api.get(`/requests/${user.id}`);
-            setItemsOrder(response.data.map(item => ({ ...item, status: item.status })))
+            setItemsOrder(response.data.map(item => ({ ...item, status: item.status })));
+            setIsLoading(false);
         }
 
         fetchRequests();
@@ -48,14 +51,31 @@ export function Historic() {
             <HeaderUsers/>
             <Content>
                 
+            {
+                !isLoading &&
             <ButtonText 
             icon={FiArrowLeft}
             title="Voltar"
             onClick={handleClickBack}
             />
+            }
+
 
             <Section title="Histórico de Pedidos">
-
+            {
+                isLoading ?
+                (
+                    <div className="loader">
+                        <Circles
+                        color="#126b37"
+                        width="100"
+                        height="100"
+                        />
+                    </div>
+                )
+                :
+                (
+            <>
             {
                 itemsOrder &&
             <form>
@@ -97,7 +117,9 @@ export function Historic() {
             </form>
             }
 
-
+            </>
+            )
+        }
             </Section>
             </Content>
             <Footer/>

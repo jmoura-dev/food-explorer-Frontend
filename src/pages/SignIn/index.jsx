@@ -8,12 +8,13 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
 import { useState, useEffect } from "react";
+import { TailSpin } from "react-loader-spinner";
 
 export function SignIn () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const { signIn } = useAuth();
+    const { signIn, isLoading } = useAuth();
 
     const [isScreenDesktop, setIsScreenDesktop] = useState(false);
 
@@ -57,13 +58,30 @@ export function SignIn () {
                     onChange={e => setPassword(e.target.value)}
                 />
 
+            {
+                isLoading ?
+                (
+                <div className="loader">
+                    <TailSpin
+                    color="#126b37"
+                    width="60"
+                    height="80"
+                    />
+                </div>
+                )
+                :
+                (
+                <>
+
                 <Button 
                 title="Entrar"
                 onClick={handleSignIn}
                 />
 
                 <Link to="/register">Criar uma conta</Link>
-
+                </>
+                )
+            }
                 </Form>
 
         </Container>

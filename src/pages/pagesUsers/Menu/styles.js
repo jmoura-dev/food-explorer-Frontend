@@ -8,6 +8,12 @@ export const Container = styled.div`
     overflow-x: hidden;
     overflow-y: hidden;
     grid-template-rows: 11.4rem auto 7.7rem;
+
+    .loader {
+        display: flex;
+        margin: auto;
+        animation: lowOpacity 0.4s linear;
+    }
     
     > header {
         display: flex;

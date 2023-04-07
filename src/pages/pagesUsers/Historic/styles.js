@@ -16,6 +16,14 @@ export const Content = styled.main`
     max-width: 136.6rem;
     animation: leftright 0.5s ease;
 
+    .loader {
+        display: flex;
+        margin: 5rem auto;
+        align-items: center;
+        justify-content: center;
+        animation: lowOpacity 0.4s linear;
+    }
+
     @media(min-width: 820px) {
             margin: 0 auto;
     }
@@ -54,6 +62,7 @@ export const Content = styled.main`
             margin-bottom: 3rem;
             overflow-y: auto;
             margin: 0 auto;
+            animation: lowOpacity 0.4s linear;
 
             ::-webkit-scrollbar {
             background-color: none;
@@ -126,6 +135,16 @@ export const Content = styled.main`
 
         100% {
             transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes lowOpacity {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
             opacity: 1;
         }
     }

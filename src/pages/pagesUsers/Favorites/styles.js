@@ -13,6 +13,13 @@ export const Container = styled.main`
         font-size: 3.2rem;
         animation: topdown 0.4s linear;
 
+        .loader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5rem auto;
+            animation: lowOpacity 0.4s linear;
+        }
 
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
@@ -22,6 +29,7 @@ export const Container = styled.main`
             margin-top: 1rem;
             padding-right: 1rem;
             margin-bottom: 1rem;
+            animation: lowOpacity 0.4s linear;
 
         li {
             > div {
@@ -113,6 +121,16 @@ export const Container = styled.main`
 
         100% {
             transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes lowOpacity {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
             opacity: 1;
         }
     }

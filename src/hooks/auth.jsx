@@ -33,11 +33,11 @@ function AuthProvider ({ children }) {
       setIsLoading(false);
       if (error.response){
         toast.error(`${error.response.data.message}` , {
-          position: toast.POSITION.TOP_LEFT
+          position: toast.POSITION.TOP_RIGHT
         });
       } else {
         toast.error("Não foi possível entrar.", {
-          position: toast.POSITION.TOP_LEFT
+          position: toast.POSITION.TOP_RIGHT
         });
       }
     }
@@ -45,7 +45,9 @@ function AuthProvider ({ children }) {
   }
 
   async function fetchDishes () {
+    setIsLoading(true);
     const responseDish = await api.get("/dishes");
+    setIsLoading(false);
     setDishes(responseDish.data);
   }
 

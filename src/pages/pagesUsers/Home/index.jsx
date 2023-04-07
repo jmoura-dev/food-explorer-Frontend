@@ -142,7 +142,6 @@ export function Home () {
           color="#126b37"
           width="100"
           height="100"
-          
           />
           </div>
           )

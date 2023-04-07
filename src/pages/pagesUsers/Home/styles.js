@@ -90,6 +90,7 @@ export const Content = styled.main`
         position: relative;
         margin: 0 auto;
         max-width: 120rem;
+        animation: lowOpacity 0.4s linear;
         
         > div {
             p {
@@ -128,6 +129,7 @@ export const Scrolling = styled.button`
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 3.5rem;
     background: ${({ theme }) => theme.COLORS.DARK_200};
+    box-shadow: 0 0 3px 3px ${({ theme }) => theme.COLORS.DARK_200};
 
     ${({ direction }) => direction === 'prev' ? `
         left: -2rem;
@@ -158,6 +160,17 @@ export const Scrolling = styled.button`
 
         100% {
             transform: translateX(0)
+        }
+    }
+
+    
+    @keyframes lowOpacity {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
         }
     }
 `
