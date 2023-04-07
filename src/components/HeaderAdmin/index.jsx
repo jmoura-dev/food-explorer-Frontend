@@ -1,6 +1,7 @@
 import { Container, WindowMobile, WindowDesktop } from "./styles";
 import { AiOutlineMenu, AiOutlineSchedule, AiOutlineBank, AiOutlineDatabase } from "react-icons/ai";
 import { FiX } from "react-icons/fi";
+import { BiDish } from "react-icons/bi";
 
 import { useAuth } from "../../hooks/auth";
 
@@ -20,6 +21,7 @@ export function HeaderAdmin ({ onChange, ...rest }) {
     const [isScreenMobile, setIsScreenMobile] = useState(window.innerWidth < 820);
     const [openMenu, setOpenMenu] = useState(true);
 
+
     const { signOut } = useAuth();
 
     function handleSignOut () {
@@ -30,8 +32,6 @@ export function HeaderAdmin ({ onChange, ...rest }) {
         signOut();
         }
     }
-
-    console.log(ordersAmount)
 
     function handleClickOpenMenu () {
         setOpenMenu(false);
@@ -82,23 +82,14 @@ export function HeaderAdmin ({ onChange, ...rest }) {
 
                 <ul>
                 <li>
+                    
                     <Link to="/"><AiOutlineBank/>Home</Link>
-                </li>
-
-                <li>
+                    <Link to="newdish"><BiDish/>Novo prato</Link>
                     <Link to="/menu"><FiClipboard/>Menu</Link>
-                <li>
-
-                </li>
                     <Link to="/requests"><AiOutlineDatabase/>Pedidos</Link>
-                </li>
-
-                <li>
                     <Link to="/favorites"><FiHeart/>Favoritos</Link>
-                </li>
-                
-                <li>
                     <a onClick={handleSignOut}><FiLogOut/>Sair</a>
+
                 </li>
                 </ul>
 

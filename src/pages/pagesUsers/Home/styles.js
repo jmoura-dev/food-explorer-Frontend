@@ -67,6 +67,13 @@ export const Container = styled.div`
                 }
         }
     }
+
+    .loader {
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `
 
 export const Content = styled.main`
@@ -120,8 +127,7 @@ export const Scrolling = styled.button`
     height: 33.5rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 3.5rem;
-    background: transparent;
-    z-index: 0.5;
+    background: ${({ theme }) => theme.COLORS.DARK_200};
 
     ${({ direction }) => direction === 'prev' ? `
         left: -2rem;
@@ -140,7 +146,7 @@ export const Scrolling = styled.button`
     :hover {
         transition: 0.3s;
 
-        background-color: ${({ theme }) => theme.COLORS.DARK_400};
+        background-color: ${({ theme }) => theme.COLORS.DARK_200};
         box-shadow: 0 0 3px 3px ${({ theme }) => theme.COLORS.DARK_800};
         filter: opacity(0.9);
     }

@@ -76,23 +76,13 @@ export function HeaderUsers ({ cartItems, onChange, ...rest }) {
                 <ul>
 
                 <li>
+
                     <Link to="/"><AiOutlineBank/>Home</Link>
-                </li>
-
-                <li>
-                    <Link to="/historic"><AiOutlineDatabase/>Histórico</Link>
-                </li>
-                
-                <li>
+                    <Link to="/historic"><AiOutlineDatabase/>Histórico</Link>     
                     <Link to="/menu"><FiClipboard/>Menu</Link>
-                </li>
-
-                <li>
                     <Link to="/favorites"><FiHeart/>Favoritos</Link>
-                </li>
-
-                <li>
                     <a onClick={handleSignOut}><FiLogOut/>Sair</a>
+                    
                 </li>
 
                 </ul>

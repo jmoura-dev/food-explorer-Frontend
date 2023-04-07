@@ -3,19 +3,21 @@ import { useRef, useEffect, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 import { useAuth } from "../../../hooks/auth";
+import { api } from "../../../services/api";
 
 import { HeaderUsers } from "../../../components/HeaderUsers";
 import { About } from "../../../components/About";
 import { Section } from "../../../components/Section";
 import { DishUsers } from "../../../components/DishUsers";
 import { Footer } from "../../../components/Footer";
-import { api } from "../../../services/api";
+import { toast } from "react-toastify";
+import { TailSpin } from "react-loader-spinner";
 
 export function Home () {
     const [favorites, setFavorites] = useState([]);
     const [search, setSearch] = useState("");
     const [dishes, setDishes] = useState([]);
-    const { user } = useAuth();
+    const { user, isLoading, setIsLoading } = useAuth();
     const scrollMealList = useRef(null);
     const scrollDrinkList = useRef(null);
     const scrollDessertList = useRef(null);
@@ -65,6 +67,7 @@ export function Home () {
       async function handleAddFavorites (dishId) {
 
         try {
+          setIsLoading(true);
           const response = await api.get(`favorites/${user.id}`);
           const dishesFavorites = response.data;
           const isFavorite = dishesFavorites.filter(item => item.id === dishId).length;
@@ -72,27 +75,39 @@ export function Home () {
           if(isFavorite) {
             await api.delete(`favorites/${dishId}`);
             setFavorites(favorites.filter(dish => dish !== dishId));
-            alert("Prato removido dos favoritos.");
+            toast.success("Prato removido dos favoritos", {
+              position: toast.POSITION.TOP_RIGHT
+            });
+            setIsLoading(false);
 
           } else {
             await api.post("favorites", {
               dish_id : dishId,
               user_id: user.id
             });
+            setIsLoading(false);
             setFavorites([...favorites, dishId]);
-            alert("Prato salvo em favoritos.");
+            toast.success("Prato salvo em favoritos", {
+              position: toast.POSITION.TOP_RIGHT
+            });
           }
+          setIsLoading(false);
 
       }catch (error) {
+        setIsLoading(false);
         console.error(error)
-        alert("Não foi possível adicionar aos favoritos.");
+        toast.success("Prato removidos dos favoritos", {
+          position: toast.POSITION.TOP_CENTER
+        });
       }
       }
 
       useEffect(() => {
         async function searchDishes() {
+          setIsLoading(true);
           const response = await api.get(`/dishes?dish=${search}&ingredients=${search}`);
           setDishes(response.data);
+          setIsLoading(false);
         }
 
         searchDishes();
@@ -100,9 +115,11 @@ export function Home () {
 
       useEffect(() => {
         async function fetchFavorites () {
+          setIsLoading(true);
           const response = await api.get(`favorites/${user.id}`);
           const listFavorites = response.data.map(item => item.id);
           setFavorites(listFavorites);
+          setIsLoading(false);
         }
 
         fetchFavorites();
@@ -117,7 +134,21 @@ export function Home () {
 
         <Content>
         <About/>
-
+        {
+          isLoading ? 
+          (
+          <div className="loader">
+          <TailSpin
+          color="#126b37"
+          width="100"
+          height="100"
+          
+          />
+          </div>
+          )
+          :
+          (
+        <>
         <Section title="Refeições">
         <div ref={scrollMealList}>
           {
@@ -220,6 +251,10 @@ export function Home () {
         </Scrolling>
 
         </Section>
+        </>
+          )
+        }
+
 
         </Content>
         

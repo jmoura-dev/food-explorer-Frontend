@@ -6,10 +6,11 @@ import { Footer } from "../../../components/Footer";
 import { Section } from "../../../components/Section";
 import { DishFavoritesUsers } from "../../../components/DishFavoritesUsers";
 
+import { api } from "../../../services/api";
+
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/Button";
 import { useEffect, useState } from "react";
-import { api } from "../../../services/api";
 
 export function Favorites () {
     const [image, setImage] = useState({});
@@ -22,7 +23,9 @@ export function Favorites () {
 
     async function handleRemoveFavorites (deleted) {
         await api.delete(`/favorites/${deleted}`);
-        alert("Prato removido.")
+        const response = await api.get("/favorites")
+        setFavorites(response.data);
+        alert("Prato removido dos favoritos.")
     }
 
     useEffect(() => {
@@ -32,7 +35,7 @@ export function Favorites () {
         }
 
         fetchFavorites();
-    }, [favorites])
+    }, [])
 
     useEffect(() => {
         function fetchImageDish () {

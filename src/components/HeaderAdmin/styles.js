@@ -57,13 +57,13 @@ export const WindowMobile = styled.main`
             gap: 0.8rem;
             font-family: "Roboto", "serif";
             font-weight: 400;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
 
             margin-bottom: 1.6rem;
 
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
             svg {
-                font-size: 1.7rem;
+                font-size: 2rem;
             }
         }
     }

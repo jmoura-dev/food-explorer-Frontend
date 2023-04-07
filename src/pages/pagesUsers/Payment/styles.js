@@ -14,7 +14,7 @@ export const Content = styled.main`
     max-width: 136.6rem;
     margin: 5.6rem auto 0;
     gap: 2rem;
-    animation: rightleft 0.5s ease;
+    animation: lowOpacity 0.5s linear;
 
     > section {
         margin: 0 auto;
@@ -24,7 +24,7 @@ export const Content = styled.main`
 
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
         padding: 0 3rem;
-
+        
         @media(max-width: 820px) {
             padding: 0 3rem;
         }
@@ -39,7 +39,7 @@ export const Content = styled.main`
             border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
             border-bottom-left-radius: 0.8rem;
             border-bottom-right-radius: 0.8rem;
-            animation: increaseSize 0.5s ease;
+            animation: lowOpacity 0.5s linear;
 
             svg {
                 width: 9.6rem;
@@ -58,21 +58,26 @@ export const Content = styled.main`
         }
 
         main {
-            margin: 4rem auto 0;
-            max-width: 52rem;
+            margin: 4rem auto 5rem;
+            max-width: 50rem;
             display: flex;
             flex-direction: column;
-
             width: 100%;
+            animation: lowOpacity 0.5s linear;
+
 
             img {
                 border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
-                padding: 7rem;
-                width: clamp(20rem, 40rem, 43rem);
+                padding: 4rem;
+                min-width: 20rem;
+                max-width: 40rem;
                 border-bottom-left-radius: 8px;
                 border-bottom-right-radius: 8px;
                 animation: rotateRight 0.3s ease;
 
+                @media (min-width: 820px) {
+                    padding: 8rem;
+                }
             }
             
             div {
@@ -110,6 +115,16 @@ export const Content = styled.main`
                     font-size: 1.6rem;
                 }
             }}
+
+        @keyframes lowOpacity {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+    }
 }
 `
 

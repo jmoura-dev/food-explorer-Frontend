@@ -228,13 +228,15 @@ export const Form = styled.form`
     }
 
     main {
+      padding-bottom: 12rem;
+      position: relative;
+
     > button:last-child {
       position: absolute;
       right: 0;
-      bottom: -9rem;
-
+      bottom: -5%;
       max-width: 25rem;
-
+      margin-bottom: 5rem;
     }
   }
   }

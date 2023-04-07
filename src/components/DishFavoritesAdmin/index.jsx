@@ -2,7 +2,7 @@ import { Container } from "./styles";
 import { ButtonText } from "../../components/ButtonText";
 import { AiOutlineDelete } from "react-icons/ai";
 
-export function DishFavoritesAdmin ({ data, ...rest }) {
+export function DishFavoritesAdmin ({ data, onClick, ...rest }) {
     return (
         <Container {...rest}>
                 <span>
@@ -40,6 +40,7 @@ export function DishFavoritesAdmin ({ data, ...rest }) {
                     <ButtonText
                     icon={AiOutlineDelete}
                     title="Remover prato"
+                    onClick={onClick}
                     />
                     </footer>
                 </main>               

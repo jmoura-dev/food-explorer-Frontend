@@ -23,6 +23,13 @@ export const Container = styled.main`
             padding-right: 1rem;
             margin-bottom: 1rem;
 
+        li {
+            > div {
+                margin: 2rem;
+            }
+        }
+
+
         ::-webkit-scrollbar {
             background-color: none;
             width: 0.7rem;

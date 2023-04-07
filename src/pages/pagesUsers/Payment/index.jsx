@@ -40,7 +40,6 @@ export function Payment() {
     const [isScreenDesktop, setIsScreeDesktop] = useState(window.innerWidth > 820); 
 
     const navigate = useNavigate();
-    console.log(cart)
 
     function handleRemoveItemCart (deleted) {
         setCart(prevCart => prevCart.filter(item => item !== deleted));

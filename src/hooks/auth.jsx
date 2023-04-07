@@ -1,18 +1,22 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 import { api } from "../services/api";
 
 export const AuthContext = createContext({});
 
 function AuthProvider ({ children }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({});
   const [dataDishes, setDishes] = useState([]);
 
   async function signIn({ email, password }) {
 
     try {
+      setIsLoading(true);
       const response = await api.post("/sessions", { email, password });
       const { user, token } = response.data;
+      setIsLoading(false);
 
       localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
       localStorage.setItem("@foodexplorer:token", token);
@@ -21,11 +25,20 @@ function AuthProvider ({ children }) {
 
       setData({ user, token });
 
+      toast.success(`Bem vindo, ${user.name}` , {
+        position: toast.POSITION.TOP_CENTER
+      });
+
     } catch (error) {
+      setIsLoading(false);
       if (error.response){
-        alert(error.response.data.message);
+        toast.error(`${error.response.data.message}` , {
+          position: toast.POSITION.TOP_LEFT
+        });
       } else {
-        alert("Não foi possível entrar.");
+        toast.error("Não foi possível entrar.", {
+          position: toast.POSITION.TOP_LEFT
+        });
       }
     }
 
@@ -64,7 +77,9 @@ function AuthProvider ({ children }) {
       signOut,
       fetchDishes,
       dataDishes,
-      user: data.user
+      user: data.user,
+      isLoading,
+      setIsLoading
       }}>
       {children}
     </AuthContext.Provider>

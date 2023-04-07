@@ -75,6 +75,10 @@ export const Container = styled.ul`
   li:nth-child(3) {
     min-width: 40rem;
     overflow-x: hidden;
+
+    @media (max-width: 820px) {
+      min-width: 5rem;
+    }
   }
 
   li {

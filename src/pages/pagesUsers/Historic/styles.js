@@ -40,6 +40,7 @@ export const Content = styled.main`
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
         margin-top: 3rem;
         padding: 0;
+        gap: 2rem;
 
         @media(max-width: 820px) {
             font-size: 2.4rem;
