@@ -60,6 +60,17 @@ export const Container = styled.div`
         }
     }
 
+    > button:nth-child(4) {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        gap: 0.5rem;
+        font-family: "Poppins", "serif";
+        font-weight: 700;
+        font-size: 1.8rem;
+        white-space: nowrap;
+    }
+
     > span {
         font-family: "Roboto", "serif";
         font-weight: 400;

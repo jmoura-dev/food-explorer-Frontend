@@ -1,6 +1,7 @@
 import { Container, DishImage } from "./styles";
 import { FiHeart, FiMinus, FiPlus } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
+import { IoIosArrowForward } from "react-icons/io";
 
 import { api } from "../../services/api";
 import { useCart } from "../../hooks/cart";
@@ -8,6 +9,7 @@ import { useCart } from "../../hooks/cart";
 import { Button } from "../Button";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ButtonText } from "../ButtonText";
 
 export function DishUsers ({ data, onClick, isFavorite=false, ...rest }) {
     const [cart, setCart] = useCart();
@@ -76,7 +78,11 @@ export function DishUsers ({ data, onClick, isFavorite=false, ...rest }) {
                 />
             </DishImage>
 
-            <h1>{data.name}</h1>
+            <ButtonText
+            title={data.name}
+            icon={IoIosArrowForward}
+            onClick={handleClickImage}
+            />
 
             <h2>{data.description}</h2>
             

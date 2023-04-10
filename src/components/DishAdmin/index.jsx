@@ -1,5 +1,6 @@
 import { Container, DishImage } from "./styles";
 import { BsPencil } from "react-icons/bs";
+import { IoIosArrowForward } from "react-icons/io";
 
 import { FaHeart } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
@@ -7,6 +8,7 @@ import { FiHeart } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
+import { ButtonText } from "../ButtonText";
 
 export function DishAdmin ({ data, onClick, isFavorite=false, ...rest }) {
     const navigate = useNavigate();
@@ -61,7 +63,11 @@ export function DishAdmin ({ data, onClick, isFavorite=false, ...rest }) {
             </DishImage>
 
 
-            <p>{data.name}</p>    
+            <ButtonText
+            title={data.name}
+            onClick={handleClickImage}
+            icon={IoIosArrowForward}
+            />   
 
             <span>{`R$ ${data.price.toFixed(2)}`}</span>
             </>

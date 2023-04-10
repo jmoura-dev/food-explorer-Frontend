@@ -46,7 +46,11 @@ export const Container = styled.div`
         }
     }
 
-    > h1 {
+    > button:nth-child(3) {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        gap: 0.5rem;
         font-family: "Poppins", "serif";
         font-weight: 700;
         font-size: 1.9rem;
