@@ -68,7 +68,6 @@ export function Home () {
     async function handleAddFavorites (dishId) {
 
       try {
-        setIsLoading(true);
         const response = await api.get(`favorites/${user.id}`);
         const dishesFavorites = response.data;
         const isFavorite = dishesFavorites.filter(item => item.id === dishId).length;
@@ -76,7 +75,6 @@ export function Home () {
         if(isFavorite) {
           await api.delete(`favorites/${dishId}`);
           setFavorites(favorites.filter(dish => dish !== dishId));
-          setIsLoading(false);
           toast.success("Prato removido dos favoritos.", {
             position: toast.POSITION.TOP_CENTER
           });
@@ -87,14 +85,12 @@ export function Home () {
             user_id: user.id
           });
           setFavorites([...favorites, dishId]);
-          setIsLoading(false);
           toast.success("Prato salvo em favoritos.", {
             position: toast.POSITION.TOP_CENTER
           });
         }
 
     }catch (error) {
-      setIsLoading(false);
       console.error(error)
       toast.error("Não foi possível adicionar aos favoritos.", {
         position: toast.POSITION.TOP_RIGHT

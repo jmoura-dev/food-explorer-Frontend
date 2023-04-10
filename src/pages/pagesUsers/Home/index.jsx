@@ -67,7 +67,6 @@ export function Home () {
       async function handleAddFavorites (dishId) {
 
         try {
-          setIsLoading(true);
           const response = await api.get(`favorites/${user.id}`);
           const dishesFavorites = response.data;
           const isFavorite = dishesFavorites.filter(item => item.id === dishId).length;
@@ -78,25 +77,22 @@ export function Home () {
             toast.success("Prato removido dos favoritos", {
               position: toast.POSITION.TOP_RIGHT
             });
-            setIsLoading(false);
 
           } else {
             await api.post("favorites", {
               dish_id : dishId,
               user_id: user.id
             });
-            setIsLoading(false);
+
             setFavorites([...favorites, dishId]);
             toast.success("Prato salvo em favoritos", {
               position: toast.POSITION.TOP_RIGHT
             });
           }
-          setIsLoading(false);
 
       }catch (error) {
-        setIsLoading(false);
         console.error(error)
-        toast.success("Prato removidos dos favoritos", {
+        toast.error("Internal server error", {
           position: toast.POSITION.TOP_CENTER
         });
       }
