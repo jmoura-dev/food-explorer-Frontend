@@ -25,7 +25,7 @@ function AuthProvider ({ children }) {
 
       setData({ user, token });
 
-      toast.success(`Bem vindo, ${user.name}!` , {
+      toast.success(`Bem vindo(a), ${user.name}!` , {
         position: toast.POSITION.TOP_CENTER
       });
 

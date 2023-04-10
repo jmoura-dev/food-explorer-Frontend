@@ -11,7 +11,7 @@ import { Section } from "../../../components/Section";
 import { DishUsers } from "../../../components/DishUsers";
 import { Footer } from "../../../components/Footer";
 import { toast } from "react-toastify";
-import { TailSpin } from "react-loader-spinner";
+import { ThreeCircles } from "react-loader-spinner";
 
 export function Home () {
     const [favorites, setFavorites] = useState([]);
@@ -111,7 +111,7 @@ export function Home () {
         }
 
         searchDishes();
-      }, [search])
+      }, [search]);
 
       useEffect(() => {
         async function fetchFavorites () {
@@ -138,7 +138,7 @@ export function Home () {
           isLoading ? 
           (
           <div className="loader">
-          <TailSpin
+          <ThreeCircles
           color="#126b37"
           width="100"
           height="100"
