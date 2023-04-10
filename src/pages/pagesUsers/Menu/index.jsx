@@ -8,7 +8,6 @@ import { Section } from "../../../components/Section";
 import { Footer } from "../../../components/Footer";
 
 import { api } from "../../../services/api";
-import { useAuth } from "../../../hooks/auth";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -16,7 +15,6 @@ import { Ingredients } from "../../../components/Ingredients";
 import { ThreeDots } from "react-loader-spinner";
 
 export function Menu () {
-    const { isLoading, setIsLoading } = useAuth();
     const [image, setImage] = useState({});
     const [search, setSearch] = useState("");
     const [dishes, setDishes] = useState("");
@@ -36,10 +34,8 @@ export function Menu () {
 
     useEffect(() => {
         async function searchDishes () {
-            setIsLoading(true);
             const response = await api.get(`/dishes?dish=${search}&ingredients=${search}`);
             setDishes(response.data);
-            setIsLoading(false);
         }
 
         searchDishes();
@@ -75,20 +71,6 @@ export function Menu () {
 
             <Content>
 
-            {
-                isLoading ?
-            (
-                <div className="loader">
-                    <ThreeDots
-                    color="#126b37"
-                    width="100"
-                    height="100"
-                    />
-                </div>
-            )
-            :
-            (
-                <>
             <Input 
             type="text"
             icon={FiSearch}
@@ -143,9 +125,7 @@ export function Menu () {
             title="Sair"/>
             </Section>
             </>
-            )
-            }
-            </>
+
             )
         }
 

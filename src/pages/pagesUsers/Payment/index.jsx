@@ -22,10 +22,12 @@ import { Button } from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../hooks/cart";
 import { api } from "../../../services/api";
+import { toast } from "react-toastify";
+import { Circles } from "react-loader-spinner";
 
 export function Payment() {
     const [cart, setCart] = useCart();
-    const { user } = useAuth();
+    const { user, isLoading, setIsLoading } = useAuth();
 
     const [validity, setValidity] = useState("");
     const [numberCard, setNumberCard] = useState("");
@@ -49,27 +51,30 @@ export function Payment() {
         if(!finish) {
             navigate(-1);
         } else {
-            navigate("/")
+            navigate("/");
         }
     }
 
     function handleButtonPix() {
-        setButtonPix(true)
-        setButtonCard(false)
+        setButtonPix(true);
+        setButtonCard(false);
     }
 
     function handleButtonCard() {
-        setButtonPix(false)
-        setButtonCard(true)
+        setButtonPix(false);
+        setButtonCard(true);
     }
 
     function handleWhenFinish () {
         if(cart.length <= 0) {
             return alert("Não há itens no carrinho.")
         }
+        
 
         if(!numberCard || !codeSecurity || !validity) {
-            return alert("Preencha todos os campos (os dados não precisam ser verdadeiros)")
+            return toast.error("Preencha todos os campos (os dados não precisam ser verdadeiros)", {
+                position: toast.POSITION.TOP_RIGHT
+            });
         }
 
         handleNewOrder();
@@ -77,13 +82,14 @@ export function Payment() {
     }
 
     function handleClickReturn() {
-        setWhenFinish(true)
-        navigate("/")
+        setWhenFinish(true);
+        navigate("/");
     }
 
     async function handleNewOrder () {
 
         try{
+            setIsLoading(true);
             const response = await api.post("/requests", { user_id: user.id });
             const newOrder = response.data;
 
@@ -97,19 +103,25 @@ export function Payment() {
                         total_price: item.amount * item.unit_price
 
                     }))
-                })
-
+                });
+                setIsLoading(false);
                 setCart([]);
                 setWhenFinish(false);
                 isFinish(true);
-                return alert("Pedido confirmado! Aguarde a entrega. Você pode ir acompanhando o pedido na aba 'Histórico de pedidos' ")
+                return toast.success("Pedido confirmado! Aguarde a entrega. Você pode ir acompanhando o pedido na aba 'Histórico de pedidos' ", {
+                    position: toast.POSITION.TOP_CENTER
+                });
             }
+            setIsLoading(false);
 
         } catch (error) {
-            console.log(error)
+            setIsLoading(false);
+            console.log(error);
             setWhenFinish(true);
-            isFinish(false)
-            return alert("Não foi possível fazer o pedido.")
+            isFinish(false);
+            return toast.error("Não foi possível completar o pedido.", {
+                position: toast.POSITION.TOP_RIGHT
+            });
         }
 
 
@@ -135,6 +147,19 @@ export function Payment() {
         <Container>
             <HeaderUsers/>
 
+        {
+            isLoading ? 
+            (
+                <div className="loader">
+                    <Circles
+                    color="#126b37"
+                    width="100"
+                    height="100"
+                    />
+                </div>
+            )
+            :
+            (
         <Content>
 
             {
@@ -271,7 +296,10 @@ export function Payment() {
             </main>
             </Section>
 
-            </Content>
+        </Content>
+        )
+        }
+
 
             <Footer/>
         </Container>

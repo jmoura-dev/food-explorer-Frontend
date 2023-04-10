@@ -5,6 +5,24 @@ export const Container = styled.div`
     grid-template-rows: 11.4rem auto 7.7rem;
     grid-template-areas: "header" "content" "footer";
     height: 100vh;
+
+    .loader {
+        grid-area: content;
+        display: flex;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+        animation: lowOpacity 0.4s linear;
+    }
+
+    @keyframes lowOpacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 `
 
 export const Content = styled.main`

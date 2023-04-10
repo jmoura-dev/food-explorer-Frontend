@@ -4,12 +4,21 @@ export const Container = styled.div`
     display: grid;
     grid-template-areas: "header" "main" "footer"; 
     grid-template-rows: 11.4rem auto 7.7rem;
+
+    .loader {
+        display: flex;
+        grid-area: main;
+        justify-content: center;
+        align-items: center;
+        height: 60vh;
+        animation: lowOpacity 0.4s linear;
+    }
 `
 
 export const Content = styled.main`
     grid-area: main;
     padding: 3.6rem 4rem;
-    animation: increaseSize 0.4s linear;
+    animation: lowOpacity 0.4s linear;
 
     > button {
         display: flex;
@@ -137,6 +146,15 @@ export const Content = styled.main`
                 }
             }
 
+        }
+    }
+
+    @keyframes lowOpacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
         }
     }
 

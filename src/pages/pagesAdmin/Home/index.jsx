@@ -11,8 +11,11 @@ import { Section } from "../../../components/Section";
 import { DishAdmin } from "../../../components/DishAdmin";
 import { Footer } from "../../../components/Footer";
 
+import { toast } from "react-toastify";
+import { ThreeCircles } from "react-loader-spinner";
+
 export function Home () {
-    const { user } = useAuth();
+    const { user, isLoading, setIsLoading } = useAuth();
     const [search, setSearch] = useState("");
     const [dishes, setDishes] = useState([]);
     const [favorites, setFavorites] = useState([]);
@@ -65,6 +68,7 @@ export function Home () {
     async function handleAddFavorites (dishId) {
 
       try {
+        setIsLoading(true);
         const response = await api.get(`favorites/${user.id}`);
         const dishesFavorites = response.data;
         const isFavorite = dishesFavorites.filter(item => item.id === dishId).length;
@@ -72,7 +76,10 @@ export function Home () {
         if(isFavorite) {
           await api.delete(`favorites/${dishId}`);
           setFavorites(favorites.filter(dish => dish !== dishId));
-          alert("Prato removido dos favoritos.");
+          setIsLoading(false);
+          toast.success("Prato removido dos favoritos.", {
+            position: toast.POSITION.TOP_CENTER
+          });
 
         } else {
           await api.post("favorites", {
@@ -80,12 +87,18 @@ export function Home () {
             user_id: user.id
           });
           setFavorites([...favorites, dishId]);
-          alert("Prato salvo em favoritos.");
+          setIsLoading(false);
+          toast.success("Prato salvo em favoritos.", {
+            position: toast.POSITION.TOP_CENTER
+          });
         }
 
     }catch (error) {
+      setIsLoading(false);
       console.error(error)
-      alert("Não foi possível adicionar aos favoritos.");
+      toast.error("Não foi possível adicionar aos favoritos.", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
     }
 
@@ -96,13 +109,15 @@ export function Home () {
       }
 
       searchDishes();
-    }, [search])
+    }, [search]);
 
     useEffect(() => {
       async function fetchFavorites () {
+        setIsLoading(true);
         const response = await api.get(`favorites/${user.id}`);
         const listFavorites = response.data.map(item => item.id);
         setFavorites(listFavorites);
+        setIsLoading(false);
       }
 
       fetchFavorites();
@@ -115,6 +130,19 @@ export function Home () {
         onChange={e => setSearch(e.target.value)}
         />
 
+      {
+        isLoading ?
+          (
+            <div className="loader">
+            <ThreeCircles
+            color="#126b37"
+            width="120"
+            height="100"
+            />
+          </div>
+          )
+          :
+        (
         <Content>
         <About/>
 
@@ -222,6 +250,9 @@ export function Home () {
         </Section>
 
         </Content>
+        )
+      }
+
         
         <Footer/>
 

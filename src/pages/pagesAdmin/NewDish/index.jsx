@@ -1,6 +1,7 @@
 import { Container, Form, UploadImage } from "./styles";
 
 import { api } from "../../../services/api";
+import { useAuth } from "../../../hooks/auth";
 
 import { HeaderAdmin } from "../../../components/HeaderAdmin";
 import { Footer } from "../../../components/Footer";
@@ -11,8 +12,12 @@ import { DishItem } from "../../../components/DishItem";
 import { FiChevronLeft, FiUpload } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ThreeCircles } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 export function NewDish () {
+  const { isLoading, setIsLoading } = useAuth();
+
   const [name, setName] = useState("");
   const [category, setCategory] = useState("Refeição");
   const [price, setPrice] = useState("");
@@ -27,10 +32,11 @@ export function NewDish () {
 
   function handleAddIngredient() {
     if(!newIngredient) {
-      return alert("Não é possível adicionar o campo vazio.")
+      return toast.error("Não é possível adicionar o campo vazio.", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
       setIngredients(prevState => [...prevState, newIngredient]);
-
       setNewIngredient("");
   }
 
@@ -46,11 +52,15 @@ export function NewDish () {
     const formData = new FormData();
 
     if(!name || !price || !description || !ingredients || !image){
-      return alert("Preencha todos os campos para criar o prato.")
+      return toast.error("Preencha todos os campos para criar o prato.", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
     
     if(newIngredient) {
-      return alert("Você deixou o campo de ingrediente incompleto, finalize ou apague o conteúdo para adicionar o ingrediente.")
+      return toast.error("Você deixou o campo de ingrediente incompleto, finalize ou apague o conteúdo para adicionar o ingrediente.", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
 
     formData.append("name", name);
@@ -61,20 +71,36 @@ export function NewDish () {
     formData.append("avatar_dish", image);
 
     try {
+      setIsLoading(true);
       await api.post("/dishes", formData);
-      alert("Prato adicionado com sucesso!");
+      setIsLoading(false);
+      alert("Prato criado com sucesso!");
       navigate(-1);
       
     } catch (error) {
-      console.error(error.response.data.message);
+      toast.error("Não foi possível criar o prato.", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
-    
   }
 
   return (
     <Container>
       <HeaderAdmin/>
 
+    {
+      isLoading ?
+      (
+        <div className="loader">
+          <ThreeCircles
+          color="#126b37"
+          width="120"
+          height="100"
+          />
+        </div>
+      )
+      :
+      (
       <Form>
         <ButtonText 
         icon={FiChevronLeft} 
@@ -178,6 +204,8 @@ export function NewDish () {
 
       </main>
       </Form>
+      )
+    }
 
       <Footer/>
     </Container>

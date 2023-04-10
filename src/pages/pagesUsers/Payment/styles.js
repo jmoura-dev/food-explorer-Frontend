@@ -5,6 +5,16 @@ export const Container = styled.div`
     grid-template-areas: "header" "content" "footer";
     grid-template-rows: 11.4rem auto 7.7rem;
     overflow-x: hidden;
+
+    .loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        grid-area: content;
+        margin: auto;
+        animation: lowOpacity 0.5s linear;
+        height: 70vh;
+    }
 `
 
 export const Content = styled.main`
@@ -169,14 +179,12 @@ export const Request = styled.div`
     }
 
     > button {
-        position: absolute;
-        left: 10%;
-        bottom: 0%;
         max-width: 25rem;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 1rem;
+        margin: 2rem auto;
 
         svg {
             font-size: 2rem;

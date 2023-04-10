@@ -8,7 +8,6 @@ export const Container = styled.div`
 
 export const Content = styled.main`
     grid-area: content;
-    padding: 2rem;
     max-width: 136.6rem;
     width: 100%;
     margin: 0 auto;
@@ -95,16 +94,18 @@ export const Content = styled.main`
 
     > button:last-child {
         position: absolute;
-        bottom: 0;
-        right: 5%;
+        right: 7%;
+        bottom: 5%;
         display: flex;
         flex-direction: row-reverse;
         align-items: center;
         justify-content: center;
         gap: 1rem;
-        width: clamp(15rem, 18rem, 22rem);
+        width: clamp(13rem, 15rem, 22rem);
 
-
+        @media (min-width: 820px) {
+            width: 20rem;
+        }
         svg {
             font-size: 1.8rem;
         }

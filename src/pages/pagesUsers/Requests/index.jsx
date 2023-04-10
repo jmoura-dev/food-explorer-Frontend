@@ -13,6 +13,8 @@ import { ButtonText } from "../../../components/ButtonText";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { toast } from "react-toastify";
+
 export function Requests() {
     const [cart, setCart] = useCart();
     const navigate = useNavigate();
@@ -24,9 +26,11 @@ export function Requests() {
 
     function handleClickProgress () {
         if(cart.length <= 0) {
-            return alert("Não há itens no carrinho.")
+            return toast.error("Não há itens no carrinho.", {
+                position: toast.POSITION.TOP_RIGHT
+            });
         }
-        navigate("/payment")
+        navigate("/payment");
     }
 
     function handleRemoveItemCart (deleted) {

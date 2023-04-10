@@ -7,12 +7,16 @@ import { Section } from "../../../components/Section";
 import { DishFavoritesAdmin } from "../../../components/DishFavoritesAdmin";
 
 import { api } from "../../../services/api";
+import { useAuth } from "../../../hooks/auth";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/Button";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { ThreeCircles } from "react-loader-spinner";
 
 export function Favorites () {
+    const { isLoading, setIsLoading } = useAuth();
     const [image, setImage] = useState({});
     const navigate = useNavigate();
     const [favorites, setFavorites] = useState([]);
@@ -25,13 +29,17 @@ export function Favorites () {
         await api.delete(`/favorites/${deleted}`);
         const response = await api.get("/favorites");
         setFavorites(response.data);
-        alert("Prato removido dos favoritos.")
+        toast.success("Prato removido dos favoritos.", {
+            position: toast.POSITION.TOP_CENTER
+        })
     }
 
     useEffect(() => {
         async function fetchFavorites() {
+            setIsLoading(true);
             const response = await api.get("/favorites");
             setFavorites(response.data);
+            setIsLoading(false);
         }
 
         fetchFavorites();
@@ -53,13 +61,25 @@ export function Favorites () {
         };
 
         fetchImageDish();
-    }, [favorites])
-
+    }, [favorites]);
 
     return (
         <Container>
             <HeaderAdmin/>
 
+            {
+                isLoading ?
+                (
+                    <div className="loader">
+                        <ThreeCircles
+                        color="#126b37"
+                        width="120"
+                        height="100"
+                        />
+                    </div>
+                )
+                :
+                (
             <Section title="Meus favoritos">
 
             {
@@ -90,6 +110,8 @@ export function Favorites () {
                     />
                     </footer>
             </Section>
+            )
+            }
 
             <Footer/>
         </Container>

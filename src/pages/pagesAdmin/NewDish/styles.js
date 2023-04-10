@@ -4,6 +4,25 @@ export const Container = styled.div`
   display: grid;
   grid-template-areas: "header" "form" "footer";
   grid-template-rows: 11.4rem auto 7.7rem;
+
+  .loader {
+    grid-area: form;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: 60vh;
+    animation: lowOpacity 0.4s linear;
+  }
+
+  @keyframes lowOpacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `
 
 

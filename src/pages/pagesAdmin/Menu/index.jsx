@@ -38,7 +38,7 @@ export function Menu () {
     useEffect(() => {
         async function searchDishes () {
             const response = await api.get(`/dishes?dish=${search}&ingredients=${search}`);
-            setDishes(response.data)
+            setDishes(response.data);
         }
 
         searchDishes();
@@ -60,7 +60,7 @@ export function Menu () {
         };
 
         fetchImageDish();
-    }, [dishes])
+    }, [dishes]);
 
     return (
         <Container>

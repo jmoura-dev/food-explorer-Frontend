@@ -87,6 +87,10 @@ export const Content = styled.main`
                 display: flex;
                 gap: 1rem;
             }
+
+            h2 {
+                text-align: center;
+            }
         }
 
         @media (min-width: 820px) {

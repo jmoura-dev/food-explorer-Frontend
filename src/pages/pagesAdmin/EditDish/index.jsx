@@ -10,8 +10,13 @@ import { FiChevronLeft, FiUpload } from 'react-icons/fi';
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../../../services/api";
+import { useAuth } from "../../../hooks/auth";
+import { toast } from "react-toastify";
+import { ThreeCircles } from "react-loader-spinner";
 
 export function EditDish () {
+  const { isLoading, setIsLoading } = useAuth();
+
   const [data, setData] = useState(null);
   const navigate = useNavigate();
 
@@ -28,7 +33,9 @@ export function EditDish () {
 
   function handleAddIngredient() {
     if(!newIngredient) {
-      return alert("Não é possível adicionar campo vazio.")
+      return toast.error("Não é possível adicionar campo vazio.", {
+        position: toast.POSITION.TOP_RIGHT
+      })
     }
     setIngredients(prevState => [...prevState, newIngredient]);
 
@@ -40,14 +47,16 @@ export function EditDish () {
   }
 
   function handleClickBack () {
-    navigate(-1)
+    navigate(-1);
   }
 
   async function handleDeleteDish () {
     const confirm = window.confirm("Deseja mesmo excluir o prato ?");
 
     if(confirm) {
+      setIsLoading(true);
       await api.delete(`/dishes/${params.id}`);
+      setIsLoading(false);
       navigate("/");
     }
   }
@@ -56,15 +65,21 @@ export function EditDish () {
     const formData = new FormData();
 
     if(!image) {
-      return alert("É necessário adicionar uma nova imagem para o prato.")
+      return toast.error("É necessário adicionar uma nova imagem para o prato.", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
 
     if(!name || !price || !description || !ingredients ){
-      return alert("Preencha todos os campos para criar o prato.")
+      return toast.error("Preencha todos os campos para criar o prato.", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
     
     if(newIngredient) {
-      return alert("Você deixou o campo de ingrediente incompleto, finalize ou apague o conteúdo para adicionar o ingrediente.")
+      return toast.error("Você deixou o campo de ingrediente incompleto, finalize ou apague o conteúdo para adicionar o ingrediente.", {
+        position: toast.POSITION.TOP_CENTER
+      });
     }
 
     formData.append("name", name);
@@ -75,28 +90,50 @@ export function EditDish () {
     formData.append("avatar_dish", image);
 
     try{
+      setIsLoading(true);
       await api.put(`/dishes/${params.id}`, formData);
-      alert("Prato atualizado com sucesso.")
+      setIsLoading(false);
+      toast.success("Prato atualizado com sucesso.", {
+        position: toast.POSITION.TOP_CENTER
+      });
       navigate("/");
 
     } catch (error){
-      console.error(response.error.data.message)
+      setIsLoading(false);
+      toast.error("Não foi possível atualizar.", {
+        position: toast.POSITION.TOP_RIGHT
+      });
     }
   }
 
   useEffect(() => {
     async function fetchDishes () {
+      setIsLoading(true);
       const response = await api.get(`/dishes/${params.id}`);
       setData(response.data);
+      setIsLoading(false);
     }
 
     fetchDishes();
-  }, [])
+  }, []);
 
   return (
     <Container>
       <HeaderAdmin/>
 
+    {
+      isLoading ?
+      (
+        <div className="loader">
+          <ThreeCircles
+          color="#126b37"
+          width="120"
+          height="100"
+          />
+        </div>
+      )
+      :
+      (
       <Form>
         <ButtonText 
         icon={FiChevronLeft} 
@@ -214,6 +251,8 @@ export function EditDish () {
       </main>
       }
       </Form>
+      )
+    }
 
       <Footer/>
     </Container>

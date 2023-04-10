@@ -74,6 +74,10 @@ export const Container = styled.ul`
       position: absolute;
       font-size: 4.3rem;
       left: 13%;
+
+      color: ${({ value, theme }) => value === "Preparando" && theme.COLORS.CARROT_100};
+      color: ${({ value, theme }) => value === "Pendente" && theme.COLORS.TOMATO_100};
+      color: ${({ value, theme }) => value === "Entregue" && theme.COLORS.MINT};
     }
 
     select {

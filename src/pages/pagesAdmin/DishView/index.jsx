@@ -8,12 +8,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FiChevronLeft } from 'react-icons/fi';
 
+import { useAuth } from "../../../hooks/auth";
 import { api } from "../../../services/api";
 import { Ingredients } from "../../../components/Ingredients";
 
-
+import { ThreeDots } from "react-loader-spinner";
 
 export function DishView ({ ...rest }) {
+    const { isLoading, setIsLoading } = useAuth();
+
     const params = useParams();
     const navigate = useNavigate();
     const [data, setData] = useState(null);
@@ -29,8 +32,10 @@ export function DishView ({ ...rest }) {
 
     useEffect(() => {
         async function fetchDishes() {
+            setIsLoading(true);
             const response = await api.get(`/dishes/${params.id}`);
-            setData(response.data)
+            setData(response.data);
+            setIsLoading(false);
         }
 
         fetchDishes();
@@ -44,7 +49,7 @@ export function DishView ({ ...rest }) {
         }
 
         fetchImage();
-    }, [data])
+    }, [data]);
 
       return (
         <Container 
@@ -52,6 +57,19 @@ export function DishView ({ ...rest }) {
         >
             <HeaderAdmin/>
 
+            {
+                isLoading ? 
+                (
+                    <div className="loader">
+                        <ThreeDots
+                        color="#126b37"
+                        width="120"
+                        height="100"
+                        />
+                    </div>
+                )
+                :
+                (
             <Content>
 
             <ButtonText 
@@ -96,6 +114,8 @@ export function DishView ({ ...rest }) {
             }
 
             </Content>
+            )
+            }
 
             <Footer/>
         </Container>

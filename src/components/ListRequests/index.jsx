@@ -1,26 +1,6 @@
 import { Container } from "./styles";
-import { useState } from "react";
 
-export function ListRequests ({ title, data, details, onChange, children, ...rest }) {
-  const [color, setColor] = useState("#AB222E");
-
-  function handleColorChange(event) {
-    const value = event.target.value;
-    switch (value) {
-      case "Pendente":
-        setColor("#AB222E");
-        break;
-      case "Preparando":
-        setColor("#FBA94C");
-        break;
-      case "Entregue":
-        setColor("#04D361");
-        break;
-      default:
-        setColor("");
-        break;
-    }
-  }
+export function ListRequests ({ title, data, color, details, onChange, children, ...rest }) {
 
   return (
     <Container
@@ -28,8 +8,8 @@ export function ListRequests ({ title, data, details, onChange, children, ...res
     >
 
       <div className="status">
-      <p style={{color}}>•</p>
-      <select onChange={onChange} onInput={handleColorChange}>
+      <p color={color}>•</p>
+      <select onChange={onChange} value={data.status}>
       <option className="pendent" value="Pendente">Pendente</option>
       <option className="preparing" value="Preparando">Preparando</option>
       <option className="delivered" value="Entregue">Entregue</option>

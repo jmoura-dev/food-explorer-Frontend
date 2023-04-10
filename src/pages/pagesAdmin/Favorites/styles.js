@@ -5,13 +5,23 @@ export const Container = styled.main`
     grid-template-areas: "header" "section" "footer";
     grid-template-rows: 11.4rem auto 7.7rem;
     overflow-x: hidden;
+    height: 100vh;
+
+    .loader {
+        display: flex;
+        margin: auto;
+        grid-area: section;
+        height: 60vh;
+        align-items: center;
+        animation: lowOpacity 0.4s linear;
+    }
 
     > section {
-        margin: 5rem 3rem;
+        margin: 4rem 3rem;
         font-family: "Poppins", "serif";
         font-weight: 500;
         font-size: 3.2rem;
-        animation: topdown 0.4s linear;
+        animation: lowOpacity 0.4s linear;
 
 
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
@@ -68,16 +78,16 @@ export const Container = styled.main`
     @media (max-height: 830px) {
         > section {
             ul li {
-                margin-top: 10rem;
+                padding-top: 5rem;
                 max-height: 25rem;
             }
         }
     }
 
-    @media (max-height: 700px) {
+    @media (max-height: 700px) and (max-width: 820px) {
         > section {
             > ul li {
-                margin-top: 12rem;
+                padding-top: 25rem;
                 max-height: 18rem;
             }
         }
@@ -105,6 +115,15 @@ export const Container = styled.main`
 
                 flex-wrap: wrap;
             }
+        }
+    }
+
+    @keyframes lowOpacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
         }
     }
 `

@@ -67,6 +67,25 @@ export const Container = styled.div`
                 }
         }
     }
+
+    .loader {
+        grid-area: main;
+        display: flex;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+        height: 60vh;
+        animation: lowOpacity 0.4s linear;
+    }
+
+    @keyframes lowOpacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 `
 
 export const Content = styled.main`

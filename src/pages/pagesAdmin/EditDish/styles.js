@@ -4,6 +4,16 @@ export const Container = styled.div`
   display: grid;
   grid-template-areas: "header" "form" "footer";
   grid-template-rows: 11.4rem auto 7.7rem;
+
+  .loader {
+    display: flex;
+    grid-area: form;
+    margin: auto;
+    height: 60vh;
+    align-items: center;
+    justify-content: center;
+    animation: lowOpacity 0.4s linear;
+  }
 `
 
 
@@ -273,5 +283,14 @@ export const UploadImage = styled.div`
 
   @media(min-width: 820px) {
     max-width: 28rem;
+  }
+
+  @keyframes lowOpacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 `

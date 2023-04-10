@@ -40,8 +40,8 @@ export function Favorites () {
         async function fetchFavorites() {
             setIsLoading(true);
             const response = await api.get("/favorites");
-            setFavorites(response.data);
             setIsLoading(false);
+            setFavorites(response.data);
         }
 
         fetchFavorites();
