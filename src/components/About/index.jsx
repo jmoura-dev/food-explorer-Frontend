@@ -10,7 +10,7 @@ export function About () {
                     Sabores inigualáveis
                 </h1>
                 <p>
-                    Sinta o cuidado do prepato com ingredientes selecionados.
+                    Sinta o cuidado do preparo com ingredientes selecionados.
                 </p>
             </div>
         </Container>
