@@ -92,7 +92,7 @@ export function Home () {
 
     }catch (error) {
       console.error(error)
-      toast.error("Não foi possível adicionar aos favoritos.", {
+      toast.error("Você está deslogado, faça o login novamente para navegar.", {
         position: toast.POSITION.TOP_RIGHT
       });
     }
