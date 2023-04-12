@@ -119,7 +119,7 @@ export function Payment() {
             console.log(error);
             setWhenFinish(true);
             isFinish(false);
-            return toast.error("Não foi possível completar o pedido.", {
+            return toast.error("Você está deslogado, faça o login novamente para navegar.", {
                 position: toast.POSITION.TOP_RIGHT
             });
         }
