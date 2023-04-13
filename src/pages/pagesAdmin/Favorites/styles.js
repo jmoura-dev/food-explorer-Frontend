@@ -78,8 +78,8 @@ export const Container = styled.main`
     @media (max-height: 830px) {
         > section {
             ul li {
-                padding-top: 5rem;
-                max-height: 25rem;
+                padding-top: 15rem;
+                max-height: 35rem;
             }
         }
     }
@@ -88,7 +88,7 @@ export const Container = styled.main`
         > section {
             > ul li {
                 padding-top: 25rem;
-                max-height: 18rem;
+                max-height: 30rem;
             }
         }
     }

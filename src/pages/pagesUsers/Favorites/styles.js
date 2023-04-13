@@ -76,20 +76,21 @@ export const Container = styled.main`
             }
         }
     }
+
     @media (max-height: 830px) {
         > section {
             ul li {
-                margin-top: 10rem;
-                max-height: 25rem;
+                padding-top: 25rem;
+                max-height: 35rem;
             }
         }
     }
 
-    @media (max-height: 700px) {
+    @media (max-height: 700px) and (max-width: 820px) {
         > section {
             > ul li {
-                margin-top: 12rem;
-                max-height: 18rem;
+                padding-top: 28rem;
+                max-height: 30rem;
             }
         }
     }
